@@ -34,7 +34,18 @@ class BubbleVis {
 
     wrangleData() {
         let vis = this;
+        console.log("inside bubble vis, data:", vis.data)
 
+        let squirrelData = vis.data[0]
+        let hectareData = vis.data[1]
+
+        let squirrelDataByHectare = Array.from(d3.group(squirrelData, d=>d.Hectare), ([key, value]) => ({key, value}))
+        // console.log(squirrelDataByHectare)
+
+        // squirrelDataByHectare.forEach((hectare, i)=>{
+            // define sums here
+            // push onto display data
+        // })
         vis.displayData = vis.data;
 
         vis.updateVis();

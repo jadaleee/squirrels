@@ -29,7 +29,14 @@ function initMainPage(dataArray) {
 
 
     // Create Visualization instances
-    // let countVis = new CountVis("countvis", allData, MyEventHandler);
+    let hookVis = new HookVis("hook_vis", dataArray);
+    let bubbleVis = new BubbleVis("bubble_vis", dataArray);
+    let sankeyVis = new SankeyVis("sankey_vis", dataArray);
+    let squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray);
+    let storiesVis = new StoriesVis("stories_vis", dataArray);
+    let timelineBrushVis = new TimelineBrushVis("timeline_brush_vis", dataArray);
+    let walkMapVis = new WalkMapVis("walk_map_vis", dataArray);
+
 
     // when 'selectionChanged' is triggered, specified function is called
     // $(MyEventHandler).bind("selectionChanged", function(event, rangeStart, rangeEnd){

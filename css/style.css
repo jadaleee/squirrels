@@ -4,6 +4,11 @@ body {
     font-family: 'Neuton', serif;
 }
 
+svg {
+    fill: lightgray;
+    stroke: darkgrey;
+}
+
 h1 {
     font-size: 36px;
     color: #825a5a;

@@ -10,6 +10,7 @@
 
     <!-- CSS libraries -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/fullpage.js/dist/fullpage.css" />
 
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
@@ -17,57 +18,68 @@
 <body>
 
 <div class="container">
+    <div id="fullpage">
 
-    <div class="row">
-        <div class="col-md-12">
-            <h1><span class="h1-sub">Final Project:</span> Squirrels in Central Park</h1>
-            <h2>Squirrels are cute, squirrels are fun!</h2>
+<!-- FOR LATER: USE LAZY LOADING FOR IMAGES (built-in with fullpage)
+Example: <img data-src="image.png"> -->
+
+        <div class="row section" id="section0">
+            <div class="col-md-12">
+                <h1><span class="h1-sub">Final Project:</span> Squirrels in Central Park</h1>
+                <h2>Squirrels are cute, squirrels are fun!</h2>
+            </div>
         </div>
+
+        <!-- Hook -->
+        <div class="row section" id="section1">
+            <div class="col-md-12">
+                <div id="hook_vis"></div>
+            </div>
+        </div>
+
+        <!-- Rising Insights -->
+        <div class="row section" id="section2">
+            <div class="col-md-12">
+                <div id="bubble_vis"></div>
+            </div>
+        </div>
+
+        <div class="row section" id="section3">
+            <div class="col-md-12">
+                <div id="sankey_vis"></div>
+            </div>
+        </div>
+
+        <!-- Main message -->
+        <div class="row section" id="section4">
+            <div class="col-md-12">
+                <div id="stories_vis"></div>
+            </div>
+        </div>
+
+        <div class="row section" id="section5">
+            <div class="col-md-4">
+                <div id="squirrel_map_vis"></div>
+            </div>
+            <div class="col-md-8">
+                <div id="timeline_brush_vis"></div>
+            </div>
+        </div>
+
+        <!-- Solution/Call to Action -->
+        <div class="row section" id="section6">
+            <div class="col-md-12">
+                <div id="walk_map_vis"></div>
+            </div>
+        </div>
+
+        <div class="row section" id="section7">
+            <div class="col-md-12">
+                <div id="quotes"></div>
+            </div>
+        </div>
+
     </div>
-
-    <!-- Hook -->
-    <div class="row">
-        <div class="col-md-12">
-            <div id="hook_vis"></div>
-        </div>
-    </div>
-
-    <!-- Rising Insights -->
-    <div class="row">
-        <div class="col-md-12">
-            <div id="bubble_vis"></div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div id="sankey_vis"></div>
-        </div>
-    </div>
-
-    <!-- Main message -->
-    <div class="row">
-        <div class="col-md-12">
-            <div id="stories_vis"></div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <div id="squirrel_map_vis"></div>
-        </div>
-        <div class="col-md-8">
-            <div id="timeline_brush_vis"></div>
-        </div>
-    </div>
-
-    <!-- Solution/Call to Action -->
-    <div class="row">
-        <div class="col-md-12">
-            <div id="walk_map_vis"></div>
-        </div>
-    </div>
-
 </div>
 
 <!-- Load JS libraries -->
@@ -78,6 +90,8 @@
 <!-- d3 -->
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<!-- Fullpage Stepper -->
+<script type="text/javascript" src="node_modules/fullpage.js/dist/fullpage.js"></script>
 
 <!-- Visualization objects -->
 <script src="js/hook_vis.js"></script>
@@ -90,5 +104,20 @@
 
 <!-- Load data, create visualizations -->
 <script src="js/main.js"></script>
+
+<!-- Initialize Fullpage stepper-->
+<script>
+    new fullpage('#fullpage', {
+        //options here
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', 'lastPage'],
+        autoScrolling:true,
+        scrollHorizontally: false,
+        slidesNavigation: true,
+        navigation: true,
+        navigationPosition: 'right',
+        navigationTooltips: ['Title', 'Section 1', 'Section 2', 'Section 3', 'Section 4', 'Section 5', 'Section 6', 'Section 7']
+    });
+</script>
+
 </body>
 </html>

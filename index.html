@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CS171 - Lab 10</title>
+    <title>Squirrels Rool</title>
 
     <link href="https://fonts.googleapis.com/css?family=Neuton:300,400,400i,700,800" rel="stylesheet">
 
@@ -23,6 +23,7 @@
 <!-- FOR LATER: USE LAZY LOADING FOR IMAGES (built-in with fullpage)
 Example: <img data-src="image.png"> -->
 
+        <!--    Landing Page    -->
         <div class="row section" id="section0">
             <div class="col-md-12">
                 <h1><span class="h1-sub">Final Project:</span> Squirrels in Central Park</h1>
@@ -79,6 +80,13 @@ Example: <img data-src="image.png"> -->
             </div>
         </div>
 
+        <!--    About Us    -->
+        <div class="row section" id="section8">
+            <div class="col-md-12">
+                <div id="aboutUs"></div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -109,13 +117,13 @@ Example: <img data-src="image.png"> -->
 <script>
     new fullpage('#fullpage', {
         //options here
-        anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', 'lastPage'],
+        anchors: ['Title', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', 'AboutUs'],
         autoScrolling:true,
         scrollHorizontally: false,
         slidesNavigation: true,
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['Title', 'Section 1', 'Section 2', 'Section 3', 'Section 4', 'Section 5', 'Section 6', 'Section 7']
+        navigationTooltips: ['Title', 'Section 1', 'Section 2', 'Section 3', 'Section 4', 'Section 5', 'Section 6', 'Section 7', 'About Us']
     });
 </script>
 

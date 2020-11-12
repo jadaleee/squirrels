@@ -1,4 +1,4 @@
-class SankeyVis {
+class StoriesMapVis {
     constructor(_parentElement, _data) {
         this.parentElement = _parentElement;
         this.data = _data;

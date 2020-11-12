@@ -24,7 +24,7 @@
 Example: <img data-src="image.png"> -->
 
         <!--    Landing Page    -->
-        <div class="row section" id="section0">
+        <div class="row section" id="landing">
             <div class="col-md-12">
                 <h1><span class="h1-sub">Final Project:</span> Squirrels in Central Park</h1>
                 <h2>Squirrels are cute, squirrels are fun!</h2>
@@ -32,56 +32,72 @@ Example: <img data-src="image.png"> -->
         </div>
 
         <!-- Hook -->
-        <div class="row section" id="section1">
+        <div class="row section" id="hookVis">
             <div class="col-md-12">
                 <div id="hook_vis"></div>
             </div>
         </div>
 
         <!-- Rising Insights -->
-        <div class="row section" id="section2">
+                <!-- Context Section-->
+        <div class="row section" id="censusInfo">
+            <div class="col-md-12">
+                <div id="squirrel_census_info"></div>
+            </div>
+        </div>
+
+        <div class="row section" id="squirrelTrivia">
+            <div class="col-md-12">
+                <div id="squirrel_trivia"></div>
+            </div>
+        </div>
+
+                <!-- Bubble Vis -->
+        <div class="row section" id="bubbleVis">
             <div class="col-md-12">
                 <div id="bubble_vis"></div>
             </div>
         </div>
-
-        <div class="row section" id="section3">
-            <div class="col-md-12">
-                <div id="sankey_vis"></div>
-            </div>
-        </div>
-
-        <!-- Main message -->
-        <div class="row section" id="section4">
+                <!-- Stories Vis -->
+        <div class="row section" id="storiesVis">
             <div class="col-md-12">
                 <div id="stories_vis"></div>
             </div>
         </div>
 
-        <div class="row section" id="section5">
-            <div class="col-md-4">
-                <div id="squirrel_map_vis"></div>
+        <!-- Main message: Map and Stories Vis -->
+        <div class = "row section" id="mainMessage">
+            <div class="row" id="storiesMap">
+                <div class="col-md-12">
+                    <div id="stories_map_vis"></div>
+                </div>
             </div>
-            <div class="col-md-8">
-                <div id="timeline_brush_vis"></div>
+
+            <div class="row" id="squirrelMap">
+                <div class="col-md-4">
+                    <div id="squirrel_map_vis"></div>
+                </div>
+                <div class="col-md-8">
+                    <div id="timeline_brush_vis"></div>
+                </div>
             </div>
         </div>
 
         <!-- Solution/Call to Action -->
-        <div class="row section" id="section6">
+        <div class="row section" id="walkMap">
             <div class="col-md-12">
                 <div id="walk_map_vis"></div>
             </div>
         </div>
 
-        <div class="row section" id="section7">
+        <div class="row section" id="quotesInfo">
             <div class="col-md-12">
                 <div id="quotes"></div>
             </div>
         </div>
 
         <!--    About Us    -->
-        <div class="row section" id="section8">
+        <div class="row section" id="lastSection">
             <div class="col-md-12">
                 <div id="aboutUs"></div>
             </div>
@@ -104,8 +120,8 @@ Example: <img data-src="image.png"> -->
 <!-- Visualization objects -->
 <script src="js/hook_vis.js"></script>
 <script src="js/bubble_vis.js"></script>
-<script src="js/sankey_vis.js"></script>
 <script src="js/stories_vis.js"></script>
+<script src="js/stories_map_vis.js"></script>
 <script src="js/squirrel_map_vis.js"></script>
 <script src="js/timeline_brush_vis.js"></script>
 <script src="js/walk_map_vis.js"></script>
@@ -117,13 +133,13 @@ Example: <img data-src="image.png"> -->
 <script>
     new fullpage('#fullpage', {
         //options here
-        anchors: ['Title', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', 'AboutUs'],
+        anchors: ['Title', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', '8thPage', 'About-Us'],
         autoScrolling:true,
         scrollHorizontally: false,
         slidesNavigation: true,
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['Title', 'Section 1', 'Section 2', 'Section 3', 'Section 4', 'Section 5', 'Section 6', 'Section 7', 'About Us']
+        navigationTooltips: ['Title', 'Section 1', 'Section 2', 'Section 3', 'Section 4', 'Section 5', 'Section 6', 'Section 7', 'Section 8', 'About Us']
     });
 </script>
 

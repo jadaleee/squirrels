@@ -1,4 +1,4 @@
-class TimelineBrushVis {
+class MapFiltersVis {
     constructor(_parentElement, _data) {
         this.parentElement = _parentElement;
         this.data = _data;
@@ -9,7 +9,7 @@ class TimelineBrushVis {
     initVis() {
         let vis = this;
 
-        vis.margin = { top: 40, right: 40, bottom: 40, left: 40 };
+        vis.margin = { top: 40, right: 40, bottom: 40, left: 10 };
 
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
             vis.height = 300 - vis.margin.top - vis.margin.bottom;

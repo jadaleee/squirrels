@@ -9,10 +9,10 @@ class StoriesMapVis {
     initVis() {
         let vis = this;
 
-        vis.margin = { top: 40, right: 40, bottom: 40, left: 40 };
+        vis.margin = { top: 40, right: 20, bottom: 20, left: 40 };
 
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
-            vis.height = 300 - vis.margin.top - vis.margin.bottom;
+            vis.height = 250 - vis.margin.top - vis.margin.bottom;
 
         // SVG drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")

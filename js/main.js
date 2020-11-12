@@ -112,7 +112,7 @@ function initMainPage(dataArray) {
     let storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray);
     let squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray);
     let storiesVis = new StoriesVis("stories_vis", dataArray);
-    let timelineBrushVis = new TimelineBrushVis("timeline_brush_vis", dataArray);
+    let mapFiltersVis = new MapFiltersVis("map_filters_vis", dataArray);
     let walkMapVis = new WalkMapVis("walk_map_vis", dataArray);
 
     // when 'selectionChanged' is triggered, specified function is called

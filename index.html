@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container-fluid">
     <div id="fullpage">
 
 <!-- FOR LATER: USE LAZY LOADING FOR IMAGES (built-in with fullpage)
@@ -66,7 +66,9 @@ Example: <img data-src="image.png"> -->
         </div>
 
         <!-- Main message: Map and Stories Vis -->
-        <div class = "row section" id="mainMessage">
+        <div class="row section" id="mainMessage">
+            <h1>Stories about Squirrels in Central Park</h1>
+
             <div class="row" id="storiesMap">
                 <div class="col-md-12">
                     <div id="stories_map_vis"></div>
@@ -74,11 +76,11 @@ Example: <img data-src="image.png"> -->
             </div>
 
             <div class="row" id="squirrelMap">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div id="squirrel_map_vis"></div>
                 </div>
-                <div class="col-md-8">
-                    <div id="timeline_brush_vis"></div>
+                <div class="col-md-6">
+                    <div id="map_filters_vis"></div>
                 </div>
             </div>
         </div>
@@ -123,7 +125,7 @@ Example: <img data-src="image.png"> -->
 <script src="js/stories_vis.js"></script>
 <script src="js/stories_map_vis.js"></script>
 <script src="js/squirrel_map_vis.js"></script>
-<script src="js/timeline_brush_vis.js"></script>
+<script src="js/map_filters_vis.js"></script>
 <script src="js/walk_map_vis.js"></script>
 
 <!-- Load data, create visualizations -->

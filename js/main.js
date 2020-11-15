@@ -110,12 +110,12 @@ function initMainPage(dataArray) {
     })
 
     // Create Visualization instances
-    let hookVis = new HookVis("hook_vis", dataArray);
-    let bubbleVis = new BubbleVis("bubble_vis", dataArray);
+    // let hookVis = new HookVis("hook_vis", dataArray);
+    // let bubbleVis = new BubbleVis("bubble_vis", dataArray);
     storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray);
     squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray);
     let storiesVis = new StoriesVis("stories_vis", dataArray);
-    let walkMapVis = new WalkMapVis("walk_map_vis", dataArray);
+    // let walkMapVis = new WalkMapVis("walk_map_vis", dataArray);
 }
 
 let furFilters = [];

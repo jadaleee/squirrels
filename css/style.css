@@ -51,36 +51,32 @@ svg {
 
 /* Backgrounds will cover all the sections. Add ".load-background" for lazy loading!
 	* --------------------------------------- */
-/*#section0,*/
-/*#section1,*/
-/*#section2,*/
-/*#section3,
-#section4,
-#section5,
-#section6,
-#section7 {*/
+/*#hookVis,*/
+/*#censusInfo,*/
+/*#squirrelTrivia,*/
+/*#bubbleVis,*/
+/*#walkMap*/
+/*{*/
 /*    background-size: cover;*/
 /*    background-attachment: fixed;*/
 /*}*/
 
 /* Defining each section background and styles
 * --------------------------------------- */
-/*#section0{*/
-/*    background-image: url(imgs/bg1.jpg);*/
+/*#hookVis{*/
+/*    background-image: url(../images/HookDraft.png);*/
 /*}*/
-/*#section0 h1{*/
-/*    top: 50%;*/
-/*    transform: translateY(-50%);*/
-/*    position: relative;*/
+/*#censusInfo {*/
+/*    background-image: url(../images/Context.png);*/
+/*    !*padding: 6% 0 0 0;*!*/
 /*}*/
-/*#section2{*/
-/*    background-image: url(imgs/bg3.jpg);*/
-/*    padding: 6% 0 0 0;*/
+/*#squirrelTrivia{*/
+/*    background-image: url(../images/Trivia.png);*/
+/*    !*padding: 6% 0 0 0;*!*/
 /*}*/
-/*#section3{*/
-/*    background-image: url(imgs/bg4.jpg);*/
-/*    padding: 6% 0 0 0;*/
+/*#bubbleVis {*/
+/*    background-image: url(../images/bubble.png);*/
 /*}*/
-/*#section3 h1{*/
-/*    color: #000;*/
+/*#walkMap {*/
+/*    background-image: url(../images/walkmap.png);*/
 /*}*/

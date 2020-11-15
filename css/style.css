@@ -16,6 +16,14 @@ h2 {
     margin-bottom: 30px;
 }
 
+p {
+    margin-bottom: 0px;
+}
+
+.filterLabel {
+    margin-top: 10px;
+}
+
 /* VISUALIZATIONS CSS*/
 
 svg {

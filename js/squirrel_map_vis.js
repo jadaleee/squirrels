@@ -41,19 +41,62 @@ class SquirrelMapVis {
         vis.wrangleData();
     }
 
-    wrangleData() {
+    wrangleData(furFilters, reactionFilters, locationFilters, timeFilters) {
         let vis = this;
 
-        // Filter: fur color
+        let filteredData = [];
 
-        // Filter: human activity
+        // Filter: fur color
+        if(furFilters){
+            for(let i = 0; i < furFilters.length; i++){
+                vis.squirrelData.forEach( row => {
+                    if(row["Primary Fur Color"] === furFilters[i]){
+                        filteredData.push(row)
+                    }
+                })
+            }
+            console.log(filteredData)
+        }
+
+        // Filter: reaction to humans
+        if(reactionFilters && reactionFilters.length > 0){
+            if(filteredData.length > 0){
+
+                    filteredData = filteredData.filter( row => {
+                        for(let i = 0; i < reactionFilters.length; i++) {
+                            let reaction = reactionFilters[i]
+                            if(row[reaction]){
+                                return true
+                            }
+                        }
+                        return false
+                    })
+
+                console.log(filteredData)
+            }
+            else{
+                for(let i = 0; i < reactionFilters.length; i++){
+                    let reaction = reactionFilters[i]
+                    vis.squirrelData.forEach( row => {
+                        if(row[reaction]){
+                            filteredData.push(row)
+                        }
+                    })
+                }
+                console.log(filteredData)
+            }
+        }
 
         // Filter: squirrel location relative to ground
 
         // Filter: Time of Day
 
-        vis.displaySquirrelData = vis.squirrelData
-
+        if(filteredData.length > 0){
+            vis.displaySquirrelData = filteredData
+        }
+        else{
+            vis.displaySquirrelData = vis.squirrelData
+        }
         vis.updateVis();
     }
 

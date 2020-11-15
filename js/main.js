@@ -9,6 +9,9 @@
 let dateFormatter = d3.timeFormat("%m%d%Y");
 let dateParser = d3.timeParse("%m%d%Y");
 
+let squirrelMapVis,
+    storiesMapVis;
+
 // load data using promises
 let promises = [
     d3.csv("data/2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv"),
@@ -109,16 +112,46 @@ function initMainPage(dataArray) {
     // Create Visualization instances
     let hookVis = new HookVis("hook_vis", dataArray);
     let bubbleVis = new BubbleVis("bubble_vis", dataArray);
-    let storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray);
-    let squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray);
+    storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray);
+    squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray);
     let storiesVis = new StoriesVis("stories_vis", dataArray);
-    let mapFiltersVis = new MapFiltersVis("map_filters_vis", dataArray);
     let walkMapVis = new WalkMapVis("walk_map_vis", dataArray);
+}
 
-    // when 'selectionChanged' is triggered, specified function is called
-    // $(MyEventHandler).bind("selectionChanged", function(event, rangeStart, rangeEnd){
-         // ageVis.onSelectionChange(rangeStart, rangeEnd);
-    // });
+let furFilters = [];
+let reactionFilters = [];
+let timeFilters = [];
+let locationFilters = [];
 
+function mapFilterClicked(input){
+    // get selected filter from html
+    let selectedFilter = $(input).val();
+    let className = $(input).attr('class');
+
+    if(className === "fur"){
+        let index = furFilters.indexOf(selectedFilter)
+        // if filter is on list ? take off : add to filter list
+        index > -1 ? furFilters.splice(index, 1) : furFilters.push(selectedFilter)
+    }
+
+    else if(className === "reaction"){
+        let index = reactionFilters.indexOf(selectedFilter)
+        // if filter is on list ? take off : add to filter list
+        index > -1 ? reactionFilters.splice(index, 1) : reactionFilters.push(selectedFilter)
+    }
+
+    else if(className === "time"){
+        let index = timeFilters.indexOf(selectedFilter)
+        // if filter is on list ? take off : add to filter list
+        index > -1 ? timeFilters.splice(index, 1) : timeFilters.push(selectedFilter)
+    }
+
+    else if(className === "location"){
+        let index = locationFilters.indexOf(selectedFilter)
+        // if filter is on list ? take off : add to filter list
+        index > -1 ? locationFilters.splice(index, 1) : locationFilters.push(selectedFilter)
+    }
+
+   squirrelMapVis.wrangleData(furFilters, reactionFilters, timeFilters, locationFilters)
 }
 

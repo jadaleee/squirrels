@@ -84,7 +84,43 @@ Example: <img data-src="image.png"> -->
                     <div id="squirrel_map_vis"></div>
                 </div>
                 <div class="col-md-6">
-                    <div id="map_filters_vis"></div>
+                    <h5>Filter the squirrel sightings</h5>
+                    <div class="btn-group-toggle" data-toggle="buttons">
+                        <p class="filterLabel">Fur Color</p>
+                            <label class="btn btn-outline-dark">
+                                <input class="fur" type="checkbox" autocomplete="off" value="Gray" onclick="mapFilterClicked(this)">Gray
+                            </label>
+                            <label class="btn btn-outline-dark">
+                                <input class="fur" type="checkbox" autocomplete="off" value="Cinnamon" onclick="mapFilterClicked(this)">Cinnamon
+                            </label>
+                            <label class="btn btn-outline-dark">
+                                <input class="fur" type="checkbox" autocomplete="off" value="Black" onclick="mapFilterClicked(this)">Black
+                            </label>
+                        <p class="filterLabel">Reaction to Humans</p>
+                            <label class="btn btn-outline-dark">
+                                <input class="reaction" type="checkbox" autocomplete="off" value="Approaches" onclick="mapFilterClicked(this)">Approaches
+                            </label>
+                            <label class="btn btn-outline-dark">
+                                <input class="reaction" type="checkbox" autocomplete="off" value="Indifferent" onclick="mapFilterClicked(this)">Indifferent
+                            </label>
+                            <label class="btn btn-outline-dark">
+                                <input class="reaction" type="checkbox" autocomplete="off" value="Runs from" onclick="mapFilterClicked(this)">Runs From
+                            </label>
+                        <p class="filterLabel">Time of Sighting</p>
+                            <label class="btn btn-outline-dark">
+                                <input class="time" type="checkbox" autocomplete="off" value="AM" onclick="mapFilterClicked(this)">Morning
+                            </label>
+                            <label class="btn btn-outline-dark">
+                                <input class="time" type="checkbox" autocomplete="off" value="PM" onclick="mapFilterClicked(this)">Afternoon
+                            </label>
+                        <p class="filterLabel">Squirrel Location</p>
+                            <label class="btn btn-outline-dark">
+                                <input class="location" type="checkbox" autocomplete="off" value="Above Ground" onclick="mapFilterClicked(this)">Above Ground
+                            </label>
+                            <label class="btn btn-outline-dark">
+                                <input class="location" type="checkbox" autocomplete="off" value="On Ground" onclick="mapFilterClicked(this)">On Ground
+                            </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,7 +168,6 @@ Example: <img data-src="image.png"> -->
 <script src="js/stories_vis.js"></script>
 <script src="js/stories_map_vis.js"></script>
 <script src="js/squirrel_map_vis.js"></script>
-<script src="js/map_filters_vis.js"></script>
 <script src="js/walk_map_vis.js"></script>
 
 <!-- Load data, create visualizations -->

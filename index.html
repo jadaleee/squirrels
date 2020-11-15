@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="node_modules/fullpage.js/dist/fullpage.css" />
 
+    <!--  Leaflet CSS  -->
+    <link rel="stylesheet" href="css/leaflet.css">
+
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -68,6 +71,7 @@ Example: <img data-src="image.png"> -->
         <!-- Main message: Map and Stories Vis -->
         <div class="row section" id="mainMessage">
             <h1>Stories about Squirrels in Central Park</h1>
+            <p>I will put a caption here about how hovering over the stories</p>
 
             <div class="row" id="storiesMap">
                 <div class="col-md-12">
@@ -76,7 +80,7 @@ Example: <img data-src="image.png"> -->
             </div>
 
             <div class="row" id="squirrelMap">
-                <div class="col-md-6">
+                <div class="col-md-6" >
                     <div id="squirrel_map_vis"></div>
                 </div>
                 <div class="col-md-6">
@@ -118,6 +122,9 @@ Example: <img data-src="image.png"> -->
 
 <!-- Fullpage Stepper -->
 <script type="text/javascript" src="node_modules/fullpage.js/dist/fullpage.js"></script>
+
+<!-- Leaflet Map-->
+<script src="js/leaflet/leaflet.js"></script>
 
 <!-- Visualization objects -->
 <script src="js/hook_vis.js"></script>

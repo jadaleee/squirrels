@@ -152,6 +152,6 @@ function mapFilterClicked(input){
         index > -1 ? locationFilters.splice(index, 1) : locationFilters.push(selectedFilter)
     }
 
-   squirrelMapVis.wrangleData(furFilters, reactionFilters, timeFilters, locationFilters)
+   squirrelMapVis.wrangleData(furFilters, reactionFilters, locationFilters, timeFilters)
 }
 

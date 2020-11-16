@@ -55,7 +55,6 @@ class SquirrelMapVis {
                     }
                 })
             }
-            console.log(filteredData)
         }
 
         // Filter: reaction to humans
@@ -71,8 +70,6 @@ class SquirrelMapVis {
                         }
                         return false
                     })
-
-                console.log(filteredData)
             }
             else{
                 for(let i = 0; i < reactionFilters.length; i++){
@@ -83,13 +80,55 @@ class SquirrelMapVis {
                         }
                     })
                 }
-                console.log(filteredData)
             }
         }
 
         // Filter: squirrel location relative to ground
+        if(locationFilters && locationFilters.length > 0){
+            if(filteredData.length > 0) {
+                filteredData = filteredData.filter(row => {
+                    for (let i = 0; i < locationFilters.length; i++) {
+                        if (row.Location === locationFilters[i]) {
+                            return true
+                        }
+                    }
+                    return false
+                })
+
+            }
+            else{
+                for(let i = 0; i < locationFilters.length; i++){
+                    vis.squirrelData.forEach( row => {
+                        if(row.Location === locationFilters[i]){
+                            filteredData.push(row)
+                        }
+                    })
+                }
+            }
+        }
 
         // Filter: Time of Day
+        if(timeFilters && timeFilters.length > 0){
+            if(filteredData.length > 0){
+                filteredData = filteredData.filter( row => {
+                    for(let i = 0; i < timeFilters.length; i++) {
+                        if(row.Shift === timeFilters[i]){
+                            return true
+                        }
+                    }
+                    return false
+                })
+            }
+            else{
+                for(let i = 0; i < timeFilters.length; i++){
+                    vis.squirrelData.forEach( row => {
+                        if(row.Shift === timeFilters[i]){
+                            filteredData.push(row)
+                        }
+                    })
+                }
+            }
+        }
 
         if(filteredData.length > 0){
             vis.displaySquirrelData = filteredData
@@ -97,6 +136,7 @@ class SquirrelMapVis {
         else{
             vis.displaySquirrelData = vis.squirrelData
         }
+
         vis.updateVis();
     }
 
@@ -111,7 +151,7 @@ class SquirrelMapVis {
                 // extract coordinates for each squirrel sighting; census takers had flipped Longitude and Latitude
                 let coord = [element.Longitude, element.Latitude]
 
-                // extract fur color, set cinnamon to brown for marker use later
+                // extract fur color, set cinnamon to brown for marker use
                 let primaryFurColor = element["Primary Fur Color"]
                 if(primaryFurColor === "Cinnamon"){
                     primaryFurColor = "Brown"
@@ -129,14 +169,18 @@ class SquirrelMapVis {
                     humanReaction = "Runs From"
                 }
 
-                // define popupContent with element-specific text
-                let popupContent = "<strong> Squirrel Sighting </strong>" +
-                    "<br/> Location: " + element.Location +
-                    "<br/> Primary Fur Color: "  + primaryFurColor +
-                    "<br/> Time of Sighting: " + element.Shift +
-                    "<br/> Reaction to Humans: " + humanReaction
+                // set description for squirrel sighting time
+                let shiftTime = ""
+                element.Shift === "AM" ? shiftTime = "Morning" : shiftTime = "Afternoon"
 
-            // console.log(element)
+                // define popupContent with element-specific text
+                let popupContent = "<div class=marker> " +
+                    "<strong> Primary Fur Color: </strong>"  + primaryFurColor +
+                    "<br/> <strong> Reaction to Humans: </strong>" + humanReaction +
+                    "<br/> <strong> Time of Sighting: </strong>" + shiftTime +
+                    "<br/> <strong> Location: </strong>" + element.Location +
+                    "</div>"
+
                 // create marker
                 let marker =  L.circle(coord, 2, {
                     color: primaryFurColor,

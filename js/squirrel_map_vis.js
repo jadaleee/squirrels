@@ -172,7 +172,6 @@ class SquirrelMapVis {
                 }
                 else if (element["Runs from"]){
                     humanReaction = "Runs From"
-                    console.log(humanReaction)
                 }
 
                 // set description for squirrel sighting time

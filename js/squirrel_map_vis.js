@@ -47,7 +47,8 @@ class SquirrelMapVis {
         let filteredData = [];
 
         // Filter: fur color
-        if(furFilters){
+        if(furFilters && furFilters.length > 0){
+            // for every fur filter, add rows that meet criteria
             for(let i = 0; i < furFilters.length; i++){
                 vis.squirrelData.forEach( row => {
                     if(row["Primary Fur Color"] === furFilters[i]){
@@ -59,9 +60,11 @@ class SquirrelMapVis {
 
         // Filter: reaction to humans
         if(reactionFilters && reactionFilters.length > 0){
+            // check if data has been filtered
             if(filteredData.length > 0){
-
+                    // if so, need to filter the filteredData
                     filteredData = filteredData.filter( row => {
+                        // if row meets any of the filter criteria, keep row
                         for(let i = 0; i < reactionFilters.length; i++) {
                             let reaction = reactionFilters[i]
                             if(row[reaction]){
@@ -72,6 +75,7 @@ class SquirrelMapVis {
                     })
             }
             else{
+                // data has not been filtered = add to filteredData array
                 for(let i = 0; i < reactionFilters.length; i++){
                     let reaction = reactionFilters[i]
                     vis.squirrelData.forEach( row => {
@@ -85,8 +89,11 @@ class SquirrelMapVis {
 
         // Filter: squirrel location relative to ground
         if(locationFilters && locationFilters.length > 0){
+            // check if data has been filtered
             if(filteredData.length > 0) {
+                // if so, need to filter the filteredData
                 filteredData = filteredData.filter(row => {
+                    // if row meets any of the filter criteria, keep row
                     for (let i = 0; i < locationFilters.length; i++) {
                         if (row.Location === locationFilters[i]) {
                             return true
@@ -97,6 +104,7 @@ class SquirrelMapVis {
 
             }
             else{
+                // data has not been filtered = add to filteredData array
                 for(let i = 0; i < locationFilters.length; i++){
                     vis.squirrelData.forEach( row => {
                         if(row.Location === locationFilters[i]){
@@ -109,8 +117,11 @@ class SquirrelMapVis {
 
         // Filter: Time of Day
         if(timeFilters && timeFilters.length > 0){
+            // check if data has been filtered
             if(filteredData.length > 0){
+                // if so, need to filter the filteredData
                 filteredData = filteredData.filter( row => {
+                    // if row meets any of the filter criteria, keep row
                     for(let i = 0; i < timeFilters.length; i++) {
                         if(row.Shift === timeFilters[i]){
                             return true
@@ -120,6 +131,7 @@ class SquirrelMapVis {
                 })
             }
             else{
+                // data has not been filtered = add to filteredData array
                 for(let i = 0; i < timeFilters.length; i++){
                     vis.squirrelData.forEach( row => {
                         if(row.Shift === timeFilters[i]){
@@ -130,12 +142,8 @@ class SquirrelMapVis {
             }
         }
 
-        if(filteredData.length > 0){
-            vis.displaySquirrelData = filteredData
-        }
-        else{
-            vis.displaySquirrelData = vis.squirrelData
-        }
+        // show all squirrel data if no filters are applied
+        filteredData.length > 0 ? vis.displaySquirrelData = filteredData : vis.displaySquirrelData = vis.squirrelData
 
         vis.updateVis();
     }
@@ -151,11 +159,8 @@ class SquirrelMapVis {
                 // extract coordinates for each squirrel sighting; census takers had flipped Longitude and Latitude
                 let coord = [element.Longitude, element.Latitude]
 
-                // extract fur color, set cinnamon to brown for marker use
+                // extract fur color
                 let primaryFurColor = element["Primary Fur Color"]
-                if(primaryFurColor === "Cinnamon"){
-                    primaryFurColor = "Brown"
-                }
 
                 // set description for squirrel reaction to human
                 let humanReaction = ""
@@ -165,8 +170,9 @@ class SquirrelMapVis {
                 else if (element.Indifferent) {
                     humanReaction = "Indifferent"
                 }
-                else if (element["Runs From"]){
+                else if (element["Runs from"]){
                     humanReaction = "Runs From"
+                    console.log(humanReaction)
                 }
 
                 // set description for squirrel sighting time
@@ -180,6 +186,11 @@ class SquirrelMapVis {
                     "<br/> <strong> Time of Sighting: </strong>" + shiftTime +
                     "<br/> <strong> Location: </strong>" + element.Location +
                     "</div>"
+
+                // set cinnamon to brown for color use in marker
+                if(primaryFurColor === "Cinnamon"){
+                    primaryFurColor = "Brown"
+                }
 
                 // create marker
                 let marker =  L.circle(coord, 2, {

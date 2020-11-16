@@ -41,6 +41,10 @@ svg {
     margin-left: 20px;
 }
 
+.mainMessageCaption {
+    margin-bottom: 10px;
+}
+
 /*
 .brush {
 	fill: #ccc;
@@ -48,10 +52,50 @@ svg {
 	pointer-events: none;
 }*/
 
+
 /* FULLPAGE.JS STEPPER CSS*/
 #fp-nav ul li .fp-tooltip {
     color: black;
 }
+
+/*Carousel CSS*/
+.storyMapFilters {
+    margin-left:20px;
+    align-content: center;
+}
+
+.storyFiltersLabel {
+    margin-right: 10px;
+}
+
+.storyBox {
+    background-color: lightgray;
+    color: black;
+    height: 150px;
+    padding: 10px;
+    margin-left: 30px;
+    text-align: center;
+    font-size: 13px;
+}
+
+#storiesMap {
+    background-color: gray;
+    /*margin-top: 20px;*/
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding-right: 20px;
+    width: 95%;
+    align-self: center;
+}
+
+.stories-carousel {
+    margin-left: 20px;
+    margin-top: 20px;
+    align-content: center;
+    align-items: center;
+}
+
+
 
 /* Backgrounds will cover all the sections. Add ".load-background" for lazy loading!
 	* --------------------------------------- */

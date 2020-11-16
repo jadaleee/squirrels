@@ -17,6 +17,7 @@
 
     <!--  Carousel Slick CSS  -->
     <link rel="stylesheet" type="text/css" href="js/slick/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="js/slick/slick/slick-theme.css"/>
 
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
@@ -78,14 +79,35 @@ Example: <img data-src="image.png"> -->
         <!-- Main message: Map and Stories Vis -->
         <div class="row section" id="mainMessage">
             <h1>Stories about Squirrels in Central Park</h1>
-            <p>I will put a caption here about how hovering over the stories</p>
+            <p class="mainMessageCaption">I will put a caption here about hovering over the stories</p>
+
+            <div class="row storyMapFilters">
+                <h4 class="storyFiltersLabel">Story Filters: </h4>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Gray" onclick="">Squirrels
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Gray" onclick="">Other Animals
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Gray" onclick="">Accidental Poems
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Gray" onclick="">Birds
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Gray" onclick="">Dogs
+                    </label>
+                </div>
+            </div>
 
             <div class="row" id="storiesMap">
                 <div class="col-md-12">
                     <div id="stories_map_vis" class="stories-carousel" >
-                        <div>Hello</div>
-                        <div>Hello</div>
-                        <div>Hello</div>
+                        <div class="storyBox">Hello meow meow meow</div>
+                        <div class="storyBox">Hello</div>
+                        <div class="storyBox">Hello</div>
                     </div>
                 </div>
             </div>

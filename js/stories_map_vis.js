@@ -14,20 +14,20 @@ class StoriesMapVis {
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
             vis.height = 250 - vis.margin.top - vis.margin.bottom;
 
-        // SVG drawing area
-        vis.svg = d3.select("#" + vis.parentElement).append("svg")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")")
-
-        // DELETE RECT WHEN READY TO CODE
-        vis.svg
-            .append("rect")
-            .attr("x",0)
-            .attr("y",0)
-            .attr("width",vis.width)
-            .attr("height", vis.height)
+        // // SVG drawing area
+        // vis.svg = d3.select("#" + vis.parentElement).append("svg")
+        //     .attr("width", vis.width + vis.margin.left + vis.margin.right)
+        //     .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
+        //     .append("g")
+        //     .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")")
+        //
+        // // DELETE RECT WHEN READY TO CODE
+        // vis.svg
+        //     .append("rect")
+        //     .attr("x",0)
+        //     .attr("y",0)
+        //     .attr("width",vis.width)
+        //     .attr("height", vis.height)
 
         vis.wrangleData();
     }

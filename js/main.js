@@ -162,6 +162,8 @@ $(document).ready(function(){
         speed: 300,
         slidesToShow: 2,
         // centerMode: true,
-        variableWidth: true
+        variableWidth: true,
+        arrows: true,
+
     });
 });

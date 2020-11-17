@@ -78,44 +78,54 @@ Example: <img data-src="image.png"> -->
 
         <!-- Main message: Map and Stories Vis -->
         <div class="row section" id="mainMessage">
+
+            <!--      Title and Description      -->
             <h1>Stories about Squirrels in Central Park</h1>
             <p class="mainMessageCaption">I will put a caption here about hovering over the stories</p>
 
+            <!--      Checkbox Filters for Squirrel Stories      -->
             <div class="row storyMapFilters">
-                <h4 class="storyFiltersLabel">Story Filters: </h4>
+                <h4 class="storyFiltersLabel">Story Topics: </h4>
                 <div class="btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Gray" onclick="">Squirrels
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Squirrel Experience or Squirrel Story" onclick="storyMapFilterClicked(this)">Squirrels
                     </label>
                     <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Gray" onclick="">Other Animals
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Squirrels Acting Odd" onclick="storyMapFilterClicked(this)">Odd Squirrels
                     </label>
                     <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Gray" onclick="">Accidental Poems
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Dogs" onclick="storyMapFilterClicked(this)">Dogs
                     </label>
                     <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Gray" onclick="">Birds
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Other Animals" onclick="storyMapFilterClicked(this)">Other Animals
                     </label>
                     <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Gray" onclick="">Dogs
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Accidental Poems" onclick="storyMapFilterClicked(this)">Accidental Poems
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Park Experience or Census Taker Story" onclick="storyMapFilterClicked(this)">Census Taker Story
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Census Takers Recognized" onclick="storyMapFilterClicked(this)">Census Taker Recognized
                     </label>
                 </div>
             </div>
 
+            <!--      Stories Map Carousel. Append story divs here      -->
             <div class="row" id="storiesMap">
                 <div class="col-md-12">
-                    <div id="stories_map_vis" class="stories-carousel" >
-                        <div class="storyBox">Hello meow meow meow</div>
-                        <div class="storyBox">Hello</div>
-                        <div class="storyBox">Hello</div>
+                    <div id="stories_map_vis" class="stories-carousel">
                     </div>
                 </div>
             </div>
 
+            <!--      Squirrel Sightings Leaflet Map      -->
             <div class="row" id="squirrelMap">
                 <div class="col-md-6" >
                     <div id="squirrel_map_vis"></div>
                 </div>
+
+                <!--       Checkbox Filters for Squirrel Sightings Map        -->
                 <div class="col-md-6">
                     <h4>Filter the squirrel sightings</h4>
                     <div class="btn-group-toggle" data-toggle="buttons">
@@ -217,7 +227,9 @@ Example: <img data-src="image.png"> -->
     new fullpage('#fullpage', {
         //options here
         anchors: ['Title', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', '8thPage', 'About-Us'],
-        autoScrolling:true,
+        // autoScrolling false because story boxes need vertical scrolling
+        autoScrolling: false,
+        scrollingSpeed: 1000,
         scrollHorizontally: false,
         slidesNavigation: true,
         navigation: true,

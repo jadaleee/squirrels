@@ -109,6 +109,16 @@ function initMainPage(dataArray) {
         return d
     })
 
+    storiesData.map(d => {
+        d["Story Topic: Accidental Poems"] = eval(d["Story Topic: Accidental Poems"])
+        d["Story Topic: Census Takers Recognized"] = eval(d["Story Topic: Census Takers Recognized"])
+        d["Story Topic: Dogs"] = eval(d["Story Topic: Dogs"])
+        d["Story Topic: Other Animals"] = eval(d["Story Topic: Other Animals"])
+        d["Story Topic: Park Experience or Census Taker Story"] = eval(d["Story Topic: Park Experience or Census Taker Story"])
+        d["Story Topic: Squirrel Experience or Squirrel Story"] = eval(d["Story Topic: Squirrel Experience or Squirrel Story"])
+        d["Story Topic: Squirrels Acting Odd"] = eval(d["Story Topic: Squirrels Acting Odd"])
+    })
+
     // Create Visualization instances
     // let hookVis = new HookVis("hook_vis", dataArray);
     // let bubbleVis = new BubbleVis("bubble_vis", dataArray);
@@ -155,15 +165,29 @@ function mapFilterClicked(input){
    squirrelMapVis.wrangleData(furFilters, reactionFilters, locationFilters, timeFilters)
 }
 
-$(document).ready(function(){
-    $('.stories-carousel').slick({
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 2,
-        // centerMode: true,
-        variableWidth: true,
-        arrows: true,
+let storyMapFilters = [];
 
-    });
-});
+function storyMapFilterClicked(input) {
+    let selectedFilter = $(input).val();
+
+    let index = storyMapFilters.indexOf(selectedFilter)
+    // if filter is on list ? take off : add to filter list
+    index > -1 ? storyMapFilters.splice(index,1) : storyMapFilters.push(selectedFilter)
+
+    storiesMapVis.wrangleData(storyMapFilters)
+}
+
+function sliderInit(filtered){
+    if(filtered){
+        $('.stories-carousel').slick("unslick")
+    }
+
+    $('.stories-carousel').slick({
+        dots: false,
+        infinite: false,
+        speed: 200,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows: true,
+    })
+};

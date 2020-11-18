@@ -38,6 +38,22 @@ class SquirrelMapVis {
         // Add empty layer groups for the markers / map objects
         vis.squirrelMarkers = L.layerGroup().addTo(vis.map);
 
+        // load GEOJson data
+        // LOAD JUST THE FIRST 12 AND SEE IF THEY'RE IN ORDER
+        d3.json("data/2018_Central_Park_Squirrel_Census_-_Hectare_Grid.geojson")
+            .then(function(data) {
+                console.log(data)
+                // iterate over features
+                data.features.forEach(function (element) {
+                    // draw each GEOJson object aka subway line
+                    L.geoJson(element, {
+                        color: "gray",
+                        weight: 3,
+                        fillOpacity: 0.7,
+                    }).addTo(vis.map);
+                })
+            })
+
         vis.wrangleData();
     }
 
@@ -47,7 +63,8 @@ class SquirrelMapVis {
         let filteredData = [];
 
         // Filter: fur color
-        if(furFilters){
+        if(furFilters && furFilters.length > 0){
+            // for every fur filter, add rows that meet criteria
             for(let i = 0; i < furFilters.length; i++){
                 vis.squirrelData.forEach( row => {
                     if(row["Primary Fur Color"] === furFilters[i]){
@@ -55,14 +72,15 @@ class SquirrelMapVis {
                     }
                 })
             }
-            console.log(filteredData)
         }
 
         // Filter: reaction to humans
         if(reactionFilters && reactionFilters.length > 0){
+            // check if data has been filtered
             if(filteredData.length > 0){
-
+                    // if so, need to filter the filteredData
                     filteredData = filteredData.filter( row => {
+                        // if row meets any of the filter criteria, keep row
                         for(let i = 0; i < reactionFilters.length; i++) {
                             let reaction = reactionFilters[i]
                             if(row[reaction]){
@@ -71,10 +89,9 @@ class SquirrelMapVis {
                         }
                         return false
                     })
-
-                console.log(filteredData)
             }
             else{
+                // data has not been filtered = add to filteredData array
                 for(let i = 0; i < reactionFilters.length; i++){
                     let reaction = reactionFilters[i]
                     vis.squirrelData.forEach( row => {
@@ -83,20 +100,67 @@ class SquirrelMapVis {
                         }
                     })
                 }
-                console.log(filteredData)
             }
         }
 
         // Filter: squirrel location relative to ground
+        if(locationFilters && locationFilters.length > 0){
+            // check if data has been filtered
+            if(filteredData.length > 0) {
+                // if so, need to filter the filteredData
+                filteredData = filteredData.filter(row => {
+                    // if row meets any of the filter criteria, keep row
+                    for (let i = 0; i < locationFilters.length; i++) {
+                        if (row.Location === locationFilters[i]) {
+                            return true
+                        }
+                    }
+                    return false
+                })
+
+            }
+            else{
+                // data has not been filtered = add to filteredData array
+                for(let i = 0; i < locationFilters.length; i++){
+                    vis.squirrelData.forEach( row => {
+                        if(row.Location === locationFilters[i]){
+                            filteredData.push(row)
+                        }
+                    })
+                }
+            }
+        }
 
         // Filter: Time of Day
+        if(timeFilters && timeFilters.length > 0){
+            // check if data has been filtered
+            if(filteredData.length > 0){
+                // if so, need to filter the filteredData
+                filteredData = filteredData.filter( row => {
+                    // if row meets any of the filter criteria, keep row
+                    for(let i = 0; i < timeFilters.length; i++) {
+                        if(row.Shift === timeFilters[i]){
+                            return true
+                        }
+                    }
+                    return false
+                })
+            }
+            else{
+                // data has not been filtered = add to filteredData array
+                for(let i = 0; i < timeFilters.length; i++){
+                    vis.squirrelData.forEach( row => {
+                        if(row.Shift === timeFilters[i]){
+                            filteredData.push(row)
+                        }
+                    })
+                }
+            }
+        }
 
-        if(filteredData.length > 0){
-            vis.displaySquirrelData = filteredData
-        }
-        else{
-            vis.displaySquirrelData = vis.squirrelData
-        }
+        // show all squirrel data if no filters are applied
+        filteredData.length > 0 ? vis.displaySquirrelData = filteredData : vis.displaySquirrelData = vis.squirrelData
+
         vis.updateVis();
     }
 
@@ -111,11 +175,8 @@ class SquirrelMapVis {
                 // extract coordinates for each squirrel sighting; census takers had flipped Longitude and Latitude
                 let coord = [element.Longitude, element.Latitude]
 
-                // extract fur color, set cinnamon to brown for marker use later
+                // extract fur color
                 let primaryFurColor = element["Primary Fur Color"]
-                if(primaryFurColor === "Cinnamon"){
-                    primaryFurColor = "Brown"
-                }
 
                 // set description for squirrel reaction to human
                 let humanReaction = ""
@@ -125,18 +186,27 @@ class SquirrelMapVis {
                 else if (element.Indifferent) {
                     humanReaction = "Indifferent"
                 }
-                else if (element["Runs From"]){
+                else if (element["Runs from"]){
                     humanReaction = "Runs From"
                 }
 
-                // define popupContent with element-specific text
-                let popupContent = "<strong> Squirrel Sighting </strong>" +
-                    "<br/> Location: " + element.Location +
-                    "<br/> Primary Fur Color: "  + primaryFurColor +
-                    "<br/> Time of Sighting: " + element.Shift +
-                    "<br/> Reaction to Humans: " + humanReaction
+                // set description for squirrel sighting time
+                let shiftTime = ""
+                element.Shift === "AM" ? shiftTime = "Morning" : shiftTime = "Afternoon"
 
-            // console.log(element)
+                // define popupContent with element-specific text
+                let popupContent = "<div class=marker> " +
+                    "<strong> Primary Fur Color: </strong>"  + primaryFurColor +
+                    "<br/> <strong> Reaction to Humans: </strong>" + humanReaction +
+                    "<br/> <strong> Time of Sighting: </strong>" + shiftTime +
+                    "<br/> <strong> Location: </strong>" + element.Location +
+                    "</div>"
+
+                // set cinnamon to brown for color use in marker
+                if(primaryFurColor === "Cinnamon"){
+                    primaryFurColor = "Brown"
+                }
+
                 // create marker
                 let marker =  L.circle(coord, 2, {
                     color: primaryFurColor,

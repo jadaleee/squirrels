@@ -115,14 +115,13 @@ function initMainPage(dataArray) {
         d.Sentiment = +d.Sentiment;
         d.Date = dateParser(d.Date);
         d.Length = +d.Length;
-        d["Story Topic: Accidental Poems"] = +d["Story Topic: Accidental Poems"]
-        d["Story Topic: Census Takers Recognized"] = +d["Story Topic: Census Takers Recognized"]
-        d["Story Topic: Dogs"] = +d["Story Topic: Dogs"]
-        d["Story Topic: Park Experience or Census Taker Story"] = +d["Story Topic: Park Experience or Census Taker Story"]
-        d["Story Topic: Squirrel Experience or Squirrel Story"] = +d["Story Topic: Squirrel Experience or Squirrel Story"]
-        d["Story Topic: Squirrels Acting Odd"] = +d["Story Topic: Squirrels Acting Odd"]
-        d["Story Topic: Other Animals"] = +d["Story Topic: Other Animals"]
-        d["Story Topic: Other"] = +d["Story Topic: Other"]
+        d["Story Topic: Accidental Poems"] = eval(d["Story Topic: Accidental Poems"])
+        d["Story Topic: Census Takers Recognized"] = eval(d["Story Topic: Census Takers Recognized"])
+        d["Story Topic: Dogs"] = eval(d["Story Topic: Dogs"])
+        d["Story Topic: Other Animals"] = eval(d["Story Topic: Other Animals"])
+        d["Story Topic: Park Experience or Census Taker Story"] = eval(d["Story Topic: Park Experience or Census Taker Story"])
+        d["Story Topic: Squirrel Experience or Squirrel Story"] = eval(d["Story Topic: Squirrel Experience or Squirrel Story"])
+        d["Story Topic: Squirrels Acting Odd"] = eval(d["Story Topic: Squirrels Acting Odd"])
 
         d["Story Topic"] = d3.range(0, 8).map(function(){
             return 0;
@@ -148,6 +147,7 @@ function initMainPage(dataArray) {
     // let walkMapVis = new WalkMapVis("walk_map_vis", dataArray);
 }
 
+// Main Message -- filters for squirrel sightings map
 let furFilters = [];
 let reactionFilters = [];
 let timeFilters = [];
@@ -182,6 +182,34 @@ function mapFilterClicked(input){
         index > -1 ? locationFilters.splice(index, 1) : locationFilters.push(selectedFilter)
     }
 
-   squirrelMapVis.wrangleData(furFilters, reactionFilters, timeFilters, locationFilters)
+   squirrelMapVis.wrangleData(furFilters, reactionFilters, locationFilters, timeFilters)
 }
 
+// Main Message -- filters for stories
+let storyMapFilters = [];
+
+function storyMapFilterClicked(input) {
+    let selectedFilter = $(input).val();
+
+    let index = storyMapFilters.indexOf(selectedFilter)
+    // if filter is on list ? take off : add to filter list
+    index > -1 ? storyMapFilters.splice(index,1) : storyMapFilters.push(selectedFilter)
+
+    storiesMapVis.wrangleData(storyMapFilters)
+}
+
+// function to create and update horizontal carousel for stories
+function sliderInit(filtered){
+    if(filtered){
+        $('.stories-carousel').slick("unslick")
+    }
+
+    $('.stories-carousel').slick({
+        dots: false,
+        infinite: false,
+        speed: 200,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows: true,
+    })
+};

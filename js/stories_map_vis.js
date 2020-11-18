@@ -1,16 +1,13 @@
 class StoriesMapVis {
-    constructor(_parentElement, _data) {
+    constructor(_parentElement, _data, geoData) {
         this.parentElement = _parentElement;
         this.data = _data;
         this.displayData = [];
         this.storiesData = _data[2];
-        this.hectareData = _data[1]
+        this.hectareData = _data[1];
+        this.geoData = geoData;
 
         this.wrangleData();
-    }
-
-    initVis() {
-        vis.wrangleData();
     }
 
     wrangleData(storyMapFilters) {
@@ -49,6 +46,30 @@ class StoriesMapVis {
             .append("div")
             .attr("class","storyBox")
             .merge(vis.stories)
+            .on("mouseover", function(event,d){
+                // find geojson feature that matches story's hectare ID
+                vis.geoData.features.some((element) => {
+                    if(d.Hectare === element.properties["Hectare ID"]){
+                        // draw hectare when found
+                        drawHectareLink(element)
+                        // and stop looping
+                        return true
+                    }
+                })
+
+                // add border to story div, signaling hover
+                d3.select(this)
+                    .style("border", "solid")
+                    .style("border-color", "black")
+                    .style("border-width", "3px")
+            })
+            .on("mouseout", function(event,d){
+                // clear hectares
+                clearHectareLink()
+                // undo border when done hovering
+                d3.select(this)
+                    .style("border","none")
+            })
             .text(d => d["Note Squirrel & Park Stories"])
 
         // remove divs after filtering

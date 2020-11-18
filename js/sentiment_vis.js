@@ -41,9 +41,9 @@ class SentimentVis {
         let vis = this;
 
         vis.displayData = vis.data;
-        console.log("inside sentiment vis", vis.data)
+        // console.log("inside sentiment vis", vis.data)
         let storyDataByCategory = Array.from(d3.group(vis.displayData, d=>d["Story Topic"]), ([key, value]) => ({key, value}))
-        console.log(storyDataByCategory)
+        // console.log(storyDataByCategory)
         vis.updateVis();
     }
 

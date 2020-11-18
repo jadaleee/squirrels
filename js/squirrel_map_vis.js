@@ -1,10 +1,11 @@
 class SquirrelMapVis {
-    constructor(_parentElement, _data) {
+    constructor(_parentElement, _data, geoData) {
         this.parentElement = _parentElement;
         this.data = _data;
         this.squirrelData = _data[0];
         this.hectareData = _data[1];
         this.displaySquirrelData = [];
+        this.geoData = geoData;
 
         this.initVis();
     }
@@ -12,47 +13,21 @@ class SquirrelMapVis {
     initVis() {
         let vis = this;
 
-        vis.margin = { top: 0, right: 0, bottom: 0, left: 0 };
-
-        vis.width = $("#" + vis.parentElement).width()  - vis.margin.left - vis.margin.right,
-            vis.height = 400 - vis.margin.top - vis.margin.bottom;
-
-        // SVG drawing area
-        vis.svg = d3.select("#" + vis.parentElement).append("svg")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")")
-
         // define map at center of Central Park
-        vis.map = L.map('squirrel_map_vis').setView([40.7812,-73.9665], 14);
+        vis.map = L.map('squirrel_map_vis',{
+            zoomSnap: 0.25
+        }).setView([40.7812,-73.9665],13.5);
 
         // add OpenStreetMap Mapnik
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(vis.map);
 
-        // define path to images
-        L.Icon.Default.imagePath = 'images/';
-
-        // Add empty layer groups for the markers / map objects
+        // Add empty layer groups for the squirrel markers
         vis.squirrelMarkers = L.layerGroup().addTo(vis.map);
 
-        // load GEOJson data
-        // LOAD JUST THE FIRST 12 AND SEE IF THEY'RE IN ORDER
-        d3.json("data/2018_Central_Park_Squirrel_Census_-_Hectare_Grid.geojson")
-            .then(function(data) {
-                console.log(data)
-                // iterate over features
-                data.features.forEach(function (element) {
-                    // draw each GEOJson object aka subway line
-                    L.geoJson(element, {
-                        color: "gray",
-                        weight: 3,
-                        fillOpacity: 0.7,
-                    }).addTo(vis.map);
-                })
-            })
+        // Add empty layer groups for the hectare markers
+        vis.geoHectareMarkers = L.geoJSON().addTo(vis.map);
 
         vis.wrangleData();
     }
@@ -218,5 +193,29 @@ class SquirrelMapVis {
                 vis.squirrelMarkers.addLayer(marker);
             }
         )
+    }
+
+    drawHectare(element){
+        let vis = this;
+
+        // function to bind pop up to each GEOJson hectare
+        function onEachHectare(feature, layer){
+            layer.bindPopup("Hectare ID: " + feature.properties["Hectare ID"])
+        }
+
+        // draw each GEOJson element aka hectare
+        L.geoJson(element, {
+            color: "green",
+            weight: 3,
+            fillOpacity: 0.7,
+            onEachFeature: onEachHectare
+        }).addTo(vis.geoHectareMarkers)
+    }
+
+    clearHectare(){
+        let vis = this;
+
+        // clear markers from previous rendering of layers
+        vis.geoHectareMarkers.clearLayers()
     }
 }

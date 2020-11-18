@@ -16,7 +16,8 @@ let squirrelMapVis,
 let promises = [
     d3.csv("data/2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv"),
     d3.csv("data/2018_Central_Park_Squirrel_Census_-_Hectare_Data.csv"),
-    d3.csv("data/2018_Central_Park_Squirrel_Census_-_Stories.csv")
+    d3.csv("data/2018_Central_Park_Squirrel_Census_-_Stories_Sentiment.csv"),
+    d3.csv("data/common_words.csv")
 ];
 
 Promise.all(promises)
@@ -35,6 +36,7 @@ function initMainPage(dataArray) {
     let squirrelData = dataArray[0]
     let hectareData = dataArray[1]
     let storiesData = dataArray[2]
+    let commonWordsData = dataArray[3]
 
     // DATA PROCESSING -------------------------------------------------------------------------
     // console.log("squirrel data", squirrelData)
@@ -85,7 +87,7 @@ function initMainPage(dataArray) {
         let sounds_list = ["Kuks", "Moans", "Quaas"]
         d["Sounds"].forEach((a, i)=>{
             //console.log("in data processing", a, i)
-            if(d[activities_list[i]]) {
+            if(d[sounds_list[i]]) {
                 d["Sounds"][i] = 1
             }
         })
@@ -109,15 +111,43 @@ function initMainPage(dataArray) {
         return d
     })
 
+    storiesData.map(d=>{
+        d.Sentiment = +d.Sentiment;
+        d.Date = dateParser(d.Date);
+        d.Length = +d.Length;
+        d["Story Topic: Accidental Poems"] = eval(d["Story Topic: Accidental Poems"])
+        d["Story Topic: Census Takers Recognized"] = eval(d["Story Topic: Census Takers Recognized"])
+        d["Story Topic: Dogs"] = eval(d["Story Topic: Dogs"])
+        d["Story Topic: Other Animals"] = eval(d["Story Topic: Other Animals"])
+        d["Story Topic: Park Experience or Census Taker Story"] = eval(d["Story Topic: Park Experience or Census Taker Story"])
+        d["Story Topic: Squirrel Experience or Squirrel Story"] = eval(d["Story Topic: Squirrel Experience or Squirrel Story"])
+        d["Story Topic: Squirrels Acting Odd"] = eval(d["Story Topic: Squirrels Acting Odd"])
+
+        d["Story Topic"] = d3.range(0, 8).map(function(){
+            return 0;
+        });
+        let category_list = ["Story Topic: Accidental Poems", "Story Topic: Census Takers Recognized", "Story Topic: Dogs",
+            "Story Topic: Park Experience or Census Taker Story", "Story Topic: Squirrel Experience or Squirrel Story",
+            "Story Topic: Squirrels Acting Odd", "Story Topic: Other Animals", "Story Topic: Other"]
+        d["Story Topic"].forEach((a, i)=>{
+            //console.log("in data processing", a, i)
+            if(d[category_list[i]]) {
+                d["Story Topic"][i] = 1
+            }
+        })
+    })
+
     // Create Visualization instances
     // let hookVis = new HookVis("hook_vis", dataArray);
     // let bubbleVis = new BubbleVis("bubble_vis", dataArray);
     storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray);
     squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray);
-    let storiesVis = new StoriesVis("stories_vis", dataArray);
+    let storiesVis = new StoriesVis("stories_vis", dataArray[2], dataArray[3]);
+    let sentimentVis = new SentimentVis("sentiment_vis", dataArray[2])
     // let walkMapVis = new WalkMapVis("walk_map_vis", dataArray);
 }
 
+// Main Message -- filters for squirrel sightings map
 let furFilters = [];
 let reactionFilters = [];
 let timeFilters = [];
@@ -152,6 +182,34 @@ function mapFilterClicked(input){
         index > -1 ? locationFilters.splice(index, 1) : locationFilters.push(selectedFilter)
     }
 
-   squirrelMapVis.wrangleData(furFilters, reactionFilters, timeFilters, locationFilters)
+   squirrelMapVis.wrangleData(furFilters, reactionFilters, locationFilters, timeFilters)
 }
 
+// Main Message -- filters for stories
+let storyMapFilters = [];
+
+function storyMapFilterClicked(input) {
+    let selectedFilter = $(input).val();
+
+    let index = storyMapFilters.indexOf(selectedFilter)
+    // if filter is on list ? take off : add to filter list
+    index > -1 ? storyMapFilters.splice(index,1) : storyMapFilters.push(selectedFilter)
+
+    storiesMapVis.wrangleData(storyMapFilters)
+}
+
+// function to create and update horizontal carousel for stories
+function sliderInit(filtered){
+    if(filtered){
+        $('.stories-carousel').slick("unslick")
+    }
+
+    $('.stories-carousel').slick({
+        dots: false,
+        infinite: false,
+        speed: 200,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows: true,
+    })
+};

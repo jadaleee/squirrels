@@ -15,6 +15,10 @@
     <!--  Leaflet CSS  -->
     <link rel="stylesheet" href="css/leaflet.css">
 
+    <!--  Carousel Slick CSS  -->
+    <link rel="stylesheet" type="text/css" href="js/slick/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="js/slick/slick/slick-theme.css"/>
+
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -67,30 +71,68 @@ Example: <img data-src="image.png"> -->
         </div>
                 <!-- Stories Vis -->
         <div class="row section" id="storiesVis">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div id="stories_vis"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="sentiment_vis"></div>
             </div>
         </div>
 
         <!-- Main message: Map and Stories Vis -->
         <div class="row section" id="mainMessage">
-            <h1>Stories about Squirrels in Central Park</h1>
-            <p>I will put a caption here about how hovering over the stories</p>
 
-            <div class="row" id="storiesMap">
-                <div class="col-md-12">
-                    <div id="stories_map_vis"></div>
+            <!--      Title and Description      -->
+            <h1>Stories about Squirrels in Central Park</h1>
+            <p class="mainMessageCaption">I will put a caption here about hovering over the stories</p>
+
+            <!--      Checkbox Filters for Squirrel Stories      -->
+            <div class="row storyMapFilters">
+                <h4 class="storyFiltersLabel">Story Topics: </h4>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Squirrel Experience or Squirrel Story" onclick="storyMapFilterClicked(this)">Squirrels
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Squirrels Acting Odd" onclick="storyMapFilterClicked(this)">Odd Squirrels
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Dogs" onclick="storyMapFilterClicked(this)">Dogs
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Other Animals" onclick="storyMapFilterClicked(this)">Other Animals
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Accidental Poems" onclick="storyMapFilterClicked(this)">Accidental Poems
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Park Experience or Census Taker Story" onclick="storyMapFilterClicked(this)">Census Taker Story
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Census Takers Recognized" onclick="storyMapFilterClicked(this)">Census Taker Recognized
+                    </label>
                 </div>
             </div>
 
+            <!--      Stories Map Carousel. Append story divs here      -->
+            <div class="row" id="storiesMap">
+                <div class="col-md-12">
+                    <div id="stories_map_vis" class="stories-carousel">
+                    </div>
+                </div>
+            </div>
+
+            <!--      Squirrel Sightings Leaflet Map      -->
             <div class="row" id="squirrelMap">
                 <div class="col-md-6" >
                     <div id="squirrel_map_vis"></div>
                 </div>
+
+                <!--       Checkbox Filters for Squirrel Sightings Map        -->
                 <div class="col-md-6">
-                    <h5>Filter the squirrel sightings</h5>
+                    <h4>Filter the squirrel sightings</h4>
                     <div class="btn-group-toggle" data-toggle="buttons">
-                        <p class="filterLabel">Fur Color</p>
+                        <p class="filterLabel">Primary Fur Color</p>
                             <label class="btn btn-outline-dark">
                                 <input class="fur" type="checkbox" autocomplete="off" value="Gray" onclick="mapFilterClicked(this)">Gray
                             </label>
@@ -122,7 +164,7 @@ Example: <img data-src="image.png"> -->
                                 <input class="location" type="checkbox" autocomplete="off" value="Above Ground" onclick="mapFilterClicked(this)">Above Ground
                             </label>
                             <label class="btn btn-outline-dark">
-                                <input class="location" type="checkbox" autocomplete="off" value="On Ground" onclick="mapFilterClicked(this)">On Ground
+                                <input class="location" type="checkbox" autocomplete="off" value="Ground Plane" onclick="mapFilterClicked(this)">On Ground
                             </label>
                     </div>
                 </div>
@@ -161,8 +203,16 @@ Example: <img data-src="image.png"> -->
 <!-- d3 -->
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<!-- Load d3-cloud -->
+<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
 <!-- Fullpage Stepper -->
 <script type="text/javascript" src="node_modules/fullpage.js/dist/fullpage.js"></script>
+
+<!-- Slick Carousel -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="js/slick/slick/slick.min.js"></script>
 
 <!-- Leaflet Map-->
 <script src="js/leaflet/leaflet.js"></script>
@@ -171,6 +221,7 @@ Example: <img data-src="image.png"> -->
 <script src="js/hook_vis.js"></script>
 <script src="js/bubble_vis.js"></script>
 <script src="js/stories_vis.js"></script>
+<script src="js/sentiment_vis.js"></script>
 <script src="js/stories_map_vis.js"></script>
 <script src="js/squirrel_map_vis.js"></script>
 <script src="js/walk_map_vis.js"></script>
@@ -183,7 +234,9 @@ Example: <img data-src="image.png"> -->
     new fullpage('#fullpage', {
         //options here
         anchors: ['Title', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', '8thPage', 'About-Us'],
-        autoScrolling:true,
+        // autoScrolling false because story boxes need vertical scrolling
+        autoScrolling: false,
+        scrollingSpeed: 1000,
         scrollHorizontally: false,
         slidesNavigation: true,
         navigation: true,

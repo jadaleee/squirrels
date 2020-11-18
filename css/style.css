@@ -24,6 +24,10 @@ p {
     margin-top: 10px;
 }
 
+.marker {
+    font-family: 'Poppins';
+}
+
 /* VISUALIZATIONS CSS*/
 
 svg {
@@ -37,6 +41,10 @@ svg {
     margin-left: 20px;
 }
 
+.mainMessageCaption {
+    margin-bottom: 10px;
+}
+
 /*
 .brush {
 	fill: #ccc;
@@ -44,10 +52,56 @@ svg {
 	pointer-events: none;
 }*/
 
+
 /* FULLPAGE.JS STEPPER CSS*/
 #fp-nav ul li .fp-tooltip {
     color: black;
 }
+
+/*Carousel CSS*/
+.storyMapFilters {
+    margin-left:20px;
+    align-content: center;
+}
+
+.storyFiltersLabel {
+    margin-right: 10px;
+}
+
+.storyBox {
+    /* vertical scroll within div*/
+    float:left;
+    overflow-y: auto;
+    height: 160px;
+    /* look pretty */
+    background-color: lightgray;
+    color: black;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 12px;
+}
+
+#storiesMap {
+    background-color: gray;
+    /*margin-top: 20px;*/
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding-right: 20px;
+    width: 95%;
+    height: 200px;
+    align-self: center;
+}
+
+.stories-carousel {
+    margin-left: 20px;
+    margin-top: 20px;
+    align-content: center;
+    align-items: center;
+}
+
+
 
 /* Backgrounds will cover all the sections. Add ".load-background" for lazy loading!
 	* --------------------------------------- */

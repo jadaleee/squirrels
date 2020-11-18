@@ -38,6 +38,22 @@ class SquirrelMapVis {
         // Add empty layer groups for the markers / map objects
         vis.squirrelMarkers = L.layerGroup().addTo(vis.map);
 
+        // load GEOJson data
+        // LOAD JUST THE FIRST 12 AND SEE IF THEY'RE IN ORDER
+        d3.json("data/2018_Central_Park_Squirrel_Census_-_Hectare_Grid.geojson")
+            .then(function(data) {
+                console.log(data)
+                // iterate over features
+                data.features.forEach(function (element) {
+                    // draw each GEOJson object aka subway line
+                    L.geoJson(element, {
+                        color: "gray",
+                        weight: 3,
+                        fillOpacity: 0.7,
+                    }).addTo(vis.map);
+                })
+            })
+
         vis.wrangleData();
     }
 

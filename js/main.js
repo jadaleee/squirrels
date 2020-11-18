@@ -16,7 +16,7 @@ let squirrelMapVis,
 let promises = [
     d3.csv("data/2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv"),
     d3.csv("data/2018_Central_Park_Squirrel_Census_-_Hectare_Data.csv"),
-    d3.csv("data/2018_Central_Park_Squirrel_Census_-_Stories.csv")
+    d3.csv("data/2018_Central_Park_Squirrel_Census_-_Stories.csv"),
 ];
 
 Promise.all(promises)
@@ -109,6 +109,7 @@ function initMainPage(dataArray) {
         return d
     })
 
+    // parse through stories data, turning strings into bools
     storiesData.map(d => {
         d["Story Topic: Accidental Poems"] = eval(d["Story Topic: Accidental Poems"])
         d["Story Topic: Census Takers Recognized"] = eval(d["Story Topic: Census Takers Recognized"])
@@ -128,6 +129,7 @@ function initMainPage(dataArray) {
     // let walkMapVis = new WalkMapVis("walk_map_vis", dataArray);
 }
 
+// Main Message -- filters for squirrel sightings map
 let furFilters = [];
 let reactionFilters = [];
 let timeFilters = [];
@@ -165,6 +167,7 @@ function mapFilterClicked(input){
    squirrelMapVis.wrangleData(furFilters, reactionFilters, locationFilters, timeFilters)
 }
 
+// Main Message -- filters for stories
 let storyMapFilters = [];
 
 function storyMapFilterClicked(input) {
@@ -177,6 +180,7 @@ function storyMapFilterClicked(input) {
     storiesMapVis.wrangleData(storyMapFilters)
 }
 
+// function to create and update horizontal carousel for stories
 function sliderInit(filtered){
     if(filtered){
         $('.stories-carousel').slick("unslick")

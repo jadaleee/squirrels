@@ -15,6 +15,9 @@
     <!--  Leaflet CSS  -->
     <link rel="stylesheet" href="css/leaflet.css">
 
+    <!--  Leaflet Draw CSS  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+
     <!--  Carousel Slick CSS  -->
     <link rel="stylesheet" type="text/css" href="js/slick/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="js/slick/slick/slick-theme.css"/>
@@ -171,14 +174,24 @@ Example: <img data-src="image.png"> -->
             </div>
         </div>
 
-        <!-- Solution/Call to Action -->
+        <!-- Solution/Call to Action: Take a Walk in the Park! -->
         <div class="row section" id="walkMap">
-            <img src="images/walkmap.png">
-            <div class="col-md-12">
+            <!--      Title and Description   -->
+            <h1>Draw a walk you'd like to take in Central Park!</h1>
+            <p class="walkMapCaption">Switch map views to see where the most friendly squirrels are.</p>
+
+            <!--      Leaflet Draw Map        -->
+            <div class="col-md-6">
                 <div id="walk_map_vis"></div>
+            </div>
+
+            <!--      Info about walk         -->
+            <div class="col-md-6">
+                <div id="walk_map_info"></div>
             </div>
         </div>
 
+        <!--    Inspiring quotes about peace when watching squirrels    -->
         <div class="row section" id="quotesInfo">
             <div class="col-md-12">
                 <div id="quotes"></div>
@@ -214,8 +227,11 @@ Example: <img data-src="image.png"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="js/slick/slick/slick.min.js"></script>
 
-<!-- Leaflet Map-->
+<!-- Leaflet Map -->
 <script src="js/leaflet/leaflet.js"></script>
+
+<!-- Leaflet Draw -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 
 <!-- Visualization objects -->
 <script src="js/hook_vis.js"></script>

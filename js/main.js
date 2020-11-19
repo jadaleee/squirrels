@@ -10,7 +10,8 @@ let dateFormatter = d3.timeFormat("%m%d%Y");
 let dateParser = d3.timeParse("%m%d%Y");
 
 let squirrelMapVis,
-    storiesMapVis;
+    storiesMapVis,
+    walkMapVis;
 
 // load data using promises
 let promises = [
@@ -142,7 +143,6 @@ function initMainPage(dataArray) {
     // let bubbleVis = new BubbleVis("bubble_vis", dataArray);
     let storiesVis = new StoriesVis("stories_vis", dataArray[2], dataArray[3]);
     let sentimentVis = new SentimentVis("sentiment_vis", dataArray[2])
-    // let walkMapVis = new WalkMapVis("walk_map_vis", dataArray);
 
     // load GEOJson data for hectare grid
     d3.json("data/2018_Central_Park_Squirrel_Census_-_Hectare_Grid.geojson")
@@ -175,6 +175,7 @@ function initMainPage(dataArray) {
             // Create stories & squirrel map visualizations with geojson data loaded
             storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray, data);
             squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray, data);
+            walkMapVis = new WalkMapVis("walk_map_vis", dataArray, data);
         })
 }
 

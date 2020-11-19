@@ -1,36 +1,97 @@
 class WalkMapVis {
-    constructor(_parentElement, _data) {
+    constructor(_parentElement, _data, _geoData) {
         this.parentElement = _parentElement;
         this.data = _data;
+        this.geoHectareData = _geoData;
+        this.walkLatLngs = [];
 
         this.initVis();
     }
 
     initVis() {
+
         let vis = this;
 
-        vis.margin = { top: 40, right: 40, bottom: 40, left: 40 };
+// define map at center of Central Park
+        vis.map = L.map('walk_map_vis',{
+            zoomSnap: 0.25
+        }).setView([40.7812,-73.9665],14.25);
 
-        vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
-            vis.height = 300 - vis.margin.top - vis.margin.bottom;
+// add OpenStreetMap Mapnik
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(vis.map);
 
-        // SVG drawing area
-        vis.svg = d3.select("#" + vis.parentElement).append("svg")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")")
+// FeatureGroup is to store editable layers (layers that are drawn onto map)
+        vis.drawnItems = new L.FeatureGroup();
+// add layer to map
+        vis.map.addLayer(vis.drawnItems);
+        vis.drawControl = new L.Control.Draw({
+            // disabling extraneous drawing in order to focus users on their walk path
+            draw: {
+                polygon: false,
+                marker: false,
+                circle: false,
+                rectangle: false,
+                polyline: {
+                    shapeOptions: {
+                        color: '#281b1b',
+                        weight: 4,
+                        opacity: 0.9
+                    }
+                },
+            },
+            edit: {
+                // specifies layer for drawn features
+                featureGroup: vis.drawnItems
+            }
+        });
+// add drawing toolbar to map
+        vis.map.addControl(vis.drawControl);
 
-        // DELETE RECT WHEN READY TO CODE
-        vis.svg
-            .append("rect")
-            .attr("x",0)
-            .attr("y",0)
-            .attr("width",vis.width)
-            .attr("height", vis.height)
+
+// when user clicks "Finish" after drawing line, calls following function:
+        vis.map.on(L.Draw.Event.CREATED, (event) => {
+            let layer = event.layer;
+            console.log(event)
+
+            // extract coordinates of path
+            let layerCoords = layer.getLatLngs()
+            console.log(layerCoords)
+
+            // Add layer to map
+            vis.drawnItems.addLayer(layer);
+
+            // CALL INFO BOX UPDATE HERE LATER
+            // vis.checkHectares(layerCoords)
+        });
+
+        // Add empty layer groups for the hectare markers
+        vis.geoHectareMarkers = L.geoJSON().addTo(vis.map);
 
         vis.wrangleData();
     }
+
+    // checkHectares(layerCoords){
+    //     let vis = this;
+    //
+    //     vis.walkLatLngs = [];
+    //
+    //     for(let i = 0; i<layerCoords.length; i = i+2){
+    //         vis.walkLatLngs.push([vis.walkLatLngs[i].lat, vis.walkLatLngs[i].lng])
+    //     }
+    //     console.log(vis.walkLatLngs)
+    //
+    //     vis.walkLatLngs.forEach( (coordPair) => {
+    //         vis.geoHectareData.features.some( (feature) => {
+    //             if(inside.feature(feature,coordPair)){
+    //                 console.log(feature.properties["Hectare ID"])
+    //                 return true
+    //             }
+    //         })
+    //     })
+    // }
+
 
     wrangleData() {
         let vis = this;

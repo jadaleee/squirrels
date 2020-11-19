@@ -12,19 +12,19 @@ class WalkMapVis {
 
         let vis = this;
 
-// define map at center of Central Park
+        // define map at center of Central Park
         vis.map = L.map('walk_map_vis',{
             zoomSnap: 0.25
         }).setView([40.7812,-73.9665],14.25);
 
-// add OpenStreetMap Mapnik
+        // add OpenStreetMap Mapnik
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(vis.map);
 
-// FeatureGroup is to store editable layers (layers that are drawn onto map)
+        // FeatureGroup is to store editable layers (layers that are drawn onto map)
         vis.drawnItems = new L.FeatureGroup();
-// add layer to map
+        // add layer to map
         vis.map.addLayer(vis.drawnItems);
         vis.drawControl = new L.Control.Draw({
             // disabling extraneous drawing in order to focus users on their walk path
@@ -46,11 +46,11 @@ class WalkMapVis {
                 featureGroup: vis.drawnItems
             }
         });
-// add drawing toolbar to map
+        // add drawing toolbar to map
         vis.map.addControl(vis.drawControl);
 
 
-// when user clicks "Finish" after drawing line, calls following function:
+        // when user clicks "Finish" after drawing line, calls following function:
         vis.map.on(L.Draw.Event.CREATED, (event) => {
             let layer = event.layer;
             console.log(event)
@@ -63,7 +63,7 @@ class WalkMapVis {
             vis.drawnItems.addLayer(layer);
 
             // CALL INFO BOX UPDATE HERE LATER
-            // vis.checkHectares(layerCoords)
+            vis.checkHectares(layerCoords)
         });
 
         // Add empty layer groups for the hectare markers
@@ -72,25 +72,25 @@ class WalkMapVis {
         vis.wrangleData();
     }
 
-    // checkHectares(layerCoords){
-    //     let vis = this;
-    //
-    //     vis.walkLatLngs = [];
-    //
-    //     for(let i = 0; i<layerCoords.length; i = i+2){
-    //         vis.walkLatLngs.push([vis.walkLatLngs[i].lat, vis.walkLatLngs[i].lng])
-    //     }
-    //     console.log(vis.walkLatLngs)
-    //
-    //     vis.walkLatLngs.forEach( (coordPair) => {
-    //         vis.geoHectareData.features.some( (feature) => {
-    //             if(inside.feature(feature,coordPair)){
-    //                 console.log(feature.properties["Hectare ID"])
-    //                 return true
-    //             }
-    //         })
-    //     })
-    // }
+    checkHectares(layerCoords){
+        let vis = this;
+
+        vis.walkLatLngs = [];
+
+        for(let i = 0; i<layerCoords.length; i = i+2){
+            vis.walkLatLngs.push([layerCoords[i].lat, layerCoords[i].lng])
+        }
+        console.log(vis.walkLatLngs)
+
+        // vis.walkLatLngs.forEach( (coordPair) => {
+        //     vis.geoHectareData.features.some( (feature) => {
+        //         if(inside.feature(feature,coordPair)){
+        //             console.log(feature.properties["Hectare ID"])
+        //             return true
+        //         }
+        //     })
+        // })
+    }
 
 
     wrangleData() {

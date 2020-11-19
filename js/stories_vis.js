@@ -63,7 +63,7 @@ class StoriesVis {
         let vis = this;
 
         vis.displayData = vis.data;
-        console.log("inside story vis", vis.data)
+        // console.log("inside story vis", vis.data)
         vis.updateVis();
     }
 
@@ -77,7 +77,7 @@ class StoriesVis {
         // this.size = vis.height/vis.width, so we just replce
 
         words.sort((a, b) => b.size - a.size)
-        console.log(words)
+        // console.log(words)
         d3.select("svg").append("g")
             .attr("transform", "translate(" + this.size()[0] / 2 + "," + this.size()[1] / 2 + ")")
             .selectAll("text")

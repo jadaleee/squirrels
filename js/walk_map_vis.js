@@ -3,6 +3,9 @@ class WalkMapVis {
         this.parentElement = _parentElement;
         this.data = _data;
         this.geoHectareData = _geoData;
+        this.squirrelData = _data[0]
+        this.squirrelDataByHectare = [];
+        this.hectareData = _data[1]
         this.walkLatLngs = [];
         this.hectaresOnWalk = [];
 
@@ -254,19 +257,87 @@ class WalkMapVis {
                         }
                     };
             },{}]},{},[1]);
+
+        vis.updateVis()
     }
 
 
     wrangleData() {
         let vis = this;
 
-        vis.displayData = vis.data;
+        // group squirrel sightings by hectare.
+        // NOTE TO SELF: squirrelDataByHectare length < total # hectares bc some hectares are in lakes
+        vis.squirrelDataByHectare = Array.from(
+            d3.group(vis.squirrelData, d=>d.Hectare),
+            ([key, value]) => ({key, value})
+        )
 
-        vis.updateVis();
+        vis.squirrelDataByHectare.forEach((hectare, i)=>{
+            // add key-value pair: number of squirrels in hectare
+            hectare.squirrelsInHectare = hectare.value.length
+
+            // set default false for squirrel approach
+            hectare.squirrelWouldApproach = false;
+
+            // if squirrel has approached human in the hectare, change to true
+            hectare.value.some( (squirrel) => {
+                if(squirrel["Approaches"]){
+                    hectare.squirrelWouldApproach = true;
+                    return true
+                }
+            })
+        })
+        console.log(vis.squirrelDataByHectare)
+
+        // vis.displayData = vis.squirrelDataByHectare
+
+        // vis.updateVis();
     }
 
     updateVis() {
         let vis  = this;
+
+        let numSquirrels = 0;
+        let squirrelApproach = false;
+        let otherAnimalsList = [];
+
+        vis.hectaresOnWalk.forEach((walkHectare) => {
+            vis.squirrelDataByHectare.forEach((squirrelHectare) => {
+                if(walkHectare === squirrelHectare.key){
+                    // sum of squirrels possible to see per hectare
+                    numSquirrels += squirrelHectare.squirrelsInHectare
+                    // if a squirrel could approach in one of the hectares, set true
+                    if(squirrelHectare.squirrelWouldApproach){
+                        squirrelApproach = true;
+                    }
+                }
+            })
+
+            // find what other animals possible to be viewed on walk
+            vis.hectareData.forEach((hectareInfo) => {
+                if(walkHectare === hectareInfo["Hectare"]){
+                    // put string in array using .split(", ")
+                    let hectareAnimals = hectareInfo["Other Animal Sightings"].split(", ")
+                    hectareAnimals.forEach((animal) => {
+                        // check for repeat animals and empty strings
+                        if(otherAnimalsList.indexOf(animal) === -1 && animal !== ""){
+                            // add new strings to array
+                            otherAnimalsList.push(animal)
+                        }
+                    })
+                }
+            })
+        })
+
+        // turn array of animal strings into one large string
+        let otherAnimals = otherAnimalsList.join(", ")
+
+        console.log(numSquirrels)
+        console.log(squirrelApproach)
+        console.log(otherAnimals)
+
+        // don't forget walk distance
+        d3.select("div.numSquirrels").text("Max Number of Squirrels You May See: " + numSquirrels)
 
     }
 }

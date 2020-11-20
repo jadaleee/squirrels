@@ -180,15 +180,28 @@ Example: <img data-src="image.png"> -->
             <h1>Draw a walk you'd like to take in Central Park!</h1>
             <p class="walkMapCaption">Switch map views to see where the most friendly squirrels are.</p>
 
-            <!--      Leaflet Draw Map        -->
-            <div class="col-md-6">
-                <div id="walk_map_vis"></div>
+            <div class="row">
+                <!--      Leaflet Draw Map        -->
+                <div class="col-md-6">
+                    <div id="walk_map_vis"></div>
+                </div>
+
+                <!--      Info about walk         -->
+                <div class="col-md-6">
+                    <div id="walk_map_info">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-header">Your Walk</div>
+                            <div class="card-body"></div>
+                            <p class="numSquirrels"></p>
+                            <p class="squirrelApproach"></p>
+                            <p class="walkDistance"></p>
+                            <p class="otherAnimals"></p>
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!--      Info about walk         -->
-            <div class="col-md-6">
-                <div id="walk_map_info"></div>
-            </div>
         </div>
 
         <div class="row section" id="quotesInfo">

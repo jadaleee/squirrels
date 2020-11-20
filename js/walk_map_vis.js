@@ -332,12 +332,17 @@ class WalkMapVis {
         // turn array of animal strings into one large string
         let otherAnimals = otherAnimalsList.join(", ")
 
-        console.log(numSquirrels)
-        console.log(squirrelApproach)
-        console.log(otherAnimals)
+        let approachString = ""
+        squirrelApproach ? approachString = " Yes!" : approachString = " No :("
+
+        // convert distance to miles
+        vis.walkDistance = vis.walkDistance*0.000621371192
 
         // don't forget walk distance
-        d3.select("div.numSquirrels").text("Max Number of Squirrels You May See: " + numSquirrels)
+        d3.select("p.numSquirrels").text("Max Number of Squirrels You May See: " + numSquirrels)
+        d3.select("p.walkDistance").text("Walking Distance: " + vis.walkDistance.toFixed(2) + " miles")
+        d3.select("p.otherAnimals").text("Other Animals You Might See: " + otherAnimals)
+        d3.select("p.squirrelApproach").text("Would a Squirrel Approach You?" + approachString)
 
     }
 }

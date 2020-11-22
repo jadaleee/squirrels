@@ -181,7 +181,6 @@ Example: <img data-src="image.png"> -->
             <p class="walkMapCaption">Switch map views to see where the most friendly squirrels are.</p>
 
             <div class="row">
-                <!--      Leaflet Draw Map        -->
                 <div class="col-md-6">
                     <div id="walk_map_vis"></div>
                 </div>
@@ -191,14 +190,17 @@ Example: <img data-src="image.png"> -->
                     <div id="walk_map_info">
                         <div class="card mb-4 shadow-sm">
                             <div class="card-header">Your Walk</div>
-                            <div class="card-body"></div>
+                            <div class="card-body">
                             <p class="numSquirrels"></p>
                             <p class="squirrelApproach"></p>
                             <p class="walkDistance"></p>
                             <p class="otherAnimals"></p>
-
+                            </div>
                         </div>
                     </div>
+
+                    <button class="btn btn-dark align-self-center walk-map" type="button" onClick="clearHeatMap()">Clear Heat Map</button>
+                    <button class="btn btn-dark align-self-center heat-map" type="button" onClick="showHeatMap()">Show Heat Map</button>
                 </div>
             </div>
 
@@ -252,8 +254,6 @@ Example: <img data-src="image.png"> -->
 <script src="js/sentiment_vis.js"></script>
 <script src="js/stories_map_vis.js"></script>
 <script src="js/squirrel_map_vis.js"></script>
-
-<!-- Browserify bundle -->
 <script src="js/walk_map_vis.js"></script>
 
 <!-- Load data, create visualizations -->

@@ -138,6 +138,29 @@ function initMainPage(dataArray) {
         })
     })
 
+    // GROUP SQUIRREL SIGHTINGS BY HECTARE
+    // NOTE TO SELF: squirrelDataByHectare length < total # hectares bc some hectares are in lakes
+    let squirrelDataByHectare = Array.from(
+        d3.group(squirrelData, d=>d.Hectare),
+        ([key, value]) => ({key, value})
+    )
+
+    squirrelDataByHectare.forEach((hectare, i)=>{
+        // add key-value pair: number of squirrels in hectare
+        hectare.squirrelsInHectare = hectare.value.length
+
+        // set default false for squirrel approach
+        hectare.squirrelWouldApproach = false;
+
+        // if squirrel has approached human in the hectare, change to true
+        hectare.value.some( (squirrel) => {
+            if(squirrel["Approaches"]){
+                hectare.squirrelWouldApproach = true;
+                return true
+            }
+        })
+    })
+
     // Create Visualization instances
     // let hookVis = new HookVis("hook_vis", dataArray);
     // let bubbleVis = new BubbleVis("bubble_vis", dataArray);
@@ -146,7 +169,7 @@ function initMainPage(dataArray) {
 
     // load GEOJson data for hectare grid
     d3.json("data/2018_Central_Park_Squirrel_Census_-_Hectare_Grid.geojson")
-        .then(function(data) {
+        .then(function(geoData) {
             // letters for hectare id (following Squirrel Census naming convention)
             let letters = ["A","B","C","D","E","F","G","H","I"]
 
@@ -154,7 +177,7 @@ function initMainPage(dataArray) {
             let idNumberLoop = 42;
 
             // iterate over features
-            data.features.forEach(function (element) {
+            geoData.features.forEach(function (element) {
                 if(idNumberLoop<10){
                     // add hectare id to each geojson feature WITH 0
                     element.properties["Hectare ID"] = "0" + idNumberLoop.toString() + letters[idLetterLoop]
@@ -172,10 +195,36 @@ function initMainPage(dataArray) {
                 }
             })
 
+            // set to random number to allow comparison in forEach
+            let squirrelMax = 10;
+            let squirrelMin = 10;
+
+            // add num of squirrelsInHectare to geoData properties for later use in heatmap opacity scale
+            geoData.features.forEach( (feature) => {
+                squirrelDataByHectare.some((hectare) => {
+                    if(feature.properties["Hectare ID"] === hectare.key){
+                        let squirrelsInHectare = hectare.squirrelsInHectare
+                        feature.properties.squirrelsInHectare = squirrelsInHectare
+
+                        // find minimum number of squirrels in a hectare
+                        if(squirrelsInHectare < squirrelMin){
+                            squirrelMin = squirrelsInHectare
+                        }
+
+                        // find maximum number of squirrels in a hectare
+                        if(squirrelsInHectare > squirrelMax){
+                            squirrelMax = squirrelsInHectare
+                        }
+                        return true
+                    }
+                })
+
+            })
+
             // Create stories & squirrel map visualizations with geojson data loaded
-            storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray, data);
-            squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray, data);
-            walkMapVis = new WalkMapVis("walk_map_vis", dataArray, data);
+            storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray, geoData);
+            squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray, geoData);
+            walkMapVis = new WalkMapVis("walk_map_vis", dataArray, geoData, squirrelDataByHectare, squirrelMin, squirrelMax);
         })
 }
 
@@ -253,4 +302,13 @@ function drawHectareLink(element){
 
 function clearHectareLink(){
     squirrelMapVis.clearHectare()
+}
+
+// Call to Action -- call function to draw hectare heat map
+function showHeatMap() {
+    walkMapVis.initHeatMap()
+}
+
+function clearHeatMap(){
+    walkMapVis.clearHeatMap()
 }

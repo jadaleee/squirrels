@@ -1,11 +1,12 @@
 class WalkMapVis {
-    constructor(_parentElement, _data, _geoData) {
+    constructor(_parentElement, _data, _geoData, _squirrelHectareData, _squirrelMin, _squirrelMax) {
         this.parentElement = _parentElement;
         this.data = _data;
         this.geoHectareData = _geoData;
-        this.squirrelData = _data[0]
-        this.squirrelDataByHectare = [];
-        this.hectareData = _data[1]
+        this.squirrelDataByHectare = _squirrelHectareData;
+        this.squirrelMin = _squirrelMin;
+        this.squirrelMax = _squirrelMax;
+        this.hectareData = _data[1];
         this.walkLatLngs = [];
         this.hectaresOnWalk = [];
 
@@ -71,8 +72,6 @@ class WalkMapVis {
 
         // Add empty layer groups for the hectare markers
         vis.geoHectareMarkers = L.geoJSON().addTo(vis.map);
-
-        vis.wrangleData();
     }
 
     checkHectares(layerCoords){
@@ -261,39 +260,6 @@ class WalkMapVis {
         vis.updateVis()
     }
 
-
-    wrangleData() {
-        let vis = this;
-
-        // group squirrel sightings by hectare.
-        // NOTE TO SELF: squirrelDataByHectare length < total # hectares bc some hectares are in lakes
-        vis.squirrelDataByHectare = Array.from(
-            d3.group(vis.squirrelData, d=>d.Hectare),
-            ([key, value]) => ({key, value})
-        )
-
-        vis.squirrelDataByHectare.forEach((hectare, i)=>{
-            // add key-value pair: number of squirrels in hectare
-            hectare.squirrelsInHectare = hectare.value.length
-
-            // set default false for squirrel approach
-            hectare.squirrelWouldApproach = false;
-
-            // if squirrel has approached human in the hectare, change to true
-            hectare.value.some( (squirrel) => {
-                if(squirrel["Approaches"]){
-                    hectare.squirrelWouldApproach = true;
-                    return true
-                }
-            })
-        })
-        console.log(vis.squirrelDataByHectare)
-
-        // vis.displayData = vis.squirrelDataByHectare
-
-        // vis.updateVis();
-    }
-
     updateVis() {
         let vis  = this;
 
@@ -345,5 +311,61 @@ class WalkMapVis {
         d3.select("p.squirrelApproach").text("Would a Squirrel Approach You?" + approachString)
 
     }
+
+    initHeatMap(){
+        let vis = this;
+
+        // create category scale for y axis
+        vis.squirrelScale = d3.scaleLinear()
+            .domain([vis.squirrelMin,vis.squirrelMax])
+            .range([0,1]);
+
+        // Add empty layer groups for the hectare markers
+        vis.geoHectareMarkers = L.geoJSON().addTo(vis.map);
+
+        // function to bind pop up to each GEOJson hectare
+        function onEachHectare(feature, layer){
+            let squirrelsInHectare;
+
+            // check if squirrelsInHectare is undefined
+            if(!feature.properties.squirrelsInHectare){
+                squirrelsInHectare = 0
+            }
+            else{
+                squirrelsInHectare = feature.properties.squirrelsInHectare
+            }
+
+            layer.bindPopup("<div class=marker> <strong>Hectare ID: </strong>" + feature.properties["Hectare ID"] +
+                "</br><strong>Squirrels in Hectare: </strong>" + squirrelsInHectare + "</div>")
+        }
+
+        // checking if squirrelsInHectare in undefined, if so set default to 0
+        function setOpacity(numSquirrels){
+            if(numSquirrels){
+                return vis.squirrelScale(numSquirrels)
+            }
+            else{
+                return vis.squirrelScale(0)
+            }
+        }
+
+        vis.geoHectareData.features.forEach(feature => {
+            // draw each hectare
+            L.geoJson(feature, {
+                color: "green",
+                weight: 1,
+                fillOpacity: setOpacity(feature.properties.squirrelsInHectare),
+                onEachFeature: onEachHectare
+            }).addTo(vis.geoHectareMarkers)
+        })
+    }
+
+    clearHeatMap() {
+        let vis = this;
+
+        // clear markers from previous rendering of layers
+        vis.geoHectareMarkers.clearLayers()
+    }
+
 }
 

@@ -40,7 +40,7 @@ $(document).ready(function(){
     $('#transitionButton').click(function(){
         $('#transitionButton').fadeOut(800);
         $('#transition2Context').fadeOut(800);
-        $('#dataContext').delay(1000).fadeIn(1600);
+        $('#dataContext').delay(2000).fadeIn(1600);
         $('#nextButtonHistorical').delay(1000).fadeIn(1600);
     })
 
@@ -50,6 +50,8 @@ $(document).ready(function(){
         $('#dataContext').fadeTo(1600, 0);
         $('#historicalContext').fadeTo(1600, 1);
     })
+
+    // Should add a go back button
 
     /* Squirrel Trivia Visualization Functions */
 

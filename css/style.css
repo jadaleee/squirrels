@@ -116,6 +116,9 @@ input:focus {
     outline:none;
 }
 
+#UserGuess {
+    color: #3A2518;
+}
 #userSquirNum {
     background-color: white;
     border-color: #3A2518;

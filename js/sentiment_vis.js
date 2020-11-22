@@ -125,6 +125,7 @@ class SentimentVis {
             .map(d => (d.forEach(v => v.key = d.key), d))
         vis.displayData = finalStackedData
         console.log("stacked data:", vis.displayData)
+
         vis.updateVis();
     }
 

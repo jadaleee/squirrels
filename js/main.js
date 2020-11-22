@@ -162,7 +162,41 @@ function initMainPage(dataArray) {
     squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray);
     storiesVis = new StoriesVis("stories_vis", dataArray[2], dataArray[3]);
     sentimentVis = new SentimentVis("sentiment_vis", dataArray[2])
+
     // let walkMapVis = new WalkMapVis("walk_map_vis", dataArray);
+
+    // load GEOJson data for hectare grid
+    d3.json("data/2018_Central_Park_Squirrel_Census_-_Hectare_Grid.geojson")
+        .then(function(data) {
+            // letters for hectare id (following Squirrel Census naming convention)
+            let letters = ["A","B","C","D","E","F","G","H","I"]
+
+            let idLetterLoop = 0;
+            let idNumberLoop = 42;
+
+            // iterate over features
+            data.features.forEach(function (element) {
+                if(idNumberLoop<10){
+                    // add hectare id to each geojson feature WITH 0
+                    element.properties["Hectare ID"] = "0" + idNumberLoop.toString() + letters[idLetterLoop]
+                }
+                else{
+                    // add hectare id to each geojson feature
+                    element.properties["Hectare ID"] = idNumberLoop.toString() + letters[idLetterLoop]
+                }
+
+                // after nine elements, add 1 to the id and start over from "I" (following Squirrel Census Hectare ID convention)
+                idLetterLoop++;
+                if(idLetterLoop === 9){
+                    idLetterLoop = 0;
+                    idNumberLoop--;
+                }
+            })
+
+            // Create stories & squirrel map visualizations with geojson data loaded
+            storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray, data);
+            squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray, data);
+        })
 }
 
 // Main Message -- filters for squirrel sightings map
@@ -216,7 +250,7 @@ function storyMapFilterClicked(input) {
     storiesMapVis.wrangleData(storyMapFilters)
 }
 
-// function to create and update horizontal carousel for stories
+// Main Message -- function to create and update horizontal carousel for stories
 function sliderInit(filtered){
     if(filtered){
         $('.stories-carousel').slick("unslick")
@@ -231,3 +265,12 @@ function sliderInit(filtered){
         arrows: true,
     })
 };
+
+// Main Message -- call function to draw hectare on leaflet map
+function drawHectareLink(element){
+    squirrelMapVis.drawHectare(element)
+}
+
+function clearHectareLink(){
+    squirrelMapVis.clearHectare()
+}

@@ -94,6 +94,71 @@ svg {
     align-items: center;
 }
 
+/* Hook */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+input:focus {
+    outline:none;
+}
+
+#userSquirNum {
+    background-color: white;
+    border-color: #3A2518;
+    border-radius: 10px;
+}
+
+.squirButton {
+    padding: 3px 10px;
+    background-color: #BFDBF7;
+    border-radius: 10px;
+    border: none;
+}
+
+.squirButton:hover {
+    padding: 3px 10px;
+    background-color: beige; /* whatever color is best */
+    border-radius: 10px;
+    border: none;
+}
+
+.backgroundLayout, #hook-comparingGuess {
+    align-content: center;
+    background-color: #BFDBF7;
+    border-radius: 10px 10px 10px 10px;
+    padding: 15px;
+}
+
+#comparingSquirNum {
+    color: #3A2518;
+}
+
+/* Context */
+
+button:focus {
+    outline:none;
+}
+
+.centerItems {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+#nextButtonHistorical {
+    position: absolute;
+    right: 0;
+}
+/* Squirrel Trivia */
+
 
 
 /* Backgrounds will cover all the sections. Add ".load-background" for lazy loading!

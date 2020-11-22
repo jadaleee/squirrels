@@ -97,13 +97,30 @@ Example: <img data-src="image.png"> -->
             </div>
         </div>
                 <!-- Stories Vis -->
-        <div class="row section" id="storiesVis">
-            <div class="col-md-6">
-                <div id="stories_vis"></div>
+        <div class="section" id="storiesVis">
+            <div class="row align-middle" style="height: 80vh;">
+                <div class="col-md-5">
+                    <div class="row" id="stories_vis"></div>
+                    <div class="row" style="height: 7vh; " id="sample_stories"></div>
+                </div>
+                <div class="col-md-7">
+                    <div class="row" style="height: 7vh; ">
+                        <select name="story_categories" id="story_select" class="form-control">
+<!--                            <option value="Story Topic (String)">Story Topic</option>-->
+                            <option value="Shift">Time of Day</option>
+                            <option value="Other Animals">Other animals</option>
+                            <option value="Squirrels">Squirrels</option>
+                            <option value="Story Topic: Accidental Poems">Accidental Poems</option>
+<!--                            <option value="numberPriorates">Number of seats held in the civic council</option>-->
+                        </select>
+                    </div>
+                    <div class="row" id="sentiment_vis">
+                        <!--                <div id="sentiment_vis"></div>-->
+                    </div>
+                </div>
+
             </div>
-            <div class="col-md-6">
-                <div id="sentiment_vis"></div>
-            </div>
+
         </div>
 
         <!-- Main message: Map and Stories Vis -->

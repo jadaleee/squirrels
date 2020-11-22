@@ -352,7 +352,7 @@ class WalkMapVis {
         vis.geoHectareData.features.forEach(feature => {
             // draw each hectare
             L.geoJson(feature, {
-                color: "green",
+                color: "#52361b",
                 weight: 1,
                 fillOpacity: setOpacity(feature.properties.squirrelsInHectare),
                 onEachFeature: onEachHectare

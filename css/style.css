@@ -45,6 +45,16 @@ svg {
     margin-bottom: 10px;
 }
 
+.walkMapCaption {
+    margin-bottom: 10px;
+}
+
+#walk_map_vis {
+    width: 100%;
+    height: 700px;
+    margin-left: 20px;
+}
+
 /* Story Vis */
 .word-cloud-text{
     stroke: none;
@@ -84,14 +94,6 @@ svg {
 .sentiment-tooltip h4 {
     font: 14px sans-serif;
 }
-
-/*
-.brush {
-	fill: #ccc;
-	fill-opacity: .5;
-	pointer-events: none;
-}*/
-
 
 /* FULLPAGE.JS STEPPER CSS*/
 #fp-nav ul li .fp-tooltip {

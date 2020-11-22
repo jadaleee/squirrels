@@ -15,9 +15,12 @@
     <!--  Leaflet CSS  -->
     <link rel="stylesheet" href="css/leaflet.css">
 
+    <!--  Leaflet Draw CSS  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+
     <!--  Carousel Slick CSS  -->
-    <link rel="stylesheet" type="text/css" href="js/slick/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="js/slick/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="js/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="js/slick/slick-theme.css"/>
 
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
@@ -215,12 +218,36 @@ Example: <img data-src="image.png"> -->
             </div>
         </div>
 
-        <!-- Solution/Call to Action -->
+        <!-- Solution/Call to Action: Take a Walk in the Park! -->
         <div class="row section" id="walkMap">
-            <img src="images/walkmap.png">
-            <div class="col-md-12">
-                <div id="walk_map_vis"></div>
+            <!--      Title and Description   -->
+            <h1>Draw a walk you'd like to take in Central Park!</h1>
+            <p class="walkMapCaption">Switch map views to see where the most friendly squirrels are.</p>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="walk_map_vis"></div>
+                </div>
+
+                <!--      Info about walk         -->
+                <div class="col-md-6">
+                    <div id="walk_map_info">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-header">Your Walk</div>
+                            <div class="card-body">
+                            <p class="numSquirrels"></p>
+                            <p class="squirrelApproach"></p>
+                            <p class="walkDistance"></p>
+                            <p class="otherAnimals"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-dark align-self-center walk-map" type="button" onClick="clearHeatMap()">Clear Heat Map</button>
+                    <button class="btn btn-dark align-self-center heat-map" type="button" onClick="showHeatMap()">Show Heat Map</button>
+                </div>
             </div>
+
         </div>
 
         <div class="row section" id="quotesInfo">
@@ -256,10 +283,13 @@ Example: <img data-src="image.png"> -->
 <!-- Slick Carousel -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="js/slick/slick/slick.min.js"></script>
+<script type="text/javascript" src="js/slick/slick.min.js"></script>
 
 <!-- Leaflet Map-->
 <script src="js/leaflet/leaflet.js"></script>
+
+<!-- Leaflet Draw -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 
 <!-- Visualization objects -->
 <script src="js/hook_vis.js"></script>

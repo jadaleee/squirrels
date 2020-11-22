@@ -181,8 +181,6 @@ function initMainPage(dataArray) {
 
     // Create Visualization instances
     // let bubbleVis = new BubbleVis("bubble_vis", dataArray);
-    storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray);
-    squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray);
     storiesVis = new StoriesVis("stories_vis", dataArray[2], dataArray[3]);
     sentimentVis = new SentimentVis("sentiment_vis", dataArray[2])
 

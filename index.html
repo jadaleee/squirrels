@@ -24,6 +24,12 @@
 
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- JQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Custom JQuery code -->
+    <script src="js/jquery_functions.js"></script>
 </head>
 <body>
 
@@ -43,21 +49,42 @@ Example: <img data-src="image.png"> -->
 
         <!-- Hook -->
         <div class="row section" id="hookVis">
-            <img src="images/HookDraft.png">
-            <div class="col-md-12">
-                <div id="hook_vis"></div>
+            <div class="centerItems" id="userGuess">
+                <h3 id="squirNumQuestion">How many squirrels do you think live in Central Park?<h3>
+                <form id="squirrelForm" action="#firstPage" onsubmit="return false">
+                    <input placeholder=" Guess Here!"type="number" id="userSquirNum" value=" ">
+                    <input type="submit" class="squirButton" value="Submit">
+                </form>
+            </div>
+            <div class="col-md-4" id="hook-comparingGuess">
+                <h1 class="backgroundLayout"id="comparingSquirNum"></h1>
             </div>
         </div>
 
         <!-- Rising Insights -->
                 <!-- Context Section-->
         <div class="row section" id="censusInfo">
-            <img src="images/Context.png">
-            <div class="col-md-12">
-                <div id="squirrel_census_info"></div>
+            <div class="centerItems">
+                <h1 id="transition2Context">But how did we know that?</h1>
+                <button class="squirButton" id="transitionButton">Click to find out more!</button>
             </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3 class="backgroundLayout" id="dataContext">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</h3>
+                    </div>
+                   <div class="col-md-8"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <h3 class="backgroundLayout" id="historicalContext">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</h3>
+                    </div>
+                </div>
+            </div>
+            <button class="squirButton" id="nextButtonHistorical">NEXT</button>
         </div>
-
+                <!-- Squirrel Trivia -->
         <div class="row section" id="squirrelTrivia">
             <img src="images/Trivia.png">
             <div class="col-md-12">
@@ -73,13 +100,30 @@ Example: <img data-src="image.png"> -->
             </div>
         </div>
                 <!-- Stories Vis -->
-        <div class="row section" id="storiesVis">
-            <div class="col-md-6">
-                <div id="stories_vis"></div>
+        <div class="section" id="storiesVis">
+            <div class="row align-middle" style="height: 80vh;">
+                <div class="col-md-5">
+                    <div class="row" id="stories_vis"></div>
+                    <div class="row" style="height: 7vh; " id="sample_stories"></div>
+                </div>
+                <div class="col-md-7">
+                    <div class="row" style="height: 7vh; ">
+                        <select name="story_categories" id="story_select" class="form-control">
+<!--                            <option value="Story Topic (String)">Story Topic</option>-->
+                            <option value="Shift">Time of Day</option>
+                            <option value="Other Animals">Other animals</option>
+                            <option value="Squirrels">Squirrels</option>
+                            <option value="Story Topic: Accidental Poems">Accidental Poems</option>
+<!--                            <option value="numberPriorates">Number of seats held in the civic council</option>-->
+                        </select>
+                    </div>
+                    <div class="row" id="sentiment_vis">
+                        <!--                <div id="sentiment_vis"></div>-->
+                    </div>
+                </div>
+
             </div>
-            <div class="col-md-6">
-                <div id="sentiment_vis"></div>
-            </div>
+
         </div>
 
         <!-- Main message: Map and Stories Vis -->
@@ -262,7 +306,7 @@ Example: <img data-src="image.png"> -->
 <!-- Initialize Fullpage stepper-->
 <script>
     new fullpage('#fullpage', {
-        //options here
+        // options here
         anchors: ['Title', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', '8thPage', 'About-Us'],
         // autoScrolling false because story boxes need vertical scrolling
         autoScrolling: false,

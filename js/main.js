@@ -11,7 +11,9 @@ let dateParser = d3.timeParse("%m%d%Y");
 
 let squirrelMapVis,
     storiesMapVis,
-    walkMapVis;
+    walkMapVis,
+    storiesVis,
+    sentimentVis;
 
 // load data using promises
 let promises = [
@@ -24,6 +26,16 @@ let promises = [
 Promise.all(promises)
     .then( function(data){ initMainPage(data) })
     .catch( function (err){console.log(err)} );
+
+//set up onchange for the story vis select
+let storyCategory = $('#story_select').val();
+
+d3.select("#story_select").on("change", categoryChange)
+function categoryChange() {
+    storyCategory = $('#story_select').val();
+    sentimentVis.wrangleData(); //was update vis but i think we actually need to re-wrangle data
+}
+
 
 // initMainPage
 function initMainPage(dataArray) {
@@ -116,10 +128,13 @@ function initMainPage(dataArray) {
         d.Sentiment = +d.Sentiment;
         d.Date = dateParser(d.Date);
         d.Length = +d.Length;
+        d["Squirrels"] = eval(d["Squirrels"]) //this is one v rest but we could also try sq vs other animals
+        d["Other Animals"] = eval(d["Other Animals"])
         d["Story Topic: Accidental Poems"] = eval(d["Story Topic: Accidental Poems"])
         d["Story Topic: Census Takers Recognized"] = eval(d["Story Topic: Census Takers Recognized"])
         d["Story Topic: Dogs"] = eval(d["Story Topic: Dogs"])
         d["Story Topic: Other Animals"] = eval(d["Story Topic: Other Animals"])
+        d["Story Topic: Other"] = d["Story Topic: Other"] == 0? 0:1
         d["Story Topic: Park Experience or Census Taker Story"] = eval(d["Story Topic: Park Experience or Census Taker Story"])
         d["Story Topic: Squirrel Experience or Squirrel Story"] = eval(d["Story Topic: Squirrel Experience or Squirrel Story"])
         d["Story Topic: Squirrels Acting Odd"] = eval(d["Story Topic: Squirrels Acting Odd"])
@@ -127,13 +142,16 @@ function initMainPage(dataArray) {
         d["Story Topic"] = d3.range(0, 8).map(function(){
             return 0;
         });
+        d["Story Topic (String)"] = ""
         let category_list = ["Story Topic: Accidental Poems", "Story Topic: Census Takers Recognized", "Story Topic: Dogs",
+            "Story Topic: Other Animals", "Story Topic: Other",
             "Story Topic: Park Experience or Census Taker Story", "Story Topic: Squirrel Experience or Squirrel Story",
-            "Story Topic: Squirrels Acting Odd", "Story Topic: Other Animals", "Story Topic: Other"]
+            "Story Topic: Squirrels Acting Odd"]
         d["Story Topic"].forEach((a, i)=>{
             //console.log("in data processing", a, i)
             if(d[category_list[i]]) {
                 d["Story Topic"][i] = 1
+                d["Story Topic (String)"] = category_list[i]
             }
         })
     })
@@ -162,10 +180,11 @@ function initMainPage(dataArray) {
     })
 
     // Create Visualization instances
-    // let hookVis = new HookVis("hook_vis", dataArray);
     // let bubbleVis = new BubbleVis("bubble_vis", dataArray);
-    let storiesVis = new StoriesVis("stories_vis", dataArray[2], dataArray[3]);
-    let sentimentVis = new SentimentVis("sentiment_vis", dataArray[2])
+    storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray);
+    squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray);
+    storiesVis = new StoriesVis("stories_vis", dataArray[2], dataArray[3]);
+    sentimentVis = new SentimentVis("sentiment_vis", dataArray[2])
 
     // load GEOJson data for hectare grid
     d3.json("data/2018_Central_Park_Squirrel_Census_-_Hectare_Grid.geojson")

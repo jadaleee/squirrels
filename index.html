@@ -71,25 +71,102 @@ Example: <img data-src="image.png"> -->
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <h3 class="backgroundLayout" id="dataContext">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</h3>
+                    <div class="col-md-5">
+                        <h3 class="backgroundLayout" id="dataContext">
+                            In October 2018, 323 squirrel sighters collected data on the squirrels of Central Park. Due
+                            to a reporter’s curiosity on these small furry friends, these individuals set out to
+                            count and tell the story of every squirrel they saw.
+                        </h3>
                     </div>
-                   <div class="col-md-8"></div>
+                   <div class="col-md-7"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-8"></div>
-                    <div class="col-md-4">
-                        <h3 class="backgroundLayout" id="historicalContext">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</h3>
+                    <div class="col-md-7"></div>
+                    <div class="col-md-5">
+                        <h3 class="backgroundLayout" id="historicalContext">
+                            Before 1877, there were no squirrels in Central Park. However, they released 60-70
+                            squirrels from 1877 to 1878 and let them roam around.
+                            <br>
+                            By 1883, there were 1,500 squirrels calling Central Park home. Now the park hosts 2,373
+                            squirrels.
+                        </h3>
                     </div>
                 </div>
             </div>
             <button class="squirButton" id="nextButtonHistorical">NEXT</button>
+            <button class="squirButton" id="goBack">GO BACK</button>
         </div>
                 <!-- Squirrel Trivia -->
         <div class="row section" id="squirrelTrivia">
-            <img src="images/Trivia.png">
-            <div class="col-md-12">
-                <div id="squirrel_trivia"></div>
+            <h1 class="centerItems">Let's test your knowledge on Squirrels!</h1>
+            <br>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="question">
+                            <h3>A squirrel’s front teeth never stop growing.</h3>
+                            <br>
+                        </div>
+                            <div>
+                                <input type="radio" name="question-1-answers" id="question-1-answers-A" value="A" />
+                                <label for="question-1-answers-A"> TRUE </label>
+                            </div>
+                            <div>
+                                <input type="radio" name="question-1-answers" id="question-1-answers-B" value="B" />
+                                <label for="question-1-answers-B">FALSE</label>
+                            </div>
+                        <br>
+                            <input type="submit" class="squirButton" id="question-1-answer" value="Check Answer">
+                        <br><br>
+                        <div class="answer-reveal" id="answer-1">
+                            This is true. their teeth grow at a rate of ~6 inches per year.
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="question">
+                            <h3>Squirrels can land on 2 feet.</h3>
+                            <br>
+                        </div>
+                            <div>
+                                <input type="radio" name="question-2-answers" id="question-2-answers-A" value="A" />
+                                <label for="question-2-answers-A"> TRUE </label>
+                            </div>
+                            <div>
+                                <input type="radio" name="question-2-answers" id="question-2-answers-B" value="B" />
+                                <label for="question-2-answers-B">FALSE</label>
+                            </div>
+                        <br>
+                            <input type="submit" class="squirButton" id="question-2-answer" value="Check Answer">
+                        <br><br>
+                        <div class="answer-reveal" id="answer-2">
+                            This is false. Squirrels, like cats, actually always land on 4 feet.
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="question">
+                            <h3>A newborn squirrel is ~3.5 inches long.</h3>
+                            <br>
+                        </div>
+                            <div>
+                                <input type="radio" name="question-3-answers" id="question-3-answers-A" value="A" />
+                                <label for="question-3-answers-A"> TRUE </label>
+                            </div>
+                            <div>
+                                <input type="radio" name="question-3-answers" id="question-3-answers-B" value="B" />
+                                <label for="question-3-answers-B">FALSE</label>
+                            </div>
+                        <br>
+                            <input type="submit" class="squirButton" id="question-3-answer" value="Check Answer">
+                        <br><br>
+                        <div class="answer-reveal" id="answer-3">
+                            This is false. Newborn squirrels are actually ~1 inch long.
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 

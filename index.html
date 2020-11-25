@@ -170,41 +170,7 @@ Example: <img data-src="image.png"> -->
             </div>
         </div>
 
-                <!-- Bubble Vis -->
-        <div class="row section" id="bubbleVis">
-            <img src="images/bubble.png">
-            <div class="col-md-12">
-                <div id="bubble_vis"></div>
-            </div>
-        </div>
-                <!-- Stories Vis -->
-        <div class="section" id="storiesVis">
-            <div class="row align-middle" style="height: 80vh;">
-                <div class="col-md-5">
-                    <div class="row" id="stories_vis"></div>
-                    <div class="row" style="height: 7vh; " id="sample_stories"></div>
-                </div>
-                <div class="col-md-7">
-                    <div class="row" style="height: 7vh; ">
-                        <select name="story_categories" id="story_select" class="form-control">
-<!--                            <option value="Story Topic (String)">Story Topic</option>-->
-                            <option value="Shift">Time of Day</option>
-                            <option value="Other Animals">Other animals</option>
-                            <option value="Squirrels">Squirrels</option>
-                            <option value="Story Topic: Accidental Poems">Accidental Poems</option>
-<!--                            <option value="numberPriorates">Number of seats held in the civic council</option>-->
-                        </select>
-                    </div>
-                    <div class="row" id="sentiment_vis">
-                        <!--                <div id="sentiment_vis"></div>-->
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Main message: Map and Stories Vis -->
+        <!-- Rising Insights: Map and Stories Vis -->
         <div class="row section" id="mainMessage">
 
             <!--      Title and Description      -->
@@ -258,45 +224,101 @@ Example: <img data-src="image.png"> -->
                     <h4>Filter the squirrel sightings</h4>
                     <div class="btn-group-toggle" data-toggle="buttons">
                         <p class="filterLabel">Primary Fur Color</p>
-                            <label class="btn btn-outline-dark">
-                                <input class="fur" type="checkbox" autocomplete="off" value="Gray" onclick="mapFilterClicked(this)">Gray
-                            </label>
-                            <label class="btn btn-outline-dark">
-                                <input class="fur" type="checkbox" autocomplete="off" value="Cinnamon" onclick="mapFilterClicked(this)">Cinnamon
-                            </label>
-                            <label class="btn btn-outline-dark">
-                                <input class="fur" type="checkbox" autocomplete="off" value="Black" onclick="mapFilterClicked(this)">Black
-                            </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="fur" type="checkbox" autocomplete="off" value="Gray" onclick="mapFilterClicked(this)">Gray
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="fur" type="checkbox" autocomplete="off" value="Cinnamon" onclick="mapFilterClicked(this)">Cinnamon
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="fur" type="checkbox" autocomplete="off" value="Black" onclick="mapFilterClicked(this)">Black
+                        </label>
                         <p class="filterLabel">Reaction to Humans</p>
-                            <label class="btn btn-outline-dark">
-                                <input class="reaction" type="checkbox" autocomplete="off" value="Approaches" onclick="mapFilterClicked(this)">Approaches
-                            </label>
-                            <label class="btn btn-outline-dark">
-                                <input class="reaction" type="checkbox" autocomplete="off" value="Indifferent" onclick="mapFilterClicked(this)">Indifferent
-                            </label>
-                            <label class="btn btn-outline-dark">
-                                <input class="reaction" type="checkbox" autocomplete="off" value="Runs from" onclick="mapFilterClicked(this)">Runs From
-                            </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="reaction" type="checkbox" autocomplete="off" value="Approaches" onclick="mapFilterClicked(this)">Approaches
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="reaction" type="checkbox" autocomplete="off" value="Indifferent" onclick="mapFilterClicked(this)">Indifferent
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="reaction" type="checkbox" autocomplete="off" value="Runs from" onclick="mapFilterClicked(this)">Runs From
+                        </label>
                         <p class="filterLabel">Time of Sighting</p>
-                            <label class="btn btn-outline-dark">
-                                <input class="time" type="checkbox" autocomplete="off" value="AM" onclick="mapFilterClicked(this)">Morning
-                            </label>
-                            <label class="btn btn-outline-dark">
-                                <input class="time" type="checkbox" autocomplete="off" value="PM" onclick="mapFilterClicked(this)">Afternoon
-                            </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="time" type="checkbox" autocomplete="off" value="AM" onclick="mapFilterClicked(this)">Morning
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="time" type="checkbox" autocomplete="off" value="PM" onclick="mapFilterClicked(this)">Afternoon
+                        </label>
                         <p class="filterLabel">Squirrel Location</p>
-                            <label class="btn btn-outline-dark">
-                                <input class="location" type="checkbox" autocomplete="off" value="Above Ground" onclick="mapFilterClicked(this)">Above Ground
-                            </label>
-                            <label class="btn btn-outline-dark">
-                                <input class="location" type="checkbox" autocomplete="off" value="Ground Plane" onclick="mapFilterClicked(this)">On Ground
-                            </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="location" type="checkbox" autocomplete="off" value="Above Ground" onclick="mapFilterClicked(this)">Above Ground
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="location" type="checkbox" autocomplete="off" value="Ground Plane" onclick="mapFilterClicked(this)">On Ground
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Solution/Call to Action: Take a Walk in the Park! -->
+        <!-- Sentiment Vis -->
+        <div class="row section" id="sentimentVis">
+            <div class="col-md-7">
+                <div class="row" style="height: 7vh; ">
+                    <select name="story_categories" id="story_select" class="form-control">
+                        <!--                            <option value="Story Topic (String)">Story Topic</option>-->
+                        <option value="Shift">Time of Day</option>
+                        <option value="Other Animals">Other animals</option>
+                        <option value="Squirrels">Squirrels</option>
+                        <option value="Story Topic: Accidental Poems">Accidental Poems</option>
+                        <!--                            <option value="numberPriorates">Number of seats held in the civic council</option>-->
+                    </select>
+                </div>
+                <div class="row" id="sentiment_vis"></div>
+            </div>
+        </div>
+
+        <!-- Word Map Vis -->
+        <div class="section" id="storiesVis">
+            <div class="row align-middle" style="height: 80vh;">
+                <div class="col-md-5">
+                    <div class="row" id="stories_vis"></div>
+                    <div class="row" style="height: 7vh; " id="sample_stories"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--    Transition from stories to bubble map   -->
+        <div class="section" id="bubbleTransition">
+            <h1>Put in stories about squirrel sounds & squirrel activities (chasing, running, etc.)</h1>
+        </div>
+
+        <!-- Main Message: Bubble Vis -->
+        <div class="row section" id="bubbleVis">
+            <img src="images/bubble.png">
+            <div class="col-md-12">
+                <div id="bubble_vis"></div>
+            </div>
+        </div>
+
+        <!-- Main Message: Sankey Diagram -->
+        <div class="row section" id="sankeyVis">
+            <div class="col-md-12">
+                <div id="sankey_vis"></div>
+                <h1>Sankey diagram goes here</h1>
+            </div>
+        </div>
+
+        <!--    Call to Action: Quotes    -->
+        <div class="row section" id="quotesInfo">
+            <div class="col-md-12">
+                <div id="quotes"></div>
+                <h1>Inspiring quotes go here</h1>
+            </div>
+        </div>
+
+        <!-- Call to Action: Take a Walk in the Park! -->
         <div class="row section" id="walkMap">
             <!--      Title and Description   -->
             <h1>Draw a walk you'd like to take in Central Park!</h1>
@@ -325,12 +347,12 @@ Example: <img data-src="image.png"> -->
                     <button class="btn btn-dark align-self-center heat-map" type="button" onClick="showHeatMap()">Show Heat Map</button>
                 </div>
             </div>
-
         </div>
 
-        <div class="row section" id="quotesInfo">
+        <!--    Call to Action: Conclusion    -->
+        <div class="row section" id="conclusion">
             <div class="col-md-12">
-                <div id="quotes"></div>
+                <h1>Wherever you are, take a walk and pay attention to the wildlife around you. It just might make your day!</h1>
             </div>
         </div>
 
@@ -371,6 +393,7 @@ Example: <img data-src="image.png"> -->
 
 <!-- Visualization objects -->
 <script src="js/bubble_vis.js"></script>
+<script src="js/sankey_vis.js"></script>
 <script src="js/stories_vis.js"></script>
 <script src="js/sentiment_vis.js"></script>
 <script src="js/stories_map_vis.js"></script>
@@ -384,7 +407,7 @@ Example: <img data-src="image.png"> -->
 <script>
     new fullpage('#fullpage', {
         // options here
-        anchors: ['Title', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', '8thPage', 'About-Us'],
+        anchors: ['Home', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', '8thPage', '9thPage', '10thPage', '11thPage', '12thPage', 'About-Us'],
         // autoScrolling false because story boxes need vertical scrolling
         autoScrolling: false,
         scrollingSpeed: 1000,
@@ -392,7 +415,7 @@ Example: <img data-src="image.png"> -->
         slidesNavigation: true,
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['Title', 'Guess Squirrels', 'Census Info', 'Squirrel Trivia', 'Bubble Vis', 'Stories Vis', 'Main Message', 'Take a Walk', 'Squirrel Quotes', 'About Us']
+        navigationTooltips: ['Home', 'Guess Squirrels', 'Census Info', 'Squirrel Trivia', 'Map Vis', 'Story Sentiments', 'Stories Word Map', 'Squirrel Activities', 'Bubble Map', 'Sankey Diagram', 'Quotes', 'Walk in Central Park', 'Conclusion', 'About Us']
     });
 </script>
 

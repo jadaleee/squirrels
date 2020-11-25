@@ -28,16 +28,10 @@ class StoriesVis {
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
+            .attr("class", "stories-svg")
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")")
 
-        // DELETE RECT WHEN READY TO CODE
-        // vis.svg
-        //     .append("rect")
-        //     .attr("x",0)
-        //     .attr("y",0)
-        //     .attr("width",vis.width)
-        //     .attr("height", vis.height)
 
         //Creating scale to scale wordcloud words
         var sizeScale = d3.scaleLinear()
@@ -85,7 +79,7 @@ class StoriesVis {
 
         words.sort((a, b) => b.size - a.size)
         // console.log(words)
-        d3.select("svg").append("g")
+        d3.select(".stories-svg").append("g")
             .attr("transform", "translate(" + this.size()[0] / 2 + "," + this.size()[1] / 2 + ")")
             .selectAll("text")
             .data(words)

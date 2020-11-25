@@ -12,6 +12,8 @@ let dateParser = d3.timeParse("%m%d%Y");
 let squirrelMapVis,
     storiesMapVis,
     walkMapVis,
+    bubbleVis,
+    barVis,
     storiesVis,
     sentimentVis;
 
@@ -35,7 +37,14 @@ function categoryChange() {
     storyCategory = $('#story_select').val();
     sentimentVis.wrangleData(); //was update vis but i think we actually need to re-wrangle data
 }
+let bubbleCategory = $('#bubble_select').val();
 
+d3.select("#bubble_select").on("change", categoryChange)
+function categoryChange() {
+    bubbleCategory = $('#bubble_select').val();
+    bubbleVis.wrangleData();
+    barVis.wrangleData(); //was update vis but i think we actually need to re-wrangle data
+}
 
 // initMainPage
 function initMainPage(dataArray) {
@@ -180,7 +189,8 @@ function initMainPage(dataArray) {
     })
 
     // Create Visualization instances
-    // let bubbleVis = new BubbleVis("bubble_vis", dataArray);
+    bubbleVis = new BubbleVis("bubble_vis", squirrelData);
+    barVis = new BarVis("bar_vis", squirrelData);
     storiesVis = new StoriesVis("stories_vis", dataArray[2], dataArray[3]);
     sentimentVis = new SentimentVis("sentiment_vis", dataArray[2])
 

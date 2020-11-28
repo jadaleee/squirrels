@@ -62,8 +62,7 @@
             </div>
         </div>
 
-        <!-- Rising Insights -->
-        <!-- Context Section-->
+        <!-- Rising Insights: Context Section-->
         <div class="row section" id="censusInfo">
             <div class="centerItems">
                 <h1 id="transition2Context">But how did we know that?</h1>
@@ -193,17 +192,40 @@
 
         <!-- Sentiment Vis -->
         <div class="row section" id="sentimentVis">
-            <div class="col-md-7">
-                <div class="row" style="height: 7vh; ">
-                    <select name="story_categories" id="story_select" class="form-control">
-                        <option value="Shift">Time of Day</option>
-                        <option value="Other Animals">Other animals</option>
-                        <option value="Squirrels">Squirrels</option>
-                        <option value="Story Topic: Accidental Poems">Accidental Poems</option>
-                    </select>
-                </div>
-                <div class="row" id="sentiment_vis"></div>
+            <!--      Title and Description      -->
+            <div class="sentimentDescription">
+                <h2 class="centerText squirrelMapTitle">Some of the census takers' stories were more positive than others</h2>
+                <p class="squirrelMapCaption centerText">Use the drop down to view the different story categories</p>
             </div>
+
+            <!--        Category change dropdown        -->
+            <div class="col-md-5">
+                <div class="row" style="height: 7vh; ">
+                    <div class="col-md-6" style="padding-right: 0; padding-left: 0;">
+                        <p style="text-align: end; margin-top: 5px;">Story Category: </p>
+                    </div>
+                    <div class="col-md-6">
+                        <select name="story_categories" id="story_select" class="form-control">
+                            <option value="Shift">Time of Day</option>
+                            <option value="Other Animals">Other animals</option>
+                            <option value="Squirrels">Squirrels</option>
+                            <option value="Story Topic: Accidental Poems">Accidental Poems</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!--        Sentiment Vis Bar Graph        -->
+            <div class="row">
+                <div class="col-md-6" id="sentiment_vis"></div>
+                <div class="col-md-6">
+                    <p style="margin-top: 50px;">We used a sentiment analysis package to better understand the emotional context
+                        behind the census takers' stories. As you can see, the stories are majorly positive! </p>
+                </div>
+            </div>
+
         </div>
 
         <!-- Word Map Vis -->

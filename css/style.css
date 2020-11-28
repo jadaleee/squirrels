@@ -98,14 +98,23 @@ svg {
 }
 #sentiment_vis{
     height: 100%;
+    padding-left: 50px;
 }
 
 .sentiment-svg{
     stroke: none;
 }
 
+.sentimentDescription {
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    /*border-bottom: 2px solid #2e3133;*/
+}
+
 .form-control{
-    width: 30%;
+    width: 85%;
 }
 #sample_stories{
     padding: 20px;

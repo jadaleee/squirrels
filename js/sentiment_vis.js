@@ -26,7 +26,7 @@ class SentimentVis {
     initVis() {
         let vis = this;
 
-        vis.margin = { top: 40, right: 40, bottom: 100, left: 50 };
+        vis.margin = { top: 20, right: 40, bottom: 100, left: 50 };
 
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
             vis.height = 400 - vis.margin.top - vis.margin.bottom; // prob shouldn't be hardcoded
@@ -72,7 +72,7 @@ class SentimentVis {
         vis.svg.append("text")
             .attr("x", -50)
             .attr("y", -8)
-            .text("Votes");
+            .text("Story Count");
 
         // Tooltip placeholder
         vis.tooltip = d3.select("body").append("div")//`#${(vis.parentElement)}`).append('div')

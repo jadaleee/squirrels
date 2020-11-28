@@ -332,10 +332,11 @@ function clearHectareLink(){
 }
 
 // Call to Action -- call function to draw hectare heat map
-function showHeatMap() {
-    walkMapVis.initHeatMap()
-}
-
-function clearHeatMap(){
-    walkMapVis.clearHeatMap()
+function heatMap(input) {
+    if(input.checked){
+        walkMapVis.initHeatMap()
+    }
+    else{
+        walkMapVis.clearHeatMap()
+    }
 }

@@ -230,10 +230,25 @@
 
         <!-- Word Map Vis -->
         <div class="section" id="storiesVis">
-            <div class="row align-middle" style="height: 80vh;">
-                <div class="col-md-5">
+            <!--      Title and Description      -->
+            <div class="sentimentDescription">
+                <h2 class="centerText squirrelMapTitle">The census takers used certain words more frequently than others</h2>
+                <p class="squirrelMapCaption centerText">Unsurprisingly, "squirrel" was the most common word!</p>
+            </div>
+
+            <div class="row align-middle">
+<!--                style="height: 80vh;"-->
+                <div class="col-md-6">
+                    <!-- Title -->
+                    <h4 style="padding-left: 225px;">Word Cloud</h4>
+                    <!--        Word Map            -->
                     <div class="row" id="stories_vis"></div>
-                    <div class="row" style="height: 7vh; " id="sample_stories"></div>
+                </div>
+                <div class="col-md-6">
+                    <p style="margin-top:20px;"><strong>Instructions: </strong> Click on the different words to read a random story.
+                    </br>P.S. Some of them are quite amusing!</p>
+                    <!--        Random Story div            -->
+                    <div class="randomStoryBox" id="sample_stories"></div>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ class StoriesVis {
         vis.margin = { top: 0, right: 10, bottom: 0, left: 10 };
 
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
-            vis.height = 300 - vis.margin.top - vis.margin.bottom;
+            vis.height = 350 - vis.margin.top - vis.margin.bottom;
 
         // SVG drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -36,7 +36,7 @@ class StoriesVis {
         //Creating scale to scale wordcloud words
         var sizeScale = d3.scaleLinear()
             .domain([0, 1002]) //most common word is squirrel
-            .range([10, vis.width/8]); // 95 because 100 was causing stuff to be missing
+            .range([10, vis.width/9]); // 95 because 100 was causing stuff to be missing
                         // has issues when too small, maybe do cases min(vis.width/8, 66)
         console.log("word cloud width: ", vis.width)
 

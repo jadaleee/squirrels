@@ -216,12 +216,13 @@
                 </div>
             </div>
 
-
             <!--        Sentiment Vis Bar Graph        -->
             <div class="row">
                 <div class="col-md-6" id="sentiment_vis"></div>
                 <div class="col-md-6">
-                    <p style="margin-top: 50px;">We used a sentiment analysis package to better understand the emotional context
+                    <p style="margin-top: 50px; padding-right: 100px;">
+                        <strong>Where are we getting this data from?</strong>
+                        </br>We used a sentiment analysis package to better understand the emotions
                         behind the census takers' stories. As you can see, the stories are majorly positive! </p>
                 </div>
             </div>
@@ -255,7 +256,8 @@
 
         <!-- Squirrel Trivia -->
         <div class="row section" id="squirrelTrivia">
-            <h1 class="centerItems">Let's test your knowledge on Squirrels!</h1>
+            <h1 class="centerItems">Now that we've learned about the census takers' experiences...
+                </br>Let's test your knowledge on squirrels!</h1>
             <br>
             <br>
             <div class="container">
@@ -329,21 +331,32 @@
 
         <!-- Main Message: Bubble Vis -->
         <div class="section" id="bubbleVis">
-            <!--            <img src="images/bubble.png">-->
-            <div class="row align-middle" style="height: 80vh;">
+            <!--      Title and Description      -->
+            <div class="sentimentDescription">
+                <h2 class="centerText squirrelMapTitle">Squirrels show personality through their behavior</h2>
+                <p class="squirrelMapCaption centerText">The census takers had carefully observed the squirrels and noted their activities</p>
+            </div>
+
+            <div class="row align-middle">
                 <div class="col-md-6">
-                    <div class="row">
-                        Squirrels have personalities, too! Census takers carefully observed their daily activities. Click to filter a sample of 90 squirrels by various attributes.
+                    <div class="row" style="padding-left: 50px;">
+                        Click the dropdown to filter a sample of 90 squirrels by various attributes.
                     </div>
                     <div class="row" style="height: 7vh; ">
-                        <select name="story_categories" id="bubble_select" class="form-control">
-                            <!--                            <option value="Story Topic (String)">Story Topic</option>-->
-                            <option value="Human Interactions">Human Interactions</option>
-                            <option value="Activities">Activities</option>
-                            <option value="Sounds">Sounds</option>
-                            <!--                            <option value="Fur color">Fur color</option>-->
-                            <!--                            <option value="numberPriorates">Number of seats held in the civic council</option>-->
-                        </select>
+                        <div class="col-md-6" style="padding-right: 0; padding-left: 0;">
+                            <p style="text-align: end; margin-top: 5px;">Filter: </p>
+                        </div>
+                        <div class="col-md-6">
+                            <select name="story_categories" id="bubble_select" class="form-control">
+                                <!--                            <option value="Story Topic (String)">Story Topic</option>-->
+                                <option value="Human Interactions">Squirrel Reaction to Humans</option>
+                                <option value="Activities">Squirrel Activities</option>
+                                <option value="Sounds">Squirrel Sounds</option>
+                                <!--                            <option value="Fur color">Fur color</option>-->
+                                <!--                            <option value="numberPriorates">Number of seats held in the civic council</option>-->
+                            </select>
+                        </div>
+
                     </div>
                     <div id="bubble_vis"></div>
                 </div>
@@ -382,9 +395,9 @@
                 </div>
 
                 <!--      Info about walk         -->
-                <div class="col-md-6">
+                <div class="col-md-6" style="padding-top: 80px; padding-left: 30px; padding-right: 50px;">
                     <div id="walk_map_info">
-                        <p><strong>Walk Instructions: </strong>Using the tool bar on the left, draw line segments (a walk) on the map.
+                        <p><strong>Instructions: </strong>Using the tool bar on the left, draw line segments (a walk) on the map.
                             Stay within the bounds of Central Park.
                             <br/> The shorter your line segments, the more accurate your walk information will be.
                             <br/> Click "Finish" on the tool bar when you are ready to learn about your walk!</p>

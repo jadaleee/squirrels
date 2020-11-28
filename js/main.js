@@ -29,18 +29,20 @@ Promise.all(promises)
     .then( function(data){ initMainPage(data) })
     .catch( function (err){console.log(err)} );
 
-//set up onchange for the story vis select
+// Sentiment Vis: set up onchange for the story vis select
 let storyCategory = $('#story_select').val();
 
-d3.select("#story_select").on("change", categoryChange)
-function categoryChange() {
+d3.select("#story_select").on("change", categoryStoryChange)
+function categoryStoryChange() {
     storyCategory = $('#story_select').val();
     sentimentVis.wrangleData(); //was update vis but i think we actually need to re-wrangle data
 }
+
+// Bubble Vis: set up onchange for the story vis select
 let bubbleCategory = $('#bubble_select').val();
 
-d3.select("#bubble_select").on("change", categoryChange)
-function categoryChange() {
+d3.select("#bubble_select").on("change", categoryBubbleChange)
+function categoryBubbleChange() {
     bubbleCategory = $('#bubble_select').val();
     bubbleVis.wrangleData();
     barVis.wrangleData(); //was update vis but i think we actually need to re-wrangle data

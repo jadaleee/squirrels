@@ -170,7 +170,8 @@ class SquirrelMapVis {
                 element.Shift === "AM" ? shiftTime = "Morning" : shiftTime = "Afternoon"
 
                 // define popupContent with element-specific text
-                let popupContent = "<div class=marker> " +
+                let popupContent = "<div class=marker>" +
+                    "<strong class=centerText>Squirrel Sighting</strong><br/>"+
                     "<strong> Primary Fur Color: </strong>"  + primaryFurColor +
                     "<br/> <strong> Reaction to Humans: </strong>" + humanReaction +
                     "<br/> <strong> Time of Sighting: </strong>" + shiftTime +
@@ -205,7 +206,7 @@ class SquirrelMapVis {
 
         // draw each GEOJson element aka hectare
         L.geoJson(element, {
-            color: "green",
+            color: "yellow",
             weight: 3,
             fillOpacity: 0.7,
             onEachFeature: onEachHectare

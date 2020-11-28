@@ -93,7 +93,7 @@ svg {
     stroke: none;
 }
 
-#story_select{
+.form-control{
     width: 30%;
 }
 #sample_stories{
@@ -119,6 +119,31 @@ svg {
 }
 .sentiment-tooltip h4 {
     font: 14px sans-serif;
+}
+
+.bubble-tooltip {
+
+    position: absolute;
+    text-align: center;
+    width: 250px;
+    /*height: 28px;*/
+    padding: 5px;
+    font: 12px sans-serif;
+    font-family: "Poppins";
+    background-color: white;
+    /*color: lightcoral;*/
+    border-radius: 8px;
+    border: thin solid grey;
+    z-index: 200;
+    /*  pointer-events: none;	This line needs to be removed */
+}
+
+.bubble-tooltip h3,h4 {
+    text-align: left;
+    font-family: "Poppins";
+}
+.bubble-tooltip h4 {
+    font: 16px sans-serif;
 }
 
 /* FULLPAGE.JS STEPPER CSS*/

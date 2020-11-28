@@ -319,12 +319,14 @@ Example: <img data-src="image.png"> -->
         </div>
 
         <!-- Call to Action: Take a Walk in the Park! -->
-        <div class="row section" id="walkMap">
+        <div class="row section">
             <!--      Title and Description   -->
-            <h1>Draw a walk you'd like to take in Central Park!</h1>
-            <p class="walkMapCaption">Switch map views to see where the most friendly squirrels are.</p>
+            <div class="walkDescription">
+                <h1 class="centerText">Draw a walk you'd like to take in Central Park! </h1>
+                <p class="centerText">Click "Heat Map" to see which hectares have the most squirrels. Then, try clicking on the heat map!</p>
+            </div>
 
-            <div class="row">
+            <div class="row walkMap">
                 <div class="col-md-6">
                     <div id="walk_map_vis"></div>
                 </div>
@@ -332,19 +334,38 @@ Example: <img data-src="image.png"> -->
                 <!--      Info about walk         -->
                 <div class="col-md-6">
                     <div id="walk_map_info">
-                        <div class="card mb-4 shadow-sm">
+                        <p><strong>Walk Instructions: </strong>Using the tool bar on the left, draw line segments (a walk) on the map.
+                            Stay within the bounds of Central Park.
+                            <br/> Note: the shorter your line segments, the more accurate your walk information will be.
+                            <br/> Click "Finish" on the tool bar when you are ready to learn about your walk!</p>
+                        <div class="card mb-4 shadow-sm walkCard">
                             <div class="card-header">Your Walk</div>
                             <div class="card-body">
-                            <p class="numSquirrels"></p>
-                            <p class="squirrelApproach"></p>
-                            <p class="walkDistance"></p>
-                            <p class="otherAnimals"></p>
+                                <div class="row walkBody">
+                                    <div class="col-sm labels">
+                                        <p>Max # of Squirrels You May See: </p>
+                                        <p>Would a Squirrel Approach You?</p>
+                                        <p>Walking Distance: </p>
+                                        <p>Other Animals You Might See: </p>
+                                    </div>
+                                    <div class="col-sm walkText">
+                                        <p class="numSquirrels"></p>
+                                        <p class="squirrelApproach"></p>
+                                        <p class="walkDistance"></p>
+                                        <p class="otherAnimals"></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <button class="btn btn-dark align-self-center walk-map" type="button" onClick="clearHeatMap()">Clear Heat Map</button>
-                    <button class="btn btn-dark align-self-center heat-map" type="button" onClick="showHeatMap()">Show Heat Map</button>
+                    <!-- Button to show heat map -->
+                    <div class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-dark">
+                            <input type="checkbox" autocomplete="off" onclick="heatMap(this)">Heat Map
+                        </label>
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -35,6 +35,10 @@ svg {
     stroke: darkgrey;
 }
 
+.centerText {
+    text-align: center;
+}
+
 #squirrel_map_vis {
     width: 100%;
     height: 400px;
@@ -45,14 +49,36 @@ svg {
     margin-bottom: 10px;
 }
 
-.walkMapCaption {
-    margin-bottom: 10px;
+.walkDescription {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.walkCard {
+    margin-top: 10px;
+}
+
+.walkBody{
+    padding-right: 15px;
+}
+
+.labels {
+    text-align: end;
+}
+
+.walkText {
+    /*border-bottom-style: inset;*/
+    /*border-bottom-color: #d7d7d7;*/
 }
 
 #walk_map_vis {
     width: 100%;
-    height: 700px;
+    height: 650px;
     margin-left: 20px;
+}
+
+#walk_map_info {
+    margin-top: 5px;
 }
 
 /* Story Vis */

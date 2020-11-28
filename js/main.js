@@ -188,7 +188,7 @@ function initMainPage(dataArray) {
         })
     })
 
-    // Create Visualization instances
+    // Create Visualization instances that don't require GEOJson
     bubbleVis = new BubbleVis("bubble_vis", squirrelData);
     barVis = new BarVis("bar_vis", squirrelData);
     storiesVis = new StoriesVis("stories_vis", dataArray[2], dataArray[3]);
@@ -248,14 +248,14 @@ function initMainPage(dataArray) {
 
             })
 
-            // Create stories & squirrel map visualizations with geojson data loaded
+            // Create visualizations with geojson data loaded
             storiesMapVis = new StoriesMapVis("stories_map_vis", dataArray, geoData);
             squirrelMapVis = new SquirrelMapVis("squirrel_map_vis", dataArray, geoData);
             walkMapVis = new WalkMapVis("walk_map_vis", dataArray, geoData, squirrelDataByHectare, squirrelMin, squirrelMax);
         })
 }
 
-// Main Message -- filters for squirrel sightings map
+// Rising Insights - Filters for squirrel sightings map
 let furFilters = [];
 let reactionFilters = [];
 let timeFilters = [];
@@ -293,7 +293,7 @@ function mapFilterClicked(input){
    squirrelMapVis.wrangleData(furFilters, reactionFilters, locationFilters, timeFilters)
 }
 
-// Main Message -- filters for stories
+// Rising Insights - Filters for stories
 let storyMapFilters = [];
 
 function storyMapFilterClicked(input) {
@@ -306,7 +306,7 @@ function storyMapFilterClicked(input) {
     storiesMapVis.wrangleData(storyMapFilters)
 }
 
-// Main Message -- function to create and update horizontal carousel for stories
+// Rising Insights -- function to create and update horizontal carousel for stories
 function sliderInit(filtered){
     if(filtered){
         $('.stories-carousel').slick("unslick")
@@ -322,7 +322,7 @@ function sliderInit(filtered){
     })
 };
 
-// Main Message -- call function to draw hectare on leaflet map
+// Rising Insights -- call function to draw hectare on leaflet map
 function drawHectareLink(element){
     squirrelMapVis.drawHectare(element)
 }

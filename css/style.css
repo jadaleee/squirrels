@@ -96,9 +96,10 @@ svg {
 .word-cloud-text{
     stroke: none;
 }
-.word-cloud-text:hover{
+.word-cloud-text:hover {
     opacity: .75;
     cursor: pointer;
+}
 
 .randomStoryBox {
     /* vertical scroll within div*/

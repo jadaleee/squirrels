@@ -84,7 +84,7 @@ class SentimentVis {
     wrangleData() {
         let vis = this;
 
-        // console.log("inside sentiment vis", vis.data)
+        console.log("inside sentiment vis", vis.data)
         // let storiesPerCategory = d3.range(0, 8).map(()=>0);
         // vis.data.forEach(story=>{
         //     story["Story Topic"].forEach((d, i)=>storiesPerCategory[i]+=d)
@@ -124,7 +124,7 @@ class SentimentVis {
             (stackedData)
             .map(d => (d.forEach(v => v.key = d.key), d))
         vis.displayData = finalStackedData
-        // console.log("stacked data:", vis.displayData)
+        console.log("stacked data:", vis.displayData)
 
         vis.updateVis();
     }

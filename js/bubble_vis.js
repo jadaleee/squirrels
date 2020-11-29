@@ -12,9 +12,7 @@ class BubbleVis {
         this.categories = {
             "Human Interactions" : ["Approaches", "Indifferent", "Runs from", "Other Interactions"],
             "Activities" : ["Running", "Chasing", "Climbing", "Eating", "Foraging", "Other Activities"],
-            "Sounds" : ["Kuks", "Moans", "Quaas"],
-            "Tail movements": ["Tail flags", "Tail twitches"],
-            "Fur color": ["Gray", "Cinnamon", "Black"]
+            "Sounds" : ["Kuks", "Moans", "Quaas"]
         }
 
         this.initVis();
@@ -35,43 +33,34 @@ class BubbleVis {
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")")
 
-        // SCALES AND AXES
+        // DELETE RECT WHEN READY TO CODE
+        // vis.svg
+        //     .append("rect")
+        //     .attr("x",0)
+        //     .attr("y",0)
+        //     .attr("width",vis.width)
+        //     .attr("height", vis.height)
+
+
         vis.x = d3.scaleBand()
             .range([0, vis.width])
+        // Make a scale that gives target Xs for each category
+        // vis.humanInteractionsX = d3.scaleBand() //or scalepoint?
+        //     .domain(vis.categories["Human Interactions"])
+        //     .range([0, vis.width])
+        //
+        // vis.activitiesX = d3.scaleBand() //or scalepoint?
+        //     .domain(vis.categories["Activities"])
+        //     .range([0, vis.width])
+        //
+        // vis.soundsX = d3.scaleBand() //or scalepoint?
+        //     .domain(vis.categories["Sounds"])
+        //     .range([0, vis.width])
 
         // A color scale
         vis.color = d3.scaleOrdinal()
             //.domain([1, 2, 3])
-            .range([ "#FF781F", "#FCCA46", "#BFDBF7", "#233D4D"])
-
-        vis.xAxis = d3.axisTop()
-            .scale(vis.x)
-            .tickSize(0)
-
-        vis.xAxisGroup = vis.svg.append("g")
-            .attr("class", "axis x-axis bubble-axis")
-
-        // Legend
-        vis.categories["Human Interactions"].forEach((cat, i)=>{
-            vis.svg.append("rect")
-                .attr("x", i*100 + 10)
-                .attr("y", -10)
-                .attr("width", 15)
-                .attr("height", 15)
-                .attr("stroke", "none")
-                .attr("fill", vis.color(cat))
-            vis.svg.append("text")
-                .attr("class", "standard-text")
-                .attr("x", i*100 + 30)
-                .attr("y", 0)
-                .text(cat)
-        })
-        // vis.legend = d3.axisBottom()
-        //     .scale(vis.color)
-        //     .tickSize(0)
-        //
-        // vis.legendGroup = vis.svg.append("g")
-        //     .attr("class", "bubble-axis")
+            .range([ "#F8766D", "#00BA38", "#619CFF", "#EC8643"])
 
         // Tooltips append placeholder div
         vis.tooltip = d3.select("body").append("div")//`#${(vis.parentElement)}`).append('div')
@@ -80,7 +69,6 @@ class BubbleVis {
         // Group to hold the circles later
         vis.circlesGroup = vis.svg.append("g")
             .attr("class", "circles-group")
-            .attr("transform", "translate(0, 60)")
 
         vis.wrangleData();
     }
@@ -90,11 +78,11 @@ class BubbleVis {
         // console.log("inside bubble vis, data:", vis.data)
 
         vis.category = bubbleCategory
+        console.log("NEW CATEGORY SELECTED", vis.category)
         vis.displayData = []
         vis.data.forEach((squirrel, i)=>{
             //if(squirrel[vis.category].indexOf(1) != -1
-            // console.log(squirrel, squirrel["Unique Squirrel ID"], squirrel[vis.category])
-            if(!Object.keys(vis.categories).slice(0, 3).map(d=> squirrel[d].indexOf(1)).includes(-1))
+            if(!Object.keys(vis.categories).map(d=> squirrel[d].indexOf(1)).includes(-1))
                 vis.displayData.push({
                     name: squirrel["Unique Squirrel ID"],
                     group: vis.categories[vis.category][squirrel[vis.category].indexOf(1)],
@@ -108,8 +96,7 @@ class BubbleVis {
         })
 
         // don't need this bc there's only 90 anyway
-        console.log("is this len < 90?", vis.displayData)
-        vis.displayData = vis.displayData.slice(0, 100);
+        //vis.displayData = vis.displayData.slice(0, 100);
 
         vis.updateVis();
     }
@@ -121,16 +108,13 @@ class BubbleVis {
         vis.x.domain(vis.categories[vis.category])
         vis.color.domain(vis.categories["Human Interactions"]) //all colors based on human interactions
 
-        vis.xAxisGroup.call(vis.xAxis)
-            .attr("transform", `translate( 0, 40)`)
-
         // Initialize a forceX for each category
         // var forceXhuman = d3.forceX(d=>vis.humanInteractionsX(d))
         // var forceXactivity = d3.forceX(d=>vis.activitiesX(d))
         // var forceXsound = d3.forceX(d=>vis.soundsX(d))
 
         vis.circles = vis.svg.select(".circles-group").selectAll("circle")
-            .data(vis.displayData.filter(d=>d.group), d=>d.name)
+            .data(vis.displayData, d=>d.name)
         //
         // vis.circles.exit().remove()
         vis.circles.exit().remove()
@@ -187,17 +171,18 @@ class BubbleVis {
             })
         vis.circlesEnter.exit().remove()
 
+
         // Apply these forces to the nodes and update their positions.
         // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
         // Features of the forces applied to the nodes:
         //if(!vis.simulation) {
         vis.simulation = d3.forceSimulation()
             .force("x", d3.forceX().strength(0.5).x(function (d) {
-                let subtract = vis.width < 380 ? vis.margin.left/2 : vis.margin.left
-                return vis.x(d.group) + vis.width / (vis.x.domain().length+1) - subtract
+                return vis.x(d.group)
             }))
+            //.force("x", forceXhuman) //make this the default?
             .force("y", d3.forceY().strength(0.1).y(vis.height / 2))
-            //.force("center", d3.forceCenter().x(vis.width / 2).y(vis.height / 2)) // Attraction to the center of the svg area
+            .force("center", d3.forceCenter().x(vis.width / 2).y(vis.height / 2)) // Attraction to the center of the svg area
             .force("charge", d3.forceManyBody().strength(0.2)) // Nodes are attracted one each other of value is > 0
             .force("collide", d3.forceCollide().strength(0.5).radius(10).iterations(1)) // Force that avoids circle overlapping
             .on("tick", function(d){
@@ -207,6 +192,9 @@ class BubbleVis {
             });
         // vis.circles = vis.svg.select(".circles-group").selectAll("circle")
         //}
+
+
+        console.log(vis.displayData)
 
         vis.simulation
             .nodes(vis.displayData)

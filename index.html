@@ -242,7 +242,6 @@
                 <div class="col-md-6">
                     <!-- Title -->
                     <h4 style="padding-left: 225px;">Word Cloud</h4>
-                    <p>These are the 50 most common words appearing in all the census takers' stories.</p>
                     <!--        Word Map            -->
                     <div class="row" id="stories_vis"></div>
                 </div>
@@ -349,30 +348,19 @@
                         </div>
                         <div class="col-md-6">
                             <select name="story_categories" id="bubble_select" class="form-control">
-                            <!--                            <option value="Story Topic (String)">Story Topic</option>-->
-                            <option value="Human Interactions">Human Interactions</option>
-                            <option value="Activities">Activities</option>
-                            <option value="Sounds">Sounds</option>
-                            <option value="Tail movements">Tail movements</option>
-                            <option value="Fur color">Fur color</option>
-                        </select>
+                                <!--                            <option value="Story Topic (String)">Story Topic</option>-->
+                                <option value="Human Interactions">Squirrel Reaction to Humans</option>
+                                <option value="Activities">Squirrel Activities</option>
+                                <option value="Sounds">Squirrel Sounds</option>
+                                <!--                            <option value="Fur color">Fur color</option>-->
+                                <!--                            <option value="numberPriorates">Number of seats held in the civic council</option>-->
+                            </select>
                         </div>
 
                     </div>
                     <div id="bubble_vis"></div>
                 </div>
                 <div class="col-md-6">
-                    <div> [Insert explanation about Kuks, Quaas, and Moans, also what different tail movements mean.
-                        Is there a correlation between squirrel behaviors and interactions with humans?]
-                        <br>
-                        Eventually, we want to be able to hear a squirrel kuk, quaa, or moan when we click on
-                        bubbles in that view of the visualization.
-                        <br>
-                        Pay special attention to the approaching squirrels! They were spotted running and climbing, and tend to Kuk.
-                        <br> The bar vis below shows the frequencies on the entire dataset, not just the sample. Note that some
-                        squirrels may have been spotted doing multiple activities or no activities at all,
-                        so the total does not always equal 2373, and counts do not always correspond to distinct squirrels.
-                    </div>
                     <div id="bar_vis"></div>
                 </div>
             </div>

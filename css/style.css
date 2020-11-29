@@ -96,9 +96,6 @@ svg {
 .word-cloud-text{
     stroke: none;
 }
-.word-cloud-text:hover{
-    opacity: .75;
-    cursor: pointer;
 
 .randomStoryBox {
     /* vertical scroll within div*/
@@ -117,7 +114,6 @@ svg {
     text-align: center;
     font-size: 14px;
 }
-  
 #sentiment_vis{
     height: 100%;
     padding-left: 50px;
@@ -139,16 +135,7 @@ svg {
     width: 85%;
 }
 #sample_stories{
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    padding: 30px;
-    justify-self: center;
-    /*margin: 0 20px;*/
-    background-color: #BFDBF7;
-    opacity: 0;
-    border: 2px solid #BFDBF7;
-    border-radius: 5px;
+    padding: 20px;
 }
 .sentiment-tooltip {
     position: absolute;
@@ -170,17 +157,6 @@ svg {
 }
 .sentiment-tooltip h4 {
     font: 14px sans-serif;
-}
-
-.bubble-axis text, .standard-text, .bar-axis text, .legend-axis text{
-    stroke: none;
-    font: 12px sans-serif;
-    font-family: "Poppins";
-    color: black
-}
-
-.bubble-axis path{
-    stroke: none;
 }
 
 .bubble-tooltip {
@@ -207,7 +183,6 @@ svg {
 .bubble-tooltip h4 {
     font: 16px sans-serif;
 }
-
 
 /* FULLPAGE.JS STEPPER CSS*/
 #fp-nav ul li .fp-tooltip {

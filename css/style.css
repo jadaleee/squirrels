@@ -9,7 +9,7 @@ h1 {
     color: #825a5a;
 }
 
-h2 {
+h2.addMargins {
     color: #94a97a;
     font-size: 24px;
     margin-top: 10px;
@@ -35,24 +35,61 @@ svg {
     stroke: darkgrey;
 }
 
+.centerText {
+    text-align: center;
+}
+
 #squirrel_map_vis {
     width: 100%;
     height: 400px;
     margin-left: 20px;
 }
 
-.mainMessageCaption {
+.squirrelMapCaption {
     margin-bottom: 10px;
 }
 
-.walkMapCaption {
-    margin-bottom: 10px;
+.squirrelMapTitle{
+    color: #825a5a;
+}
+
+.squirrelMapDescription {
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2e3133;
+}
+
+.walkDescription {
+    margin-bottom: 20px;
+}
+
+.walkCard {
+    margin-top: 10px;
+}
+
+.walkBody{
+    padding-right: 15px;
+}
+
+.labels {
+    text-align: end;
+}
+
+.walkText {
+    /*border-bottom-style: inset;*/
+    /*border-bottom-color: #d7d7d7;*/
 }
 
 #walk_map_vis {
     width: 100%;
-    height: 700px;
+    height: 650px;
     margin-left: 20px;
+}
+
+#walk_map_info {
+    margin-top: 5px;
 }
 
 /* Story Vis */
@@ -62,17 +99,44 @@ svg {
 .word-cloud-text:hover{
     opacity: .75;
     cursor: pointer;
+
+.randomStoryBox {
+    /* vertical scroll within div*/
+    float:left;
+    overflow-y: auto;
+    height: 160px;
+    /* look pretty */
+    background-color: #e6f2ff;
+    border-radius: 15px;
+    color: black;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    width: 500px;
+    text-align: center;
+    font-size: 14px;
 }
+  
 #sentiment_vis{
     height: 100%;
+    padding-left: 50px;
 }
 
 .sentiment-svg{
     stroke: none;
 }
 
+.sentimentDescription {
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    /*border-bottom: 2px solid #2e3133;*/
+}
+
 .form-control{
-    width: 30%;
+    width: 85%;
 }
 #sample_stories{
     display: flex;
@@ -166,7 +230,8 @@ svg {
     overflow-y: auto;
     height: 160px;
     /* look pretty */
-    background-color: lightgray;
+    background-color: #e6f2ff;
+    border-radius: 15px;
     color: black;
     padding: 10px;
     margin-left: 10px;
@@ -176,19 +241,20 @@ svg {
 }
 
 #storiesMap {
-    background-color: gray;
+    background-color: #BFDBF7;
     /*margin-top: 20px;*/
     margin-left: 20px;
     margin-bottom: 20px;
     padding-right: 20px;
     width: 95%;
-    height: 200px;
+    height: 170px;
+    border-radius: 15px;
     align-self: center;
 }
 
 .stories-carousel {
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 5px;
     align-content: center;
     align-items: center;
 }

@@ -59,9 +59,7 @@ class StoriesMapVis {
 
                 // add border to story div, signaling hover
                 d3.select(this)
-                    .style("border", "solid")
-                    .style("border-color", "black")
-                    .style("border-width", "3px")
+                    .style("border", "2px solid black")
             })
             .on("mouseout", function(event,d){
                 // clear hectares

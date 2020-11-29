@@ -43,7 +43,7 @@
         <div class="row section" id="landing">
             <div class="col-md-12">
                 <h1><span class="h1-sub">Final Project:</span> Squirrels in Central Park</h1>
-                <h2>Squirrels are cute, squirrels are fun!</h2>
+                <h2 class="addMargins">Squirrels are cute, squirrels are fun!</h2>
             </div>
         </div>
 
@@ -62,8 +62,7 @@
             </div>
         </div>
 
-        <!-- Rising Insights -->
-        <!-- Context Section-->
+        <!-- Rising Insights: Context Section-->
         <div class="row section" id="censusInfo">
             <div class="centerItems">
                 <h1 id="transition2Context">But how did we know that?</h1>
@@ -96,9 +95,170 @@
             <button class="squirButton" id="nextButtonHistorical">NEXT</button>
             <button class="squirButton" id="goBack">GO BACK</button>
         </div>
+
+
+        <!-- Rising Insights: Map and Stories Vis -->
+        <div class="row section" id="mainMessage">
+
+            <!--      Title and Description      -->
+            <div class="squirrelMapDescription">
+                <h2 class="centerText squirrelMapTitle">Learn about the census takers' experiences & the squirrels they saw</h2>
+                <p class="squirrelMapCaption centerText">When hovering over a story, look at the map to see where it took place.</p>
+            </div>
+
+
+            <!--      Checkbox Filters for Squirrel Stories      -->
+            <div class="row storyMapFilters">
+                <h4 class="storyFiltersLabel">Story Topics: </h4>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Squirrel Experience or Squirrel Story" onclick="storyMapFilterClicked(this)">Squirrels
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Squirrels Acting Odd" onclick="storyMapFilterClicked(this)">Odd Squirrels
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Dogs" onclick="storyMapFilterClicked(this)">Dogs
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Other Animals" onclick="storyMapFilterClicked(this)">Other Animals
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Accidental Poems" onclick="storyMapFilterClicked(this)">Accidental Poems
+                    </label>
+                    <label class="btn btn-outline-dark">
+                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Census Takers Recognized" onclick="storyMapFilterClicked(this)">Census Taker Recognized
+                    </label>
+                </div>
+            </div>
+
+            <!--      Stories Map Carousel. Append story divs here      -->
+            <div class="row" id="storiesMap">
+                <div class="col-md-12">
+                    <div id="stories_map_vis" class="stories-carousel">
+                    </div>
+                </div>
+            </div>
+
+            <!--      Squirrel Sightings Leaflet Map      -->
+            <div class="row" id="squirrelMap">
+                <div class="col-md-6" >
+                    <div id="squirrel_map_vis"></div>
+                </div>
+
+                <!--       Checkbox Filters for Squirrel Sightings Map        -->
+                <div class="col-md-6">
+                    <h4>Filter the squirrel sightings on the map</h4>
+                    <p style="font-style: italic">You can click on the dots!</p>
+                    <div class="btn-group-toggle" data-toggle="buttons">
+                        <p class="filterLabel">Squirrel's Primary Fur Color</p>
+                        <label class="btn btn-outline-dark">
+                            <input class="fur" type="checkbox" autocomplete="off" value="Gray" onclick="mapFilterClicked(this)">Gray
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="fur" type="checkbox" autocomplete="off" value="Cinnamon" onclick="mapFilterClicked(this)">Cinnamon
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="fur" type="checkbox" autocomplete="off" value="Black" onclick="mapFilterClicked(this)">Black
+                        </label>
+                        <p class="filterLabel">Squirrel's Reaction to Humans</p>
+                        <label class="btn btn-outline-dark">
+                            <input class="reaction" type="checkbox" autocomplete="off" value="Approaches" onclick="mapFilterClicked(this)">Approaches
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="reaction" type="checkbox" autocomplete="off" value="Indifferent" onclick="mapFilterClicked(this)">Indifferent
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="reaction" type="checkbox" autocomplete="off" value="Runs from" onclick="mapFilterClicked(this)">Runs From
+                        </label>
+                        <p class="filterLabel">Time of Sighting</p>
+                        <label class="btn btn-outline-dark">
+                            <input class="time" type="checkbox" autocomplete="off" value="AM" onclick="mapFilterClicked(this)">Morning
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="time" type="checkbox" autocomplete="off" value="PM" onclick="mapFilterClicked(this)">Afternoon
+                        </label>
+                        <p class="filterLabel">Squirrel Location</p>
+                        <label class="btn btn-outline-dark">
+                            <input class="location" type="checkbox" autocomplete="off" value="Above Ground" onclick="mapFilterClicked(this)">Above Ground
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input class="location" type="checkbox" autocomplete="off" value="Ground Plane" onclick="mapFilterClicked(this)">On Ground
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sentiment Vis -->
+        <div class="row section" id="sentimentVis">
+            <!--      Title and Description      -->
+            <div class="sentimentDescription">
+                <h2 class="centerText squirrelMapTitle">Some of the census takers' stories were more positive than others</h2>
+                <p class="squirrelMapCaption centerText">Use the drop down to view the different story categories</p>
+            </div>
+
+            <!--        Category change dropdown        -->
+            <div class="col-md-5">
+                <div class="row" style="height: 7vh; ">
+                    <div class="col-md-6" style="padding-right: 0; padding-left: 0;">
+                        <p style="text-align: end; margin-top: 5px;">Story Category: </p>
+                    </div>
+                    <div class="col-md-6">
+                        <select name="story_categories" id="story_select" class="form-control">
+                            <option value="Shift">Time of Day</option>
+                            <option value="Other Animals">Other animals</option>
+                            <option value="Squirrels">Squirrels</option>
+                            <option value="Story Topic: Accidental Poems">Accidental Poems</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--        Sentiment Vis Bar Graph        -->
+            <div class="row">
+                <div class="col-md-6" id="sentiment_vis"></div>
+                <div class="col-md-6">
+                    <p style="margin-top: 50px; padding-right: 100px;">
+                        <strong>Where are we getting this data from?</strong>
+                        </br>We used a sentiment analysis package to better understand the emotions
+                        behind the census takers' stories. As you can see, the stories are majorly positive! </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Word Map Vis -->
+        <div class="section" id="storiesVis">
+            <!--      Title and Description      -->
+            <div class="sentimentDescription">
+                <h2 class="centerText squirrelMapTitle">The census takers used certain words more frequently than others</h2>
+                <p class="squirrelMapCaption centerText">Unsurprisingly, "squirrel" was the most common word!</p>
+            </div>
+
+            <div class="row align-middle">
+<!--                style="height: 80vh;"-->
+                <div class="col-md-6">
+                    <!-- Title -->
+                    <h4 style="padding-left: 225px;">Word Cloud</h4>
+                    <p>These are the 50 most common words appearing in all the census takers' stories.</p>
+                    <!--        Word Map            -->
+                    <div class="row" id="stories_vis"></div>
+                </div>
+                <div class="col-md-6">
+                    <p style="margin-top:20px;"><strong>Instructions: </strong> Click on the different words to read a random story.
+                    </br>P.S. Some of them are quite amusing!</p>
+                    <!--        Random Story div            -->
+                    <div class="randomStoryBox" id="sample_stories"></div>
+                </div>
+            </div>
+        </div>
+
         <!-- Squirrel Trivia -->
         <div class="row section" id="squirrelTrivia">
-            <h1 class="centerItems">Let's test your knowledge on Squirrels!</h1>
+            <h1 class="centerItems">Now that we've learned about the census takers' experiences...
+                </br>Let's test your knowledge on squirrels!</h1>
             <br>
             <br>
             <div class="container">
@@ -170,145 +330,25 @@
             </div>
         </div>
 
-        <!-- Rising Insights: Map and Stories Vis -->
-        <div class="row section" id="mainMessage">
-
-            <!--      Title and Description      -->
-            <h1>Stories about Squirrels in Central Park</h1>
-            <p class="mainMessageCaption">Hover over each story to see where it took place on the map!</p>
-
-            <!--      Checkbox Filters for Squirrel Stories      -->
-            <div class="row storyMapFilters">
-                <h4 class="storyFiltersLabel">Story Topics: </h4>
-                <div class="btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Squirrel Experience or Squirrel Story" onclick="storyMapFilterClicked(this)">Squirrels
-                    </label>
-                    <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Squirrels Acting Odd" onclick="storyMapFilterClicked(this)">Odd Squirrels
-                    </label>
-                    <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Dogs" onclick="storyMapFilterClicked(this)">Dogs
-                    </label>
-                    <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Other Animals" onclick="storyMapFilterClicked(this)">Other Animals
-                    </label>
-                    <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Accidental Poems" onclick="storyMapFilterClicked(this)">Accidental Poems
-                    </label>
-                    <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Park Experience or Census Taker Story" onclick="storyMapFilterClicked(this)">Census Taker Story
-                    </label>
-                    <label class="btn btn-outline-dark">
-                        <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Census Takers Recognized" onclick="storyMapFilterClicked(this)">Census Taker Recognized
-                    </label>
-                </div>
-            </div>
-
-            <!--      Stories Map Carousel. Append story divs here      -->
-            <div class="row" id="storiesMap">
-                <div class="col-md-12">
-                    <div id="stories_map_vis" class="stories-carousel">
-                    </div>
-                </div>
-            </div>
-
-            <!--      Squirrel Sightings Leaflet Map      -->
-            <div class="row" id="squirrelMap">
-                <div class="col-md-6" >
-                    <div id="squirrel_map_vis"></div>
-                </div>
-
-                <!--       Checkbox Filters for Squirrel Sightings Map        -->
-                <div class="col-md-6">
-                    <h4>Filter the squirrel sightings</h4>
-                    <div class="btn-group-toggle" data-toggle="buttons">
-                        <p class="filterLabel">Primary Fur Color</p>
-                        <label class="btn btn-outline-dark">
-                            <input class="fur" type="checkbox" autocomplete="off" value="Gray" onclick="mapFilterClicked(this)">Gray
-                        </label>
-                        <label class="btn btn-outline-dark">
-                            <input class="fur" type="checkbox" autocomplete="off" value="Cinnamon" onclick="mapFilterClicked(this)">Cinnamon
-                        </label>
-                        <label class="btn btn-outline-dark">
-                            <input class="fur" type="checkbox" autocomplete="off" value="Black" onclick="mapFilterClicked(this)">Black
-                        </label>
-                        <p class="filterLabel">Reaction to Humans</p>
-                        <label class="btn btn-outline-dark">
-                            <input class="reaction" type="checkbox" autocomplete="off" value="Approaches" onclick="mapFilterClicked(this)">Approaches
-                        </label>
-                        <label class="btn btn-outline-dark">
-                            <input class="reaction" type="checkbox" autocomplete="off" value="Indifferent" onclick="mapFilterClicked(this)">Indifferent
-                        </label>
-                        <label class="btn btn-outline-dark">
-                            <input class="reaction" type="checkbox" autocomplete="off" value="Runs from" onclick="mapFilterClicked(this)">Runs From
-                        </label>
-                        <p class="filterLabel">Time of Sighting</p>
-                        <label class="btn btn-outline-dark">
-                            <input class="time" type="checkbox" autocomplete="off" value="AM" onclick="mapFilterClicked(this)">Morning
-                        </label>
-                        <label class="btn btn-outline-dark">
-                            <input class="time" type="checkbox" autocomplete="off" value="PM" onclick="mapFilterClicked(this)">Afternoon
-                        </label>
-                        <p class="filterLabel">Squirrel Location</p>
-                        <label class="btn btn-outline-dark">
-                            <input class="location" type="checkbox" autocomplete="off" value="Above Ground" onclick="mapFilterClicked(this)">Above Ground
-                        </label>
-                        <label class="btn btn-outline-dark">
-                            <input class="location" type="checkbox" autocomplete="off" value="Ground Plane" onclick="mapFilterClicked(this)">On Ground
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sentiment Vis -->
-        <div class="row section" id="sentimentVis">
-            <div class="col-md-7">
-                <div class="row" style="height: 7vh; ">
-                    <select name="story_categories" id="story_select" class="form-control">
-                        <option value="Shift">Time of Day</option>
-                        <option value="Other Animals">Other animals</option>
-                        <option value="Squirrels">Squirrels</option>
-                        <option value="Story Topic: Accidental Poems">Accidental Poems</option>
-                    </select>
-                </div>
-                <div class="row" id="sentiment_vis"></div>
-            </div>
-        </div>
-
-        <!-- Word Map Vis -->
-        <div class="section" id="storiesVis">
-            <div class="row">
-                These are the 50 most common words appearing in all the census takers' stories.
-            </div>
-            <div class="row align-middle" style="height: 80vh;">
-
-                    <div class="col-md-6">
-                        <div class="row" id="stories_vis"></div>
-                    </div>
-                    <div class="col-md-6" style="display: flex; justify-content: left; align-items: center">
-                        <div class="row" id="sample_stories"></div>
-                    </div>
-
-            </div>
-        </div>
-
-        <!--    Transition from stories to bubble map   -->
-        <div class="section" id="bubbleTransition">
-            <h1>Put in stories about squirrel sounds & squirrel activities (chasing, running, etc.)</h1>
-        </div>
-
         <!-- Main Message: Bubble Vis -->
         <div class="section" id="bubbleVis">
-            <!--            <img src="images/bubble.png">-->
-            <div class="row align-middle" style="height: 80vh;">
+            <!--      Title and Description      -->
+            <div class="sentimentDescription">
+                <h2 class="centerText squirrelMapTitle">Squirrels show personality through their behavior</h2>
+                <p class="squirrelMapCaption centerText">The census takers had carefully observed the squirrels and noted their activities</p>
+            </div>
+
+            <div class="row align-middle">
                 <div class="col-md-6">
-                    <div class="row">
-                        Squirrels have personalities, too! Census takers carefully observed their daily activities. Click to filter a sample of 90 squirrels by various attributes.
+                    <div class="row" style="padding-left: 50px;">
+                        Click the dropdown to filter a sample of 90 squirrels by various attributes.
                     </div>
                     <div class="row" style="height: 7vh; ">
-                        <select name="story_categories" id="bubble_select" class="form-control">
+                        <div class="col-md-6" style="padding-right: 0; padding-left: 0;">
+                            <p style="text-align: end; margin-top: 5px;">Filter: </p>
+                        </div>
+                        <div class="col-md-6">
+                            <select name="story_categories" id="bubble_select" class="form-control">
                             <!--                            <option value="Story Topic (String)">Story Topic</option>-->
                             <option value="Human Interactions">Human Interactions</option>
                             <option value="Activities">Activities</option>
@@ -316,6 +356,8 @@
                             <option value="Tail movements">Tail movements</option>
                             <option value="Fur color">Fur color</option>
                         </select>
+                        </div>
+
                     </div>
                     <div id="bubble_vis"></div>
                 </div>
@@ -338,47 +380,80 @@
 
         <!-- Main Message: Sankey Diagram -->
         <div class="row section" id="sankeyVis">
+            <!--      Title and Description      -->
+            <div class="sentimentDescription">
+                <h2 class="centerText squirrelMapTitle">The squirrels exhibited patterns in their behavior</h2>
+                <p class="squirrelMapCaption centerText">For example, squirrels that chased other squirrels were also more likely to run from humans</p>
+            </div>
             <div class="col-md-12">
+                <!--        PUT VISUALIZATIONS HERE       -->
                 <div id="sankey_vis"></div>
-                <h1>Sankey diagram goes here</h1>
             </div>
         </div>
 
         <!--    Call to Action: Quotes    -->
         <div class="row section" id="quotesInfo">
+            <!--      Title and Description      -->
+            <div class="sentimentDescription">
+                <h2 class="centerText squirrelMapTitle">For the census-takers, squirrel-watching was a highly enjoyable experience.</h2>
+            </div>
+
             <div class="col-md-12">
+                <!--        PUT QUOTES HERE       -->
                 <div id="quotes"></div>
-                <h1>Inspiring quotes go here</h1>
             </div>
         </div>
 
         <!-- Call to Action: Take a Walk in the Park! -->
-        <div class="row section" id="walkMap">
+        <div class="row section">
             <!--      Title and Description   -->
-            <h1>Draw a walk you'd like to take in Central Park!</h1>
-            <p class="walkMapCaption">Switch map views to see where the most friendly squirrels are.</p>
+            <div class="walkDescription">
+                <h1 class="centerText">Learn about the animals you could see on a walk in Central Park! </h1>
+            </div>
 
-            <div class="row">
+            <div class="row walkMap">
                 <div class="col-md-6">
                     <div id="walk_map_vis"></div>
                 </div>
 
                 <!--      Info about walk         -->
-                <div class="col-md-6">
+                <div class="col-md-6" style="padding-top: 80px; padding-left: 30px; padding-right: 50px;">
                     <div id="walk_map_info">
-                        <div class="card mb-4 shadow-sm">
+                        <p><strong>Instructions: </strong>Using the tool bar on the left, draw line segments (a walk) on the map.
+                            Stay within the bounds of Central Park.
+                            <br/> The shorter your line segments, the more accurate your walk information will be.
+                            <br/> Click "Finish" on the tool bar when you are ready to learn about your walk!</p>
+                        <div class="card mb-4 shadow-sm walkCard">
                             <div class="card-header">Your Walk</div>
                             <div class="card-body">
-                                <p class="numSquirrels"></p>
-                                <p class="squirrelApproach"></p>
-                                <p class="walkDistance"></p>
-                                <p class="otherAnimals"></p>
+                                <div class="row walkBody">
+                                    <div class="col-sm labels">
+                                        <p>Max # of Squirrels You May See: </p>
+                                        <p>Would a Squirrel Approach You?</p>
+                                        <p>Walking Distance: </p>
+                                        <p>Other Animals You Might See: </p>
+                                    </div>
+                                    <div class="col-sm walkText">
+                                        <p class="numSquirrels"></p>
+                                        <p class="squirrelApproach"></p>
+                                        <p class="walkDistance"></p>
+                                        <p class="otherAnimals"></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <button class="btn btn-dark align-self-center walk-map" type="button" onClick="clearHeatMap()">Clear Heat Map</button>
-                    <button class="btn btn-dark align-self-center heat-map" type="button" onClick="showHeatMap()">Show Heat Map</button>
+
+                    <p style="margin-bottom: 10px">Click "Heat Map" to see which hectares have the most squirrels. Then, try clicking on the heat map!</p>
+
+                    <!-- Button to show heat map -->
+                    <div class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-dark">
+                            <input type="checkbox" autocomplete="off" onclick="heatMap(this)">Heat Map
+                        </label>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -442,7 +517,7 @@
 <script>
     new fullpage('#fullpage', {
         // options here
-        anchors: ['Home', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', '8thPage', '9thPage', '10thPage', '11thPage', '12thPage', 'About-Us'],
+        anchors: ['Home', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', '8thPage', '9thPage', '10thPage', '11thPage', 'About-Us'],
         // autoScrolling false because story boxes need vertical scrolling
         autoScrolling: false,
         scrollingSpeed: 1000,
@@ -450,7 +525,7 @@
         slidesNavigation: true,
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['Home', 'Guess Squirrels', 'Census Info', 'Squirrel Trivia', 'Map Vis', 'Story Sentiments', 'Stories Word Map', 'Squirrel Activities', 'Bubble Map', 'Sankey Diagram', 'Quotes', 'Walk in Central Park', 'Conclusion', 'About Us']
+        navigationTooltips: ['Home', 'Guess Squirrels', 'Census Info', 'Map Vis', 'Story Sentiments', 'Stories Word Map', 'Squirrel Trivia', 'Bubble Map', 'Sankey Diagram', 'Quotes', 'Walk in Central Park', 'Conclusion', 'About Us']
     });
 </script>
 

@@ -120,7 +120,27 @@ function initMainPage(dataArray) {
 
         d["Tail flags"] = eval(d["Tail flags"])
         d["Tail twitches"] = eval(d["Tail twitches"])
+        d["Tail movements"] = d3.range(0, 2).map(function(){
+            return 0;
+        });
+        let tail_list = ["Tail flags", "Tail twitches"]
+        d["Tail movements"].forEach((a, i)=>{
+            //console.log("in data processing", a, i)
+            if(d[tail_list[i]]) {
+                d["Tail movements"][i] = 1
+            }
+        })
+
+        // Fur colors
+        d["Fur color"] = d3.range(0, 3).map(function(){
+            return 0;
+        });
+        let fur_list = ["Gray", "Cinnamon", "Black"]
+        if(d["Primary Fur Color"]){
+            d["Fur color"][fur_list.indexOf(d["Primary Fur Color"])] = 1
+        }
         return d;
+
     })
 
     // console.log(hectareData)

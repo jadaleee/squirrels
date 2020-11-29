@@ -6,7 +6,9 @@ class BarVis {
         this.categories = {
             "Human Interactions" : ["Approaches", "Indifferent", "Runs from", "Other Interactions"],
             "Activities" : ["Running", "Chasing", "Climbing", "Eating", "Foraging", "Other Activities"],
-            "Sounds" : ["Kuks", "Moans", "Quaas"]
+            "Sounds" : ["Kuks", "Moans", "Quaas"],
+            "Tail movements": ["Tail flags", "Tail twitches"],
+            "Fur color": ["Gray", "Cinnamon", "Black"]
         }
 
         this.initVis();
@@ -15,7 +17,9 @@ class BarVis {
     initVis() {
         let vis = this;
 
-        vis.margin = { top: 40, right: 40, bottom: 40, left: 40 };
+        vis.margin = { top: 40, right: 40, bottom: 100, left: 40 };
+            //TODO - resize the page container so it fits the all graphs in one view
+        // at that point fix the bottom margin
 
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = 400 - vis.margin.top - vis.margin.bottom;
@@ -27,72 +31,62 @@ class BarVis {
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")")
 
-        // DELETE RECT WHEN READY TO CODE
-        // vis.svg
-        //     .append("rect")
-        //     .attr("x",0)
-        //     .attr("y",0)
-        //     .attr("width",vis.width)
-        //     .attr("height", vis.height)
-
+        // SCALES AND AXES
         // A scale that gives a X target position for each group
         vis.x = d3.scaleBand() //or scalepoint?
             //.domain([1, 2, 3])
             .range([0, vis.width])
-        // Make a scale that gives target Xs for each category
-        // vis.humanInteractionsX = d3.scaleBand() //or scalepoint?
-        //     .domain(vis.categories["Human Interactions"])
-        //     .range([0, vis.width])
-        //
-        // vis.activitiesX = d3.scaleBand() //or scalepoint?
-        //     .domain(vis.categories["Activities"])
-        //     .range([0, vis.width])
-        //
-        // vis.soundsX = d3.scaleBand() //or scalepoint?
-        //     .domain(vis.categories["Sounds"])
-        //     .range([0, vis.width])
+
+        vis.y = d3.scaleLinear()
+            .range([0, vis.height])
 
         // A color scale
-        vis.color = d3.scaleOrdinal()
-            //.domain([1, 2, 3])
-            .range([ "#F8766D", "#00BA38", "#619CFF", "#EC8643"])
+        vis.color = d3.scaleLinear()
+            .range(["#e3fafa", "#0b8fba"])
+
+        vis.xAxis = d3.axisBottom()
+            .scale(vis.x)
+
+        vis.xAxisGroup = vis.svg.append("g")
+            .attr("class", "x-axis bar-axis")
+
+        vis.yAxis = d3.axisLeft()
+            .scale(vis.y)
+
+        vis.yAxisGroup = vis.svg.append("g")
+            .attr("class", "y-axis bar-axis")
+
 
         // Tooltips append placeholder div
         vis.tooltip = d3.select("body").append("div")//`#${(vis.parentElement)}`).append('div')
-            .attr('class', "bubble-tooltip")
+            .attr('class', "bar-tooltip")
 
         // Group to hold the circles later
-        vis.circlesGroup = vis.svg.append("g")
-            .attr("class", "circles-group")
+        // vis.circlesGroup = vis.svg.append("g")
+        //     .attr("class", "circles-group")
 
         vis.wrangleData();
     }
 
     wrangleData() {
         let vis = this;
-        // console.log("inside bubble vis, data:", vis.data)
+        console.log("inside bar vis, data:", vis.data)
+
+        // here, what we need is to know the total number of each category in the
+        // selected category - probably the easiest way is to group by that category
+        // and then transform the rest into counts
 
         vis.category = bubbleCategory
         console.log("NEW CATEGORY SELECTED", vis.category)
         vis.displayData = []
-        vis.data.forEach((squirrel, i)=>{
-            //if(squirrel[vis.category].indexOf(1) != -1
-            if(!Object.keys(vis.categories).map(d=> squirrel[d].indexOf(1)).includes(-1))
-                vis.displayData.push({
-                    name: squirrel["Unique Squirrel ID"],
-                    group: vis.categories[vis.category][squirrel[vis.category].indexOf(1)],
-                    // hardcode in categories
-                    "Human Interactions": vis.categories["Human Interactions"][squirrel["Human Interactions"].indexOf(1)],
-                    "Activities": vis.categories["Activities"][squirrel["Activities"].indexOf(1)],
-                    "Sounds": vis.categories["Sounds"][squirrel["Sounds"].indexOf(1)],
-                    color: vis.color(vis.categories["Human Interactions"][squirrel["Human Interactions"].indexOf(1)])
 
-                })
-        })
+        // Filter data to only include points with observation for this category
+        vis.displayData = vis.data.filter(d=> d[vis.category].indexOf(1) != -1)
 
-        // don't need this bc there's only 90 anyway
-        //vis.displayData = vis.displayData.slice(0, 100);
-
+        let countsByCategory = Array.from(d3.group(vis.displayData, d=>vis.categories[vis.category][d[bubbleCategory].indexOf(1)]), ([key, value]) => ({key, value: value.length}))
+        // countsByCategory.forEach(())
+        console.log(countsByCategory)
+        vis.displayData = countsByCategory
         vis.updateVis();
     }
 
@@ -101,7 +95,58 @@ class BarVis {
 
         //update domains
         vis.x.domain(vis.categories[vis.category])
-        vis.color.domain(vis.categories["Human Interactions"]) //all colors based on human interactions
+        vis.color.domain(d3.extent(vis.displayData, d=>d.value))
+        vis.y.domain([d3.max(vis.displayData, d=> d.value), 0])
+        vis.xAxisGroup.call(vis.xAxis)
+            .attr("transform", `translate(0, ${vis.height})`)
+        vis.yAxisGroup.call(vis.yAxis)
+
+        vis.rectangles = vis.svg.selectAll("rect").data(vis.displayData)
+        vis.rectangles.exit().remove()
+        vis.rectangles.enter().append("rect")
+            .attr("class", "bar")
+            .merge(vis.rectangles)
+            .attr("x", (d, i)=> vis.x(d.key))
+            .attr("width", vis.x.bandwidth())
+            // .on("mouseover", function(event, d){
+            //     console.log(event, d)
+            //     d3.select(this)
+            //         .attr('stroke-width', '2px')
+            //         .attr('stroke', 'black')
+            //         .attr('fill', 'rgba(173,222,255,0.62)')
+            //     vis.tooltip
+            //         .style("opacity", 1)
+            //         .style("left", event.pageX  + "px")
+            //         .style("top", event.pageY + "px")
+            //         .html(`
+            //                  <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
+            //                      <h3> State: ${d.state}</h3>
+            //                      <h4> Cases: ${d.absCases}</h4>
+            //                      <h4>Deaths: ${d.absDeaths}</h4>
+            //                      <h4>Relative Cases: ${d.relCases}</h4>
+            //                      <h4>Relative Deaths: ${d.relDeaths}</h4>
+            //                  </div>`);
+            //
+            // })
+            // .on('mouseout', function(event, d){
+            //     d3.select(this)
+            //         .attr('stroke-width', '0px')
+            //         .attr("fill", d=>vis.colorScale(d[selectedCategory]))
+            //
+            //     vis.tooltip
+            //         .style("opacity", 0)
+            //         .style("left", 0)
+            //         .style("top", 0)
+            //         .html(``);
+            // })
+            .transition()
+            .duration(800)
+            .attr("y", d=>vis.y(d.value))
+            .attr("height", d=> vis.height-vis.y(d.value))
+                // going from less to more categories has awkward transition
+            .attr("fill", d=>vis.color(d.value))
+
+
     }
 
 }

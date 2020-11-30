@@ -76,7 +76,35 @@ $(document).ready(function(){
         $('#answer-3').fadeIn(800);
     })
 
+    /* Quotes Functions (same as Context Functions) */
+    // Hiding everything that we need to
+    $('#firstQuote').hide();
+    $('#secondQuote').fadeTo(0, 0);
+    $('#nextQuote').hide();
+    $('#prevQuote').hide();
 
+    // Giving more information if prompted
+    $('#quotesTransition').click(function(){
+        $('#quotesTransition').fadeOut(800);
+        $('#transition2Quotes').fadeOut(800);
+        $('#firstQuote').delay(1000).fadeIn(1600);
+        $('#nextQuote').delay(1000).fadeIn(1600);
+    })
+
+    // Providing more historical information
+    $('#nextQuote').click(function(){
+        $('#nextQuote').fadeOut(500);
+        $('#prevQuote').fadeIn(500);
+        $('#firstQuote').fadeTo(1600, 0);
+        $('#secondQuote').fadeTo(1600, 1);
+    })
+
+    $('#prevQuote').click(function(){
+        $('#prevQuote').fadeOut(500);
+        $('#nextQuote').fadeIn(500);
+        $('#firstQuote').fadeTo(1600, 1);
+        $('#secondQuote').fadeTo(1600, 0);
+    })
 
 });
 

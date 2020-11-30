@@ -417,12 +417,15 @@
                 </div>
 
                 <!--      Info about walk         -->
-                <div class="col-md-6" style="padding-top: 80px; padding-left: 30px; padding-right: 50px;">
+                <div class="col-md-6" style="padding-left: 30px; padding-right: 50px;">
                     <div id="walk_map_info">
-                        <p><strong>Instructions: </strong>Using the tool bar on the left, draw line segments (a walk) on the map.
-                            Stay within the bounds of Central Park.
-                            <br/> The shorter your line segments, the more accurate your walk information will be.
-                            <br/> Click "Finish" on the tool bar when you are ready to learn about your walk!</p>
+                        <p><strong>Instructions: </strong></p>
+                        <ul>
+                            <li>Using the tool bar on the left, draw line segments (a walk) on the map.</li>
+                            <li>Stay within the bounds of Central Park.</li>
+                            <li> The shorter your line segments, the more accurate your walk information will be.</li>
+                        </ul>
+                        <p>Click "Finish" on the tool bar when you are ready to learn about your walk!</p>
                         <div class="card mb-4 shadow-sm walkCard">
                             <div class="card-header">Your Walk</div>
                             <div class="card-body">
@@ -447,12 +450,19 @@
 
                     <p style="margin-bottom: 10px">Click "Heat Map" to see which hectares have the most squirrels. Then, try clicking on the heat map!</p>
 
-                    <!-- Button to show heat map -->
-                    <div class="btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-outline-dark">
-                            <input type="checkbox" autocomplete="off" onclick="heatMap(this)">Heat Map
-                        </label>
+                    <div class="row" style="padding-left: 15px;">
+                        <!-- Button to show heat map -->
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-dark">
+                                <input type="checkbox" autocomplete="off" onclick="heatMap(this)">Heat Map
+                            </label>
+                        </div>
+                        <div style="padding-left: 50px; padding-top:5px;">
+                            <p>Squirrel Count Legend: </p>
+                        </div>
+                        <div id="heat-map-legend"></div>
                     </div>
+
 
                 </div>
             </div>

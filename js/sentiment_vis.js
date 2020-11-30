@@ -43,7 +43,7 @@ class SentimentVis {
         vis.x = d3.scaleBand()
             .rangeRound([0, vis.width])
             .paddingInner(0.2)
-            .domain(d3.range(0,2));
+            //.domain(d3.range(0,2));
 
         vis.y = d3.scaleLinear()
             .range([vis.height,0]);
@@ -51,7 +51,7 @@ class SentimentVis {
         // color palette = one color per subgroup
         vis.color = d3.scaleOrdinal()
             .domain(vis.keys)
-            .range(d3.schemeSpectral[3])
+            .range(["#A1C181", "#FF781F", "#FCCA46"])
             .unknown("#ccc")
 
         vis.xAxis = d3.axisBottom()
@@ -94,29 +94,31 @@ class SentimentVis {
         // Wrangle Data for stacked bar plot
         //let storyDataByCategory = (Array.from(d3.group(vis.data, d=>d.Shift), ([key, value]) => ({key, value})))
         let stackedData = []
-        if(storyCategory == "Shift"){
-            vis.data.forEach((story, i)=>{
-                let category = story[storyCategory] //each topic
+        vis.data.forEach((story, i)=>{
+            let category = ""
+            if(storyCategory == "Shift"){
+                // set category then initialize stackedData w those 2 categories
+                category = story[storyCategory]
                 if(!(category in stackedData)){
                     stackedData[category] = {name: category, Positive: 0, Negative: 0, Neutral: 0}
                 }
-                stackedData[category].Positive += +story["Positive"]
-                stackedData[category].Negative += +story["Negative"]
-                stackedData[category].Neutral += +story["Neutral"]
-            })
-        }else{
-            //we know it's binary data so we predefine presence/absence as our 2 bars
-            stackedData[storyCategory] = {name: storyCategory, Positive: 0, Negative: 0, Neutral: 0}
-            stackedData["No "+storyCategory.toLowerCase()] = {name: "No "+storyCategory.toLowerCase(), Positive: 0, Negative: 0, Neutral: 0}
-            vis.data.forEach((story, i)=>{
-                let category = story[storyCategory]?storyCategory:"No "+storyCategory.toLowerCase();
-                stackedData[category].Positive += +story["Positive"]
-                stackedData[category].Negative += +story["Negative"]
-                stackedData[category].Neutral += +story["Neutral"]
-
-            })
-
-        }
+            }else if(storyCategory == "Story Topic: Accidental Poems"){
+                category = story[storyCategory]?"Accidental Poems":"All other story topics"
+                if(!("Accidental Poems" in stackedData))
+                    stackedData["Accidental Poems"] = {name: "Accidental Poems", Positive: 0, Negative: 0, Neutral: 0}
+                if(!("All other story topics" in stackedData))
+                    stackedData["All other story topics"] = {name: "All other story topics", Positive: 0, Negative: 0, Neutral: 0}
+            }else{
+                category = story[storyCategory]?storyCategory:"No "+storyCategory.toLowerCase();
+                if(!(storyCategory in stackedData))
+                    stackedData[storyCategory] = {name: storyCategory, Positive: 0, Negative: 0, Neutral: 0}
+                if(!("No "+storyCategory.toLowerCase() in stackedData))
+                    stackedData["No "+storyCategory.toLowerCase()] = {name: "No "+storyCategory.toLowerCase(), Positive: 0, Negative: 0, Neutral: 0}
+            }
+            stackedData[category].Positive += +story["Positive"]
+            stackedData[category].Negative += +story["Negative"]
+            stackedData[category].Neutral += +story["Neutral"]
+        })
         delete stackedData[""]
         stackedData = Object.values(stackedData)
         let finalStackedData = d3.stack()
@@ -124,7 +126,7 @@ class SentimentVis {
             (stackedData)
             .map(d => (d.forEach(v => v.key = d.key), d))
         vis.displayData = finalStackedData
-        // console.log("stacked data:", vis.displayData)
+        console.log("stacked data:", vis.displayData)
 
         vis.updateVis();
     }
@@ -134,15 +136,33 @@ class SentimentVis {
         let vis  = this;
         // Update domains
         //vis.y.domain([0, d3.max(vis.displayData)]);
+        if(storyCategory=="Shift"){
+            vis.x.domain(["AM", "PM"])
+        }
+        else if (storyCategory == "Story Topic: Accidental Poems"){
+            vis.x.domain(["Accidental Poems", "All other story topics"])
+        }
+        else{
+            vis.x.domain([storyCategory, "No "+storyCategory.toLowerCase()])
+        }
         vis.y.domain([0, d3.max(vis.displayData, d=>d3.max(d, d=>d[1]))]);
         // vis.color.domain(vis.displayData.map(d=>d.key)) //d key refers to pos neg neutral,
                                                     // so i can do this in initvis if needed
 
-        // Call axes
+        // Call axis function with the new domain
         vis.svg.select(".y-axis")
             .transition()
             .duration(500)
             .call(vis.yAxis);
+
+        vis.svg.select(".x-axis").call(vis.xAxis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", function(d) {
+                return "rotate(-45)"
+            });
 
 
         let barGroup = vis.svg.append("g")
@@ -163,33 +183,34 @@ class SentimentVis {
             .attr("class", "bar")
             .attr("width", vis.x.bandwidth())
             .attr("x", function(d, index){
-                return vis.x(index);
+                return vis.x(d.data.name);
             })
             .attr("y", d=>vis.y(d[1]))
             .attr("height", d=>vis.y(d[0]) -vis.y(d[1]))
             .on("mouseover", function(event, d){
                 d3.select(this)
-                    .attr('stroke-width', '2px')
-                    .attr('stroke', 'black')
-                    .attr('fill', 'rgba(173,222,255,0.62)')
+                    .attr('opacity', '.75')
                 vis.tooltip
                     .style("opacity", 1)
                     .style("left", event.pageX  + "px")
                     .style("top", event.pageY + "px")
                     .html(`
-                             <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
-                                 <h3> ${d.key}</h3>  
+                             <div>
+                                 <h3> ${d.key} (${d.data.name})</h3>  
                                  <h4> Count: ${d.data[d.key]}</h4>   
-                                 <h4> Category: ${d.data.name}</h4>  
-                                  
-
+                                 <h4> Percent of Total: 
+                                        ${d3.format(".0%")(d.data[d.key]/
+                                            d3.sum([d.data["Positive"], 
+                                                d.data["Negative"], 
+                                                d.data["Neutral"]]))}</h4>  
                              </div>`);
 
             })
             .on('mouseout', function(event, d){
                 d3.select(this)
-                    .attr('stroke-width', '0px')
-                    .attr("fill", d=>vis.color(d.key))
+                    // .attr('stroke-width', '0px')
+                    // .attr("fill", d=>vis.color(d.key))
+                    .attr("opacity", "1")
 
                 vis.tooltip
                     .style("opacity", 0)
@@ -204,7 +225,7 @@ class SentimentVis {
             .duration(500)
             //.attr("x", (d, i)=>vis.x(d.data.name)) //after updating x scales
             .attr("x", function(d, index){
-                return vis.x(index);
+                return vis.x(d.data.name);
             })
             .attr("y", d=>vis.y(d[1]))
             .attr("height", d=>vis.y(d[0]) -vis.y(d[1]))
@@ -212,19 +233,6 @@ class SentimentVis {
 
         barGroup.exit().remove();
 
-
-
-        // Call axis function with the new domain
-        vis.svg.select(".y-axis").call(vis.yAxis);
-
-        vis.svg.select(".x-axis").call(vis.xAxis)
-            .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", ".15em")
-            .attr("transform", function(d) {
-                return "rotate(-45)"
-            });
 
     }
 }

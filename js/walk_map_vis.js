@@ -16,6 +16,9 @@ class WalkMapVis {
     initVis() {
         let vis = this;
 
+        // draw heatmap legend
+        vis.initLegend()
+
         // define map at center of Central Park
         vis.map = L.map('walk_map_vis',{
             zoomSnap: 0.25
@@ -310,6 +313,73 @@ class WalkMapVis {
         d3.select("p.otherAnimals").text(otherAnimals)
         d3.select("p.squirrelApproach").text(approachString)
 
+    }
+
+    initLegend(){
+        let vis = this;
+
+        vis.margin = { top: 0, right: 0, bottom: 10, left: 5 };
+
+        vis.width = 245 - vis.margin.left - vis.margin.right;
+        vis.height = 40 - vis.margin.top - vis.margin.bottom;
+
+        // SVG drawing area
+        vis.svg = d3.select("#heat-map-legend").append("svg")
+            .attr("width", vis.width + vis.margin.left + vis.margin.right)
+            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")")
+
+        // Color scale for legend (had to create separate scale because the heatmap is based on opacity
+        vis.colorScale = d3.scaleLinear()
+            .domain([vis.squirrelMin, vis.squirrelMax])
+            .range(["#ffffff", "#52361b"])
+
+        // Creating the legend
+        vis.defs = vis.svg.append("defs")
+
+        let gradient = vis.defs.append("linearGradient")
+            .attr("id", "gradient")
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "0%")
+
+        //Set the color for the start (0%)
+        gradient.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "#ffffff");
+
+        //Set the color for the end (100%)
+        gradient.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "#52361b");
+
+        //Draw the rectangle and fill with gradient
+        vis.svg.append("rect")
+            .attr("width", 200)
+            .attr("height", 20)
+            // place rect at top of svg
+            .attr("transform", `translate(10, ${0})`)
+            .style("fill", "url(#gradient)")
+            .style("stroke", "none");
+
+        // range is 0-200 because 200 is the width of the rectangle
+        vis.legendScale = d3.scaleLinear()
+            .domain([vis.squirrelMin, vis.squirrelMax])
+            .range([0, 200])
+
+        vis.xAxisGroup = vis.svg.append("g")
+            .attr("class", "legend-axis")
+            // place axis right below the rect
+            .attr("transform", `translate(10, ${20})`)
+
+        vis.xAxis = d3.axisBottom()
+            .scale(vis.legendScale)
+            .ticks(5)
+            //.tickFormat(d3.format("d"))//".2s"))
+
+        vis.xAxisGroup.call(vis.xAxis)
     }
 
     initHeatMap(){

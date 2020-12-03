@@ -28,6 +28,32 @@ p {
     font-family: 'Poppins';
 }
 
+.quotes{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    z-index: -1;
+}
+
+.quotesRelative{
+    position: relative;
+    left: -50%;
+}
+
+.quote{
+    text-align: center;
+    margin-bottom: 20px;
+}
+#fourthQuote {
+    font-weight: bold;
+}
+
+.downArrow{
+    display: block;
+    margin: 20px auto auto;
+    width: 10%;
+}
+
 /* VISUALIZATIONS CSS*/
 
 svg {

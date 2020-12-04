@@ -28,6 +28,19 @@ p {
     font-family: 'Poppins';
 }
 
+.contextContainer{
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    z-index: -1;
+    max-width: 85%;
+}
+
+.contextRelative{
+    position: relative;
+    left: -10%;
+}
+
 .quotes{
     position: absolute;
     left: 50%;

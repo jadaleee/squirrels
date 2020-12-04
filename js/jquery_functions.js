@@ -32,32 +32,15 @@ $(document).ready(function(){
     /* Context Visualization Functions */
 
     // Hiding everything that we need to
-    $('#dataContext').hide();
-    $('#historicalContext').fadeTo(0, 0);
-    $('#nextButtonHistorical').hide();
-    $('#goBack').hide();
+    $('.squirrelCensus').fadeTo(0, 0);
+    $('.projectInfo').fadeTo(0, 0);
 
     // Giving more information if prompted
     $('#transitionButton').click(function(){
         $('#transitionButton').fadeOut(800);
         $('#transition2Context').fadeOut(800);
-        $('#dataContext').delay(1000).fadeIn(1600);
-        $('#nextButtonHistorical').delay(1000).fadeIn(1600);
-    })
-
-    // Providing more historical information
-    $('#nextButtonHistorical').click(function(){
-        $('#nextButtonHistorical').fadeOut(500);
-        $('#goBack').fadeIn(500);
-        $('#dataContext').fadeTo(1600, 0);
-        $('#historicalContext').fadeTo(1600, 1);
-    })
-
-    $('#goBack').click(function(){
-        $('#goBack').fadeOut(500);
-        $('#nextButtonHistorical').fadeIn(500);
-        $('#dataContext').fadeTo(1600, 1);
-        $('#historicalContext').fadeTo(1600, 0);
+        $('.squirrelCensus').delay(1000).fadeTo(1600, 1);
+        $('.projectInfo').delay(2600).fadeTo(1600, 1);
     })
 
     /* Squirrel Trivia Visualization Functions */

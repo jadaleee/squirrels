@@ -42,7 +42,7 @@ class BarVis {
 
         // A color scale
         vis.color = d3.scaleLinear()
-            .range(["#e3fafa", "#0b8fba"])
+            .range(["#BFDBF7", "#233D4D"])
 
         vis.xAxis = d3.axisBottom()
             .scale(vis.x)

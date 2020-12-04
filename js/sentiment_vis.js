@@ -132,8 +132,8 @@ class SentimentVis {
     }
 
     updateVis() {
-        //needs to updated based on the selectedCategory in main - TODO
         let vis  = this;
+
         // Update domains
         //vis.y.domain([0, d3.max(vis.displayData)]);
         if(storyCategory=="Shift"){

@@ -43,6 +43,13 @@ p {
 
 /* Quotes CSS */
 
+.centerItemsQuotes {
+    margin: auto auto 500px;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
 .quotes{
     position: absolute;
     left: 50%;

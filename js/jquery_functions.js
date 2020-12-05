@@ -77,5 +77,19 @@ $(document).ready(function(){
         $('#fourthQuote').delay(3400).fadeTo(1600,1);
     })
 
+    /* Conclusion Animations */
+    $('#conclusion-message').hide()
+    $('#conclusion-squirrel').hide()
+
+    let reachedConclusion = $('#conclusion').offset().top;
+
+    $(window).scroll(function() {
+        var place = window.pageYOffset;
+        if(place > reachedConclusion) {
+            $('#conclusion-message').fadeIn(1200);
+            $('#conclusion-squirrel').delay(1300).slideDown(1000);
+        }
+    });
+
 });
 

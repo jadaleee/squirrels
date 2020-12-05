@@ -366,9 +366,35 @@ button:focus {
     text-align: center;
 }
 
-#nextButtonHistorical, #goBack {
+/* About Us */
+
+.mugshot {
+    width: 100%;
+    height: 80%;
+    border-radius: 10%;
+}
+
+#conclusion-tree {
+    height: 800px;
     position: absolute;
-    right: 0;
+    left: 0px;
+    top: -235px;
+    z-index: 1;
+}
+
+#conclusion-squirrel {
+    height: 250px;
+    top: 60px;
+    bottom: 80px;
+    position: relative;
+    left: 200px;
+    top: 170px;
+    z-index: -1;
+    transform: rotate(0deg);
+}
+
+#conclusion-message {
+    padding-top: 200px;
 }
 /* Squirrel Trivia */
 

@@ -463,5 +463,6 @@ button:focus {
 #quotesInfo{
     background: transparent url(../images/quotesBackground.png) no-repeat scroll 0px 0px;
     background-size: 100% 100%;
+    width: 100vw;
     /*z-index: -1;*/
 }

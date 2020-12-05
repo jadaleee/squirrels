@@ -41,6 +41,7 @@ $(document).ready(function(){
         $('#transition2Context').fadeOut(800);
         $('.squirrelCensus').delay(1000).fadeTo(1600, 1);
         $('.projectInfo').delay(2600).fadeTo(1600, 1);
+        $('#censusInfo').css("z-index", "-1")
     })
 
     /* Squirrel Trivia Visualization Functions */

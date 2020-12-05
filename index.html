@@ -24,6 +24,7 @@
 
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/buttons.css">
 
     <!-- JQuery Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -49,17 +50,19 @@
 
         <!-- Hook -->
         <div class="row section" id="hookVis">
-            <div class="centerItems" id="userGuess">
-                <h1 id="squirNumQuestion">How many squirrels do you think live in Central Park?</h1>
+            <div class="leftAlignItems" id="userGuess">
+                <h1 id="squirNumQuestion">How many squirrels live in Central Park?</h1>
                     <br>
                     <form id="squirrelForm" action="#firstPage" onsubmit="return false">
                         <input placeholder=" Guess Here!"type="number" id="userSquirNum" value=" ">
                         <input type="submit" class="squirButton" value="Submit">
                     </form>
             </div>
-            <div class="col-md-4 centerItems" id="hook-comparingGuess">
-                <h1 class="backgroundLayout"id="comparingSquirNum"></h1>
+            <div class="col-md-4 leftAlignItems" id="hook-comparingGuess">
+                <h1 id="comparingSquirNum"></h1>
             </div>
+            <div id="hookSquirrelDiv" ></div>
+<!--            class="leftAlignItems"-->
         </div>
 
         <!-- Rising Insights: Context Section-->
@@ -72,13 +75,14 @@
                 <div class="row squirrelCensus">
                     <div class="col-md-6">
                         <div class="contextRelative">
-                            <h1>What is the Squirrel Census?</h1>
-                            <p>
+                            <h1 class="bold-heading">What is the Squirrel Census?</h1>
+                            <br>
+                            <p class="about-text">
                                 The Squirrel Census took place in October 2018, when 323 volunteers collected data on all the squirrels in Central Park.
                                 To organize the project, the census team divided Central Park into 350 hectares. Each census taker roamed a single hectare
-                                for 20 minutes, and they took notes on the squirrels they saw, noting:
+                                for 20 minutes, and they took notes on the squirrels they saw, including:
                             </p>
-                                <ul style="margin-bottom:2px;">
+                                <ul class="about-text" style="margin-bottom:2px;">
                                     <li>Fur Color</li>
                                     <li>Sounds</li>
                                     <li>Tail Twitches</li>
@@ -93,20 +97,31 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-6"></div>
-                </div>
-                <div class="row projectInfo">
-                    <div class="col-md-5"></div>
-                    <div class="col-md-7">
-                        <p style="text-align: right;">
-                            For our project, we wanted to tackle a light-hearted topic that would re-inspire delight in nature, particularly due to the mundane routine of pandemic life.
-                            <br>Thus, we chose to analyze the Squirrel Census.
-                        </p>
-                        <p style="margin-top:10px; text-align: right; font-weight: bolder;">
-                            Join us in learning more about the census takers' delightful experiences and the rambunctious squirrels of Central Park.
-                        </p>
+                    <div class="col-md-6" style="display: flex;flex-direction: column;align-items: flex-end;justify-content: space-between;">
+                        <div class="row imageHolder">
+                            <img src="../squirrels/images/central_park_icon.png"
+                                 alt="Central Park" height="250px">
+                            <p>Manhattan's Central Park</p>
+                        </div>
+                        <div class="row projectInfo">
+<!--                            <div >-->
+
+                                <p style="text-align: right;" class="about-text">
+                                    For our project, we wanted to tackle a light-hearted topic that would re-inspire delight in nature, particularly due to the mundane routine of pandemic life.
+                                    <br>Thus, we chose to analyze the Squirrel Census.
+                                </p>
+                                <p style="margin-top:10px; text-align: right; font-weight: bolder;" class="about-text">
+                                    Join us in learning more about the census takers' delightful experiences and the rambunctious squirrels of Central Park.
+                                </p>
+<!--                            </div>-->
+                        </div>
+
                     </div>
                 </div>
+
+            </div>
+            <div class="grass-divider" id="contextToMain">
+
             </div>
         </div>
 
@@ -118,34 +133,33 @@
 
         <!-- Rising Insights: Map and Stories Vis -->
         <div class="row section" id="mainMessage">
-
             <!--      Title and Description      -->
             <div class="squirrelMapDescription">
-                <h2 class="centerText squirrelMapTitle">Learn about the census takers' experiences & the squirrels they saw</h2>
-                <p class="squirrelMapCaption centerText">When hovering over a story, look at the map to see where it took place.</p>
+                <h2 class="squirrelMapTitle">Explore the census takers' experiences  </h2>
+                <p class="squirrelMapCaption">When hovering over a story, look at the map to see where it took place.</p>
             </div>
 
 
             <!--      Checkbox Filters for Squirrel Stories      -->
             <div class="row storyMapFilters">
-                <h4 class="storyFiltersLabel">Story Topics: </h4>
+                <h4 class="storyFiltersLabel bold-heading">Story Topics: </h4>
                 <div class="btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-dark">
+                    <label class="btn btn-outline-color1">
                         <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Squirrel Experience or Squirrel Story" onclick="storyMapFilterClicked(this)">Squirrels
                     </label>
-                    <label class="btn btn-outline-dark">
+                    <label class="btn btn-outline-color2">
                         <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Squirrels Acting Odd" onclick="storyMapFilterClicked(this)">Odd Squirrels
                     </label>
-                    <label class="btn btn-outline-dark">
+                    <label class="btn btn-outline-color3">
                         <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Dogs" onclick="storyMapFilterClicked(this)">Dogs
                     </label>
-                    <label class="btn btn-outline-dark">
+                    <label class="btn btn-outline-color4">
                         <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Other Animals" onclick="storyMapFilterClicked(this)">Other Animals
                     </label>
-                    <label class="btn btn-outline-dark">
+                    <label class="btn btn-outline-color5">
                         <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Accidental Poems" onclick="storyMapFilterClicked(this)">Accidental Poems
                     </label>
-                    <label class="btn btn-outline-dark">
+                    <label class="btn btn-outline-color6">
                         <input class="storyMap" type="checkbox" autocomplete="off" value="Story Topic: Census Takers Recognized" onclick="storyMapFilterClicked(this)">Census Taker Recognized
                     </label>
                 </div>

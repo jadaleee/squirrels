@@ -2,11 +2,16 @@
 
 body {
     font-family: 'Poppins';
+    background-color: #FAF9F4;
 }
 
 h1 {
-    font-size: 36px;
-    color: #825a5a;
+    font-size: 42px;
+    color: #3A2518;
+}
+
+.bold-heading{
+    font-weight: bold;
 }
 
 h2.addMargins {
@@ -18,6 +23,11 @@ h2.addMargins {
 
 p {
     margin-bottom: 0px;
+}
+
+.about-text{
+    font-size: 14px;
+    width: 35vw;
 }
 
 .filterLabel {
@@ -78,27 +88,44 @@ svg {
     text-align: center;
 }
 
+.leftAlignText{
+    text-align: left;
+}
+
+/* MAP/MAIN MESSAGE */
+
 #squirrel_map_vis {
-    width: 100%;
+    width: 90%;
     height: 400px;
     margin-left: 20px;
 }
+
+#mainMessage{
+    padding:25px;
+}
+
+#storiesMap{
+    margin-bottom: 10px;
+}
+
 
 .squirrelMapCaption {
     margin-bottom: 10px;
 }
 
 .squirrelMapTitle{
-    color: #825a5a;
+    color: #3A2518;
+    font-size: 30px;
 }
 
 .squirrelMapDescription {
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 50px;
     margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #2e3133;
+    /*padding-bottom: 10px;*/
+    /*border-bottom: 2px solid #2e3133;*/
 }
+
 
 .walkDescription {
     margin-bottom: 20px;
@@ -261,11 +288,14 @@ svg {
 /*Carousel CSS*/
 .storyMapFilters {
     margin-left:20px;
+    margin-bottom: 5px;
     align-content: center;
 }
 
 .storyFiltersLabel {
     margin-right: 10px;
+    font-size: 20px;
+    line-height: 35px;
 }
 
 .storyBox {
@@ -322,26 +352,32 @@ input:focus {
     color: #3A2518;
 }
 #userSquirNum {
-    background-color: white;
-    border-color: #3A2518;
+    background-color: transparent;
+    border: solid 1.5px #3A2518;
     border-radius: 10px;
+    padding: 6px 12px;
+    margin-right: 10px;
+}
+
+#userSquirNum text {
+    color: black;
+    opacity: 50%;
 }
 
 .squirButton {
-    padding: 3px 10px;
+    padding: 8px 12px;
     background-color: #BFDBF7;
     border-radius: 10px;
     border: none;
+    transition: background-color .2s;
 }
 
 .squirButton:hover {
-    padding: 3px 10px;
     background-color: beige; /* whatever color is best */
-    border-radius: 10px;
-    border: none;
+    cursor: pointer;
 }
 
-.backgroundLayout, #hook-comparingGuess {
+.backgroundLayout {
     align-content: center;
     background-color: #BFDBF7;
     border-radius: 10px 10px 10px 10px;
@@ -349,8 +385,37 @@ input:focus {
     text-align: left;
 }
 
+#hook-comparingGuess{
+    align-content: flex-start;
+    border-radius: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10vw;
+    text-align: left;
+    color: #3A2518;
+}
+
 #comparingSquirNum {
     color: #3A2518;
+    width: 35vw;
+}
+
+.squirrelCensus{
+    height: 75vh;
+}
+
+.imageHolder{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    height: min-content;
+    justify-content: center;
+    align-items: center;
+    /*background-color: #FAF9F4;*/
+}
+.imageHolder img{
+    mix-blend-mode:multiply;
+}
+.projectInfo{
+    width: min-content;
 }
 
 /* Context */
@@ -364,6 +429,14 @@ button:focus {
     width: 50%;
     padding: 10px;
     text-align: center;
+}
+
+.leftAlignItems {
+    /*margin: auto;*/
+    width: 50%;
+    padding: 10px 10px 10px 10vw;
+    text-align: left;
+    align-self: flex-start;
 }
 
 #nextButtonHistorical, #goBack {
@@ -388,13 +461,42 @@ button:focus {
 
 /* Defining each section background and styles
 * --------------------------------------- */
-/*#hookVis{*/
-/*    background-image: url(../images/HookDraft.png);*/
-/*}*/
-/*#censusInfo {*/
-/*    background-image: url(../images/Context.png);*/
-/*    !*padding: 6% 0 0 0;*!*/
-/*}*/
+#hookVis{
+    background: transparent url(../images/squirrels-path-01.png) no-repeat scroll 0px 100%;
+    background-size: 90%;
+    /*z-index: 1;*/
+    /*background-image: url(../images/squirrels-path-01.png);*/
+    /*background-color: ;*/
+}
+#hookSquirrelDiv{
+    background: transparent url(../images/squirrel-standing.png) repeat-x scroll;
+    background-size: 10vw;
+    background-position: -2vw 0px;
+    width: 30vw;
+    height: 200px;
+    position: absolute;
+    left: 10vw;
+    top: 80vh;
+    /*margin-left: 10vw;*/
+    /*margin-top: 15vh;*/
+}
+#censusInfo {
+    background: transparent url(../images/squirrels-path-02.png) no-repeat scroll 0px 0px;
+    background-size: 90% 100%;
+    /*z-index: -1;*/
+    /*background-image: url(../images/Context.png);*/
+    /*padding: 6% 0 0 0;*/
+}
+.grass-divider{
+    background: transparent url(../images/grass-divider-03.png) no-repeat scroll 0px 0px;
+    background-size: 100% 120%;
+}
+#contextToMain{
+    position: absolute;
+    top: 75vh;
+    width: 100vw;
+    height: 400px;
+}
 /*#squirrelTrivia{*/
 /*    background-image: url(../images/Trivia.png);*/
 /*    !*padding: 6% 0 0 0;*!*/

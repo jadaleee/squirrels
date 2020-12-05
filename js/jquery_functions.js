@@ -66,12 +66,14 @@ $(document).ready(function(){
     $('#secondQuote').fadeTo(0,0);
     $('#thirdQuote').fadeTo(0,0);
     $('#fourthQuote').fadeTo(0,0);
+    $('.quotesRelative').fadeTo(0,0);
 
     // Giving more information if prompted
     $('#quotesTransition').click(function(){
-        $('#quotesTransition').fadeOut(800);
-        $('#transition2Quotes').fadeOut(800);
-        $('#firstQuote').delay(1000).fadeTo(800,1);
+        $('#quotesTitle').fadeOut(800);
+        $('#quotesInfo').css("z-index", "-1");
+        $('.quotesRelative').delay(1000).fadeTo(800,1);
+        $('#firstQuote').delay(1200).fadeTo(800,1);
         $('#secondQuote').delay(1800).fadeTo(800,1);
         $('#thirdQuote').delay(2600).fadeTo(800,1);
         $('#fourthQuote').delay(3400).fadeTo(1600,1);

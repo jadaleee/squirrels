@@ -41,6 +41,15 @@ p {
     left: -10%;
 }
 
+/* Quotes CSS */
+
+.centerItemsQuotes {
+    margin: auto auto 500px;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
 .quotes{
     position: absolute;
     left: 50%;
@@ -48,15 +57,34 @@ p {
     z-index: -1;
 }
 
+#quotesTitle{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#transition2Quotes{
+    margin-bottom: 15px;
+}
+
 .quotesRelative{
     position: relative;
     left: -50%;
+    padding: 20px 30px 10px 30px;
 }
 
 .quote{
     text-align: center;
     margin-bottom: 20px;
+    margin-right: 0px;
+    margin-left: 0px;
+
 }
+
+.quotesBox{
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+}
+
 #fourthQuote {
     font-weight: bold;
 }
@@ -431,3 +459,10 @@ button:focus {
 /*#walkMap {*/
 /*    background-image: url(../images/walkmap.png);*/
 /*}*/
+
+#quotesInfo{
+    background: transparent url(../images/quotesBackground.png) no-repeat scroll 0px 0px;
+    background-size: 100% 100%;
+    width: 100vw;
+    /*z-index: -1;*/
+}

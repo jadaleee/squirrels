@@ -144,12 +144,14 @@ svg {
     text-align: left;
 }
 
-/* MAP/MAIN MESSAGE */
+/* SQUIRREL MAP + STORIES CAROUSEL */
 
 #squirrel_map_vis {
     width: 95%;
     height: 400px;
     margin-left: 20px;
+    border-radius: 15px;
+    border: #BFDBF7 5px solid;
 }
 
 #mainMessage{
@@ -159,7 +161,6 @@ svg {
 #storiesMap{
     margin-bottom: 10px;
 }
-
 
 .squirrelMapCaption {
     margin-bottom: 10px;
@@ -174,40 +175,42 @@ svg {
     margin-left: 20px;
     margin-top: 50px;
     margin-bottom: 20px;
-    /*padding-bottom: 10px;*/
-    /*border-bottom: 2px solid #2e3133;*/
 }
 
 .btn{
     margin-right: 3px;
 }
 
-
+/* Walk Map Vis */
 .walkDescription {
     margin-bottom: 20px;
-}
-
-.walkCard {
-    margin-top: 10px;
 }
 
 .walkBody{
     padding-right: 15px;
 }
 
-.labels {
-    text-align: end;
+.walkBox {
+    width: 80%;
+    background-color: #e6f2ff;
+    border-radius: 15px;
+    color: black;
+    padding: 10px;
+    margin-left: 70px;
+    margin-right: 10px;
+    margin-bottom: 15px;
 }
 
-.walkText {
-    /*border-bottom-style: inset;*/
-    /*border-bottom-color: #d7d7d7;*/
+.labels {
+    text-align: end;
 }
 
 #walk_map_vis {
     width: 100%;
     height: 650px;
     margin-left: 20px;
+    border-radius: 15px;
+    border: #3A2518 5px solid;
 }
 
 #walk_map_info {
@@ -564,7 +567,7 @@ button:focus {
     position: absolute;
     left: 0px;
     top: -1000px;
-    z-index: 1;
+    z-index: -1;
 }
 
 #conclusion-squirrel {
@@ -574,7 +577,7 @@ button:focus {
     position: relative;
     left: 200px;
     top: 170px;
-    z-index: -1;
+    z-index: -2;
     transform: rotate(0deg);
 }
 

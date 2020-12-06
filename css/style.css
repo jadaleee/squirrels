@@ -14,6 +14,10 @@ h1 {
     font-weight: bold;
 }
 
+.font-size-20{
+    font-size: 20px;
+}
+
 h2.addMargins {
     color: #94a97a;
     font-size: 24px;
@@ -77,6 +81,22 @@ p {
     width: 10%;
 }
 
+.vertical-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.vertical-flex-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-padding{
+    padding-right: 100px;
+}
+
 /* VISUALIZATIONS CSS*/
 
 svg {
@@ -95,7 +115,7 @@ svg {
 /* MAP/MAIN MESSAGE */
 
 #squirrel_map_vis {
-    width: 90%;
+    width: 95%;
     height: 400px;
     margin-left: 20px;
 }
@@ -124,6 +144,10 @@ svg {
     margin-bottom: 20px;
     /*padding-bottom: 10px;*/
     /*border-bottom: 2px solid #2e3133;*/
+}
+
+.btn{
+    margin-right: 3px;
 }
 
 
@@ -196,15 +220,24 @@ svg {
 }
 
 .sentimentDescription {
-    margin-left: 20px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    /*margin-left: 20px;*/
+    /*margin-top: 10px;*/
+    /*margin-bottom: 20px;*/
     padding-bottom: 10px;
     /*border-bottom: 2px solid #2e3133;*/
 }
 
 .form-control{
-    width: 85%;
+    width: 100%;
+    border: black solid 1.5px;
+    border-radius: 5px;
+    background-color: transparent;
+
+}
+.form-control:focus{
+    outline: none;
+    box-shadow: none;
+    /*background-color: ;*/
 }
 #sample_stories{
     display: flex;
@@ -212,7 +245,7 @@ svg {
     width: 80%;
     padding: 30px;
     justify-self: center;
-    /*margin: 0 20px;*/
+    margin: 15px 0;
     background-color: #BFDBF7;
     opacity: 0;
     border: 2px solid #BFDBF7;
@@ -285,7 +318,7 @@ svg {
     color: black;
 }
 
-/*Carousel CSS*/
+/* Story Carousel CSS*/
 .storyMapFilters {
     margin-left:20px;
     margin-bottom: 5px;
@@ -312,6 +345,12 @@ svg {
     margin-right: 10px;
     text-align: center;
     font-size: 12px;
+}
+
+#storiesVis{
+    /*margin-left: 10vw;*/
+    height: 85vh;
+    padding: 25px;
 }
 
 #storiesMap {
@@ -488,12 +527,12 @@ button:focus {
     /*padding: 6% 0 0 0;*/
 }
 .grass-divider{
-    background: transparent url(../images/grass-divider-03.png) no-repeat scroll 0px 0px;
-    background-size: 100% 120%;
+    /*background: transparent url(../images/grass-divider-03.png) no-repeat scroll 0px 0px;*/
+    /*background-size: 100% 120%;*/
 }
-#contextToMain{
+#contextToMain, #cloudToTrivia, #TriviaToBubble{
     position: absolute;
-    top: 75vh;
+    top: 60vh;
     width: 100vw;
     height: 400px;
 }

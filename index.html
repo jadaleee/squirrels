@@ -121,7 +121,7 @@
 
             </div>
             <div class="grass-divider" id="contextToMain">
-
+                <img data-src="../squirrels/images/grass-divider-03.png" alt="divider" width="100%">
             </div>
         </div>
 
@@ -180,8 +180,8 @@
                 </div>
 
                 <!--       Checkbox Filters for Squirrel Sightings Map        -->
-                <div class="col-md-6">
-                    <h4>Filter the squirrel sightings on the map</h4>
+                <div class="col-md-6" >
+                    <h4 class="bold-heading font-size-20" >Filter the squirrel sightings on the map</h4>
                     <p style="font-style: italic">You can click on the dots!</p>
                     <div class="btn-group-toggle" data-toggle="buttons">
                         <p class="filterLabel">Squirrel's Primary Fur Color</p>
@@ -225,38 +225,54 @@
 
         <!-- Sentiment Vis -->
         <div class="row section" id="sentimentVis">
-            <!--      Title and Description      -->
-            <div class="sentimentDescription">
-                <h2 class="centerText squirrelMapTitle">Some of the census takers' stories were more positive than others</h2>
-                <p class="squirrelMapCaption centerText">Use the drop down to view the different story categories</p>
-            </div>
 
-            <!--        Category change dropdown        -->
-            <div class="col-md-5">
-                <div class="row" style="height: 7vh; ">
-                    <div class="col-md-6" style="padding-right: 0; padding-left: 0;">
-                        <p style="text-align: end; margin-top: 5px;">Story Category: </p>
-                    </div>
-                    <div class="col-md-6">
-                        <select name="story_categories" id="story_select" class="form-control">
-                            <option value="Shift">Time of Day</option>
-                            <option value="Other Animals">Other animals</option>
-                            <option value="Squirrels">Squirrels</option>
-                            <option value="Story Topic: Accidental Poems">Accidental Poems</option>
-                        </select>
-                    </div>
-
-                </div>
-            </div>
 
             <!--        Sentiment Vis Bar Graph        -->
             <div class="row">
-                <div class="col-md-6" id="sentiment_vis"></div>
+
                 <div class="col-md-6">
-                    <p style="margin-top: 50px; padding-right: 100px;">
+                    <!--        Category change dropdown        -->
+                            <div class="row" style="height: 7vh; display:flex; justify-content: flex-start">
+                                <div style="padding-left: 10vw;padding-right: 10px; ">
+                                    <p style="text-align: end; margin-top: 5px; width: 140px;">Story Category: </p>
+                                </div>
+                                <div>
+                                    <select name="story_categories" id="story_select" class="form-control">
+                                        <option value="Shift">Time of Day</option>
+                                        <option value="Other Animals">Other animals</option>
+                                        <option value="Squirrels">Squirrels</option>
+                                        <option value="Story Topic: Accidental Poems">Accidental Poems</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                    <div id="sentiment_vis"></div>
+
+                </div>
+                <div class="col-md-6 vertical-flex" >
+                    <!--      Title and Description      -->
+                    <div class="sentimentDescription">
+                        <h2 class="squirrelMapTitle">Some of the census takers' stories were more positive than others</h2>
+                        <p class="squirrelMapCaption">Use the drop down to view the different story categories</p>
+                    </div>
+                    <div>
+                    <p class="right-padding">
                         <strong>Where are we getting this data from?</strong>
                         </br>We used a sentiment analysis package to better understand the emotions
                         behind the census takers' stories. As you can see, the stories are majorly positive! </p>
+                    </div>
+                    <div>
+                        <p class="right-padding">
+
+                        We split the data by categories that might affect census
+                            taker’s moods, such as observing squirrels vs. other animals.
+                            Overall, Accidental Poems are the only class with a noticeable
+                            difference, with non-poem stories having 15% more of the total
+                            proportion being positive than the Accidental Poems. All the
+                            other classes range from 51-58% positive stories, which is a
+                            the majority.
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -264,29 +280,47 @@
 
         <!-- Word Map Vis -->
         <div class="section" id="storiesVis">
-            <!--      Title and Description      -->
-            <div class="sentimentDescription">
-                <h2 class="centerText squirrelMapTitle">The census takers used certain words more frequently than others</h2>
-                <p class="squirrelMapCaption centerText">Unsurprisingly, "squirrel" was the most common word!</p>
-            </div>
-
             <div class="row align-middle">
-<!--                style="height: 80vh;"-->
-                <div class="col-md-6">
+
+                <div class="col-md-6 vertical-flex">
+                    <!--      Title and Description      -->
+                    <div class="sentimentDescription">
+                        <h2 class="squirrelMapTitle">The census takers used certain words more frequently than others</h2>
+<!--                        <p class="squirrelMapCaption centerText">Unsurprisingly, "squirrel" was the most common word!</p>-->
+                    </div>
+                    <p style="margin-top:20px;"><strong>Instructions: </strong> Click on the different words to read a random story.
+                        P.S. Some of them are quite amusing!</p>
+                    <!--        Random Story div            -->
+                    <div class="randomStoryBox" id="sample_stories"></div>
+                    <div class="right-padding">
+                        Take a look through the words and you’ll notice lots of
+                        action words, like chasing, running, and playing,
+                        and some unique words like “foraging” and “hectare”.
+                        Out of the 50 most frequent words, 22 are nouns, 10 are verbs and 7 are adjectives.
+                    </div>
+                </div>
+
+                <div class="col-md-6 vertical-flex-center" >
+<!--                    style="justify-content: center; align-items: center"-->
                     <!-- Title -->
-                    <h4 style="padding-left: 225px;">Word Cloud</h4>
-                    <p>These are the 50 most common words appearing in all the census takers' stories.</p>
+<!--                    <h4 style="padding-left: 225px;">Word Cloud</h4>-->
+<!--                    <p>These are the 50 most common words appearing in all the census takers' stories.</p>-->
                     <!--        Word Map            -->
                     <div class="row" id="stories_vis"></div>
                 </div>
-                <div class="col-md-6">
-                    <p style="margin-top:20px;"><strong>Instructions: </strong> Click on the different words to read a random story.
-                    </br>P.S. Some of them are quite amusing!</p>
-                    <!--        Random Story div            -->
-                    <div class="randomStoryBox" id="sample_stories"></div>
-                </div>
+
             </div>
+
+
+            <div class="grass-divider" id="cloudToTrivia" style="padding-left: 0px;">
+                <img data-src="../squirrels/images/grass-divider-03.png" alt="divider" width="100%">
+            </div>
+
         </div>
+
+
+
+
 
         <!-- Squirrel Trivia -->
         <div class="row section" id="squirrelTrivia">
@@ -361,6 +395,11 @@
 
                 </div>
             </div>
+
+            <div class="grass-divider" id="TriviaToBubble">
+                <img data-src="../squirrels/images/grass-divider-03.png" alt="divider" width="100%">
+            </div>
+
         </div>
 
         <!-- Main Message: Bubble Vis -->

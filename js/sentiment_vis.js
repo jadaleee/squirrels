@@ -26,7 +26,7 @@ class SentimentVis {
     initVis() {
         let vis = this;
 
-        vis.margin = { top: 20, right: 40, bottom: 100, left: 50 };
+        vis.margin = { top: 40, right: 100, bottom: 100, left: 100 };
 
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
             vis.height = 400 - vis.margin.top - vis.margin.bottom; // prob shouldn't be hardcoded
@@ -181,9 +181,9 @@ class SentimentVis {
         bars
             .enter().append("rect")
             .attr("class", "bar")
-            .attr("width", vis.x.bandwidth())
+            .attr("width", 80) //vis.x.bandwidth())
             .attr("x", function(d, index){
-                return vis.x(d.data.name);
+                return vis.x(d.data.name) + vis.x.bandwidth()/2 - 40;
             })
             .attr("y", d=>vis.y(d[1]))
             .attr("height", d=>vis.y(d[0]) -vis.y(d[1]))

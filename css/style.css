@@ -83,7 +83,7 @@ p {
 .quotesRelative{
     position: relative;
     left: -50%;
-    padding: 20px 30px 10px 30px;
+    padding: 30px 30px 10px 30px;
 }
 
 .quote{
@@ -95,8 +95,8 @@ p {
 }
 
 .quotesBox{
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
 }
 
 #fourthQuote {

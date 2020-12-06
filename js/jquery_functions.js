@@ -122,11 +122,11 @@ $(document).ready(function(){
     $('#quotesTransition').click(function(){
         $('#quotesTitle').fadeOut(800);
         $('#quotesInfo').css("z-index", "-1");
-        $('.quotesRelative').delay(1000).fadeTo(800,1);
-        $('#firstQuote').delay(1200).fadeTo(800,1);
-        $('#secondQuote').delay(1800).fadeTo(800,1);
-        $('#thirdQuote').delay(2600).fadeTo(800,1);
-        $('#fourthQuote').delay(3400).fadeTo(1600,1);
+        $('.quotesRelative').delay(1000).fadeTo(1000,1);
+        $('#firstQuote').delay(1200).fadeTo(1200,1);
+        $('#secondQuote').delay(2600).fadeTo(1400,1);
+        $('#thirdQuote').delay(4000).fadeTo(1400,1);
+        $('#fourthQuote').delay(5400).fadeTo(2000,1);
     })
 
     /* Conclusion Animations */

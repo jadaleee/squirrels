@@ -108,7 +108,7 @@ class BubbleVis {
         })
 
         // don't need this bc there's only 90 anyway
-        console.log("is this len < 90?", vis.displayData)
+       // console.log("is this len < 90?", vis.displayData)
         vis.displayData = vis.displayData.slice(0, 100);
 
         vis.updateVis();

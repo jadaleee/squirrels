@@ -83,7 +83,7 @@ class StoriesVis {
             .ticks(5)
             .tickFormat(d3.format("d"))//".2s"))
 
-        console.log(vis.commonWords.slice(0, 50).map(function(d) { return {text: d.word, size: vis.sizeScale(d.size)}; }))
+        //console.log(vis.commonWords.slice(0, 50).map(function(d) { return {text: d.word, size: vis.sizeScale(d.size)}; }))
         // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
         // Wordcloud features that are different from one word to the other must be here
         vis.layout = d3.layout.cloud()

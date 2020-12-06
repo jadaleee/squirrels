@@ -70,7 +70,7 @@ class BarVis {
 
     wrangleData() {
         let vis = this;
-        console.log("inside bar vis, data:", vis.data)
+        // console.log("inside bar vis, data:", vis.data)
 
         // here, what we need is to know the total number of each category in the
         // selected category - probably the easiest way is to group by that category

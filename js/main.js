@@ -52,10 +52,7 @@ function categoryBubbleChange() {
 function initMainPage(dataArray) {
 
     // log data
-    console.log('check out the data', dataArray);
-
-    // (3) Create event handler
-    let MyEventHandler = {};
+    // console.log('check out the data', dataArray);
 
     let squirrelData = dataArray[0]
     let hectareData = dataArray[1]

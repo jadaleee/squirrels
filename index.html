@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Squirrels Rool</title>
+    <title>Squirrels in the City</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700,800" rel="stylesheet">
 
     <!-- CSS libraries -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/fullpage.js/dist/fullpage.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.css" />
 
     <!--  Leaflet CSS  -->
     <link rel="stylesheet" href="css/leaflet.css">
@@ -37,14 +37,22 @@
 <div class="container-fluid">
     <div id="fullpage">
 
-        <!-- FOR LATER: USE LAZY LOADING FOR IMAGES (built-in with fullpage)
-        Example: <img data-src="image.png"> -->
-
         <!--    Landing Page    -->
         <div class="row section" id="landing">
-            <div class="col-md-12">
-                <h1><span class="h1-sub">Final Project:</span> Squirrels in Central Park</h1>
-                <h2 class="addMargins">Squirrels are cute, squirrels are fun!</h2>
+            <div class="col-md-12 homeImages">
+                <!-- <h1><span class="h1-sub homeItem">Final Project:</span> Squirrels in Central Park</h1> -->
+               <!-- <h2 class="addMargins homeItem">Squirrels are cute, squirrels are fun!</h2> -->
+                <h1 id="titleSquirrel">Squirrels</h1>
+                <h1 id="titleCity">in the City</h1>
+                <img class="homeItem" id="bench" src="images/homepage-bench.png" alt="bench">
+                <img class="homeItem" id="tree1" src="images/homepage-tree-1.png" alt="Tree">
+                <img class="homeItem" id="tree2" src="images/homepage-tree-2.png" alt="Tree">
+                <img class="homeItem" id="tree3" src="images/homepage-tree-3.png" alt="Tree">
+                <img class="homeItem" id="tree4" src="images/homepage-tree-4.png" alt="Tree">
+                <img class="homeItem" id="tree5" src="images/homepage-tree-5.png" alt="Tree">
+                <img class="homeItem" id="tree6" src="images/homepage-tree-6.png" alt="Tree">
+                <img class="homeItem" id="tree7" src="images/homepage-tree-7.png" alt="Tree">
+                <img id="homepagesquirrel" src="images/homepagesquirrel.png" alt="squirrel">
             </div>
         </div>
 
@@ -124,12 +132,6 @@
                 <img data-src="../squirrels/images/grass-divider-03.png" alt="divider" width="100%">
             </div>
         </div>
-
-<!--        Before 1877, there were no squirrels in Central Park. However, they released 60-70-->
-<!--        squirrels from 1877 to 1878 and let them roam around.-->
-<!--        <br>-->
-<!--        By 1883, there were 1,500 squirrels calling Central Park home. Now the park hosts 2,373-->
-<!--        squirrels.-->
 
         <!-- Rising Insights: Map and Stories Vis -->
         <div class="row section" id="mainMessage">
@@ -324,75 +326,78 @@
 
         <!-- Squirrel Trivia -->
         <div class="row section" id="squirrelTrivia">
-            <h1 class="centerItems">Now that we've learned about the census takers' experiences...
-                </br>Let's test your knowledge on squirrels!</h1>
-            <br>
-            <br>
             <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="trivia-Margins">Trivia Time!</h1>
+                        <p>Now that we've analyzed the census takers' stories, we'll turn to the squirrels themselves - see if you can answer these squirrel trivia questions!</p>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="container question-set-1">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="question">
-                            <h3>A squirrel’s front teeth never stop growing.</h3>
+                            <h3>Eastern gray squirrels are the most common squirrels in Central Park.</h3>
                             <br>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-1-answers" id="question-1-answers-A" value="A" />
                             <label for="question-1-answers-A"> TRUE </label>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-1-answers" id="question-1-answers-B" value="B" />
                             <label for="question-1-answers-B">FALSE</label>
                         </div>
                         <br>
-                        <input type="submit" class="squirButton" id="question-1-answer" value="Check Answer">
-                        <br><br>
                         <div class="answer-reveal" id="answer-1">
-                            This is true. their teeth grow at a rate of ~6 inches per year.
+                            This is true. As shown before, gray squirrels populate Central Park.
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="question">
-                            <h3>Squirrels can land on 2 feet.</h3>
+                            <h3>Overall, a squirrel spends most of its time eating nuts. </h3>
                             <br>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-2-answers" id="question-2-answers-A" value="A" />
                             <label for="question-2-answers-A"> TRUE </label>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-2-answers" id="question-2-answers-B" value="B" />
                             <label for="question-2-answers-B">FALSE</label>
                         </div>
                         <br>
-                        <input type="submit" class="squirButton" id="question-2-answer" value="Check Answer">
-                        <br><br>
                         <div class="answer-reveal" id="answer-2">
-                            This is false. Squirrels, like cats, actually always land on 4 feet.
+                            This is false. Squirrels spend more time foraging for nuts!
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="question">
-                            <h3>A newborn squirrel is ~3.5 inches long.</h3>
+                            <h3>"Quaas" are the most common sounds squirrels make.</h3>
                             <br>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-3-answers" id="question-3-answers-A" value="A" />
                             <label for="question-3-answers-A"> TRUE </label>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-3-answers" id="question-3-answers-B" value="B" />
                             <label for="question-3-answers-B">FALSE</label>
                         </div>
                         <br>
-                        <input type="submit" class="squirButton" id="question-3-answer" value="Check Answer">
-                        <br><br>
                         <div class="answer-reveal" id="answer-3">
-                            This is false. Newborn squirrels are actually ~1 inch long.
+                            This is false. "Kuks" are there most common sounds! You'll see this later on.
                         </div>
                     </div>
-
+                </div>
+                <br> <br> <br>
+                <div id="moreQuestionsDiv">
+                    <button class="squirButton" id="moreQuestions">More Questions</button>
                 </div>
             </div>
 
@@ -450,27 +455,14 @@
             </div>
         </div>
 
-        <!-- Main Message: Sankey Diagram -->
-        <div class="row section" id="sankeyVis">
-            <!--      Title and Description      -->
-            <div class="sentimentDescription">
-                <h2 class="centerText squirrelMapTitle">The squirrels exhibited patterns in their behavior</h2>
-                <p class="squirrelMapCaption centerText">For example, squirrels that chased other squirrels were also more likely to run from humans</p>
-            </div>
-            <div class="col-md-12">
-                <!--        PUT VISUALIZATIONS HERE       -->
-                <div id="sankey_vis"></div>
-            </div>
-        </div>
-
         <!--    Call to Action: Quotes    -->
         <div class="row section" id="quotesInfo">
-            <div class="centerItems">
+            <div class="centerItemsQuotes quotesBox" id="quotesTitle">
                 <h4 id="transition2Quotes" class="centerText">For the census-takers, squirrel-watching was a highly enjoyable experience.</h4>
                 <button class="squirButton" id="quotesTransition">Click to find out more!</button>
             </div>
             <div class="container quotes">
-                <div class="quotesRelative">
+                <div class="quotesRelative quotesBox">
                     <div class="row quote" id="firstQuote">
                         <p>
                             “Being part of the project is about more than counting squirrels.
@@ -580,16 +572,60 @@
 
         <!--    Call to Action: Conclusion    -->
         <div class="row section" id="conclusion">
-            <div class="col-md-12">
-                <h1>Wherever you are, take a walk and pay attention to the wildlife around you. It just might make your day!</h1>
+            <div class="row">
+                <div class="col-md-5">
+                    <img id="conclusion-tree" src="images/tree.png" alt="Tree">
+                    <img id="conclusion-squirrel" src="images/squirrel1.png" alt="Squirrel 1">
+                </div>
+                <div class="col-md-7">
+                    <h1 id="conclusion-message">Wherever you are, take a walk and pay attention to the wildlife around you. It just might make your day!</h1>
+                </div>
             </div>
         </div>
 
         <!--    About Us    -->
         <div class="row section" id="lastSection">
-            <div class="col-md-12">
-                <div id="aboutUs"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="mugshot centerItems" src="images/jadafinal.png" alt="Jada Lee">
+                        <h1 class="centerMugshot">Jada Lee</h1>
+                        <p>I'm pretty sure I was a plant in a past life. Specifically an apple tree.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img class="mugshot centerItems" src="images/lizzyfinal.png" alt="Elizabeth Ling">
+                        <h1 class="centerMugshot">Lizzy Ling</h1>
+                        <p>I'm pretty sure I was a animal in a past life. Specifically a cinnamon squirrel.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img class="mugshot centerItems" src="images/irisfinal.png" alt="Iris Su">
+                        <h1 class="centerMugshot">Iris Su</h1>
+                        <p>I'm pretty sure I was a dog in a past life. Specifically a dog that chases squirrels.</p>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!--    Sources    -->
+        <div class="row section" id="sourcesPage">
+            <div class="row">
+                <div class="col-md-12">
+                <h1 class="centerItems">Sources</h1>
+                    <div>
+                        <ul>
+                            <li><b>Data Set #1:</b> https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw</li>
+                            <li><b>Data Set #2:</b> https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Hectare-Data/ej9h-v6g2</li>
+                            <li><b>Data Set #3:</b> https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Stories/gfqj-f768</li>
+                            <li>https://www.thesquirrelcensus.com/</li>
+                            <li>https://www.bloomberg.com/news/articles/2019-06-24/how-many-squirrels-are-in-nyc-s-central-park</li>
+                            <li>https://www.washingtonpost.com/local/learn-to-speak-squirrel-in-four-easy-lessons/2012/04/09/gIQAV8Jr6S_story.html</li>
+                            <li>http://robertgrantstats.co.uk/drawmydata.html</li>
+                            <li>http://nymag.com/news/features/squirrels-2014-2/</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -607,7 +643,7 @@
 <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
 
 <!-- Fullpage Stepper -->
-<script type="text/javascript" src="node_modules/fullpage.js/dist/fullpage.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.js"></script>
 
 <!-- Slick Carousel -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -623,7 +659,6 @@
 <!-- Visualization objects -->
 <script src="js/bubble_vis.js"></script>
 <script src="js/bar_vis.js"></script>
-<script src="js/sankey_vis.js"></script>
 <script src="js/stories_vis.js"></script>
 <script src="js/sentiment_vis.js"></script>
 <script src="js/stories_map_vis.js"></script>
@@ -637,15 +672,18 @@
 <script>
     new fullpage('#fullpage', {
         // options here
-        anchors: ['Home', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', '8thPage', '9thPage', '10thPage', '11thPage', 'About-Us'],
+        anchors: ['Home', 'firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage', '8thPage', '9thPage', '10thPage', 'AboutUs', 'Sources'],
         // autoScrolling false because story boxes need vertical scrolling
         autoScrolling: false,
         scrollingSpeed: 1000,
         scrollHorizontally: false,
+        onLeave: function(origin, destination){
+            destination.item.classList.add('load-background');
+        },
         slidesNavigation: true,
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['Home', 'Guess Squirrels', 'Census Info', 'Map Vis', 'Story Sentiments', 'Stories Word Map', 'Squirrel Trivia', 'Bubble Map', 'Sankey Diagram', 'Quotes', 'Walk in Central Park', 'Conclusion', 'About Us']
+        navigationTooltips: ['Home', 'Guess Squirrels', 'Census Info', 'Map Vis', 'Story Sentiments', 'Stories Word Map', 'Squirrel Trivia', 'Bubble Map', 'Quotes', 'Walk in Central Park', 'Conclusion', 'About Us', 'Sources']
     });
 </script>
 

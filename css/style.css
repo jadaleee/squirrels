@@ -55,6 +55,15 @@ p {
     left: -10%;
 }
 
+/* Quotes CSS */
+
+.centerItemsQuotes {
+    margin: auto auto 500px;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
 .quotes{
     position: absolute;
     left: 50%;
@@ -62,15 +71,34 @@ p {
     z-index: -1;
 }
 
+#quotesTitle{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#transition2Quotes{
+    margin-bottom: 15px;
+}
+
 .quotesRelative{
     position: relative;
     left: -50%;
+    padding: 20px 30px 10px 30px;
 }
 
 .quote{
     text-align: center;
     margin-bottom: 20px;
+    margin-right: 0px;
+    margin-left: 0px;
+
 }
+
+.quotesBox{
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+}
+
 #fourthQuote {
     font-weight: bold;
 }
@@ -95,6 +123,10 @@ p {
 
 .right-padding{
     padding-right: 100px;
+}
+#sourcesPage ul {
+    display: table;
+    margin: 0 auto;
 }
 
 /* VISUALIZATIONS CSS*/
@@ -180,6 +212,38 @@ svg {
 
 #walk_map_info {
     margin-top: 5px;
+}
+/* Homepage */
+#titleSquirrel {
+    font-size: 100px;
+    position: relative;
+    padding-left: 50px;
+    top: -150px;
+}
+
+#titleCity {
+    font-size: 80px;
+    position: relative;
+    padding-left: 180px;
+    top: -170px;
+}
+.homeImages {
+    position: relative;
+}
+
+.homeItem {
+    position: absolute;
+    width: 95%;
+    height: 800px;
+    top: -450px;
+}
+
+#homepagesquirrel {
+    position: absolute;
+    width: 10%;
+    height: 45%;
+    top: 125px;
+    left: 175px;
 }
 
 /* Story Vis */
@@ -478,12 +542,56 @@ button:focus {
     align-self: flex-start;
 }
 
-#nextButtonHistorical, #goBack {
+
+
+  /* About Us */
+
+.centerMugshot {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.mugshot {
+    width: 100%;
+    height: 75%;
+    border-radius: 10%;
+}
+
+#conclusion-tree {
+    height: 1600px;
     position: absolute;
-    right: 0;
+    left: 0px;
+    top: -1000px;
+    z-index: 1;
+}
+
+#conclusion-squirrel {
+    height: 250px;
+    top: 60px;
+    bottom: 80px;
+    position: relative;
+    left: 200px;
+    top: 170px;
+    z-index: -1;
+    transform: rotate(0deg);
+}
+
+#conclusion-message {
+    padding-top: 200px;
 }
 /* Squirrel Trivia */
 
+.answer-margins {
+    padding-left: 50px;
+}
+
+#moreQuestionsDiv {
+    float: right;
+    padding-right: 0px;
+    padding-top: -50px;
+}
 
 
 /* Backgrounds will cover all the sections. Add ".load-background" for lazy loading!
@@ -500,12 +608,9 @@ button:focus {
 
 /* Defining each section background and styles
 * --------------------------------------- */
-#hookVis{
+#hookVis.load-background{
     background: transparent url(../images/squirrels-path-01.png) no-repeat scroll 0px 100%;
     background-size: 90%;
-    /*z-index: 1;*/
-    /*background-image: url(../images/squirrels-path-01.png);*/
-    /*background-color: ;*/
 }
 #hookSquirrelDiv{
     background: transparent url(../images/squirrel-standing.png) repeat-x scroll;
@@ -519,12 +624,9 @@ button:focus {
     /*margin-left: 10vw;*/
     /*margin-top: 15vh;*/
 }
-#censusInfo {
+#censusInfo.load-background {
     background: transparent url(../images/squirrels-path-02.png) no-repeat scroll 0px 0px;
     background-size: 90% 100%;
-    /*z-index: -1;*/
-    /*background-image: url(../images/Context.png);*/
-    /*padding: 6% 0 0 0;*/
 }
 .grass-divider{
     /*background: transparent url(../images/grass-divider-03.png) no-repeat scroll 0px 0px;*/
@@ -546,3 +648,10 @@ button:focus {
 /*#walkMap {*/
 /*    background-image: url(../images/walkmap.png);*/
 /*}*/
+
+#quotesInfo.load-background{
+    background: transparent url(../images/quotesBackground.png) no-repeat scroll 0px 0px;
+    background-size: 100% 100%;
+    width: 100vw;
+    /*z-index: -1;*/
+}

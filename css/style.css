@@ -67,6 +67,11 @@ p {
     width: 10%;
 }
 
+ul {
+    display: table;
+    margin: 0 auto;
+}
+
 /* VISUALIZATIONS CSS*/
 
 svg {
@@ -129,6 +134,38 @@ svg {
 
 #walk_map_info {
     margin-top: 5px;
+}
+/* Homepage */
+#titleSquirrel {
+    font-size: 100px;
+    position: relative;
+    padding-left: 50px;
+    top: -150px;
+}
+
+#titleCity {
+    font-size: 80px;
+    position: relative;
+    padding-left: 180px;
+    top: -170px;
+}
+.homeImages {
+    position: relative;
+}
+
+.homeItem {
+    position: absolute;
+    width: 95%;
+    height: 800px;
+    top: -450px;
+}
+
+#homepagesquirrel {
+    position: absolute;
+    width: 10%;
+    height: 45%;
+    top: 125px;
+    left: 175px;
 }
 
 /* Story Vis */
@@ -368,17 +405,24 @@ button:focus {
 
 /* About Us */
 
+.centerMugshot {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
 .mugshot {
     width: 100%;
-    height: 80%;
+    height: 75%;
     border-radius: 10%;
 }
 
 #conclusion-tree {
-    height: 800px;
+    height: 1600px;
     position: absolute;
     left: 0px;
-    top: -235px;
+    top: -1000px;
     z-index: 1;
 }
 
@@ -398,6 +442,15 @@ button:focus {
 }
 /* Squirrel Trivia */
 
+.answer-margins {
+    padding-left: 50px;
+}
+
+#moreQuestionsDiv {
+    float: right;
+    padding-right: 0px;
+    padding-top: -50px;
+}
 
 
 /* Backgrounds will cover all the sections. Add ".load-background" for lazy loading!

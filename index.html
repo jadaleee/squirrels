@@ -41,9 +41,20 @@
 
         <!--    Landing Page    -->
         <div class="row section" id="landing">
-            <div class="col-md-12">
-                <h1><span class="h1-sub">Final Project:</span> Squirrels in Central Park</h1>
-                <h2 class="addMargins">Squirrels are cute, squirrels are fun!</h2>
+            <div class="col-md-12 homeImages">
+                <!-- <h1><span class="h1-sub homeItem">Final Project:</span> Squirrels in Central Park</h1> -->
+               <!-- <h2 class="addMargins homeItem">Squirrels are cute, squirrels are fun!</h2> -->
+                <h1 id="titleSquirrel">Squirrels</h1>
+                <h1 id="titleCity">in the City</h1>
+                <img class="homeItem" id="bench" src="images/homepage-bench.png" alt="bench">
+                <img class="homeItem" id="tree1" src="images/homepage-tree-1.png" alt="Tree">
+                <img class="homeItem" id="tree2" src="images/homepage-tree-2.png" alt="Tree">
+                <img class="homeItem" id="tree3" src="images/homepage-tree-3.png" alt="Tree">
+                <img class="homeItem" id="tree4" src="images/homepage-tree-4.png" alt="Tree">
+                <img class="homeItem" id="tree5" src="images/homepage-tree-5.png" alt="Tree">
+                <img class="homeItem" id="tree6" src="images/homepage-tree-6.png" alt="Tree">
+                <img class="homeItem" id="tree7" src="images/homepage-tree-7.png" alt="Tree">
+                <img id="homepagesquirrel" src="images/homepagesquirrel.png" alt="squirrel">
             </div>
         </div>
 
@@ -276,75 +287,78 @@
 
         <!-- Squirrel Trivia -->
         <div class="row section" id="squirrelTrivia">
-            <h1 class="centerItems">Now that we've learned about the census takers' experiences...
-                </br>Let's test your knowledge on squirrels!</h1>
-            <br>
-            <br>
             <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="trivia-Margins">Trivia Time!</h1>
+                        <p>Now that we've analyzed the census takers' stories, we'll turn to the squirrels themselves - see if you can answer these squirrel trivia questions!</p>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="container question-set-1">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="question">
-                            <h3>A squirrel’s front teeth never stop growing.</h3>
+                            <h3>Eastern gray squirrels are the most common squirrels in Central Park.</h3>
                             <br>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-1-answers" id="question-1-answers-A" value="A" />
                             <label for="question-1-answers-A"> TRUE </label>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-1-answers" id="question-1-answers-B" value="B" />
                             <label for="question-1-answers-B">FALSE</label>
                         </div>
                         <br>
-                        <input type="submit" class="squirButton" id="question-1-answer" value="Check Answer">
-                        <br><br>
                         <div class="answer-reveal" id="answer-1">
-                            This is true. their teeth grow at a rate of ~6 inches per year.
+                            This is true. As shown before, gray squirrels populate Central Park.
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="question">
-                            <h3>Squirrels can land on 2 feet.</h3>
+                            <h3>Overall, a squirrel spends most of its time eating nuts. </h3>
                             <br>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-2-answers" id="question-2-answers-A" value="A" />
                             <label for="question-2-answers-A"> TRUE </label>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-2-answers" id="question-2-answers-B" value="B" />
                             <label for="question-2-answers-B">FALSE</label>
                         </div>
                         <br>
-                        <input type="submit" class="squirButton" id="question-2-answer" value="Check Answer">
-                        <br><br>
                         <div class="answer-reveal" id="answer-2">
-                            This is false. Squirrels, like cats, actually always land on 4 feet.
+                            This is false. Squirrels spend more time foraging for nuts!
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="question">
-                            <h3>A newborn squirrel is ~3.5 inches long.</h3>
+                            <h3>"Quaas" are the most common sounds squirrels make.</h3>
                             <br>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-3-answers" id="question-3-answers-A" value="A" />
                             <label for="question-3-answers-A"> TRUE </label>
                         </div>
-                        <div>
+                        <div class="answer-margins">
                             <input type="radio" name="question-3-answers" id="question-3-answers-B" value="B" />
                             <label for="question-3-answers-B">FALSE</label>
                         </div>
                         <br>
-                        <input type="submit" class="squirButton" id="question-3-answer" value="Check Answer">
-                        <br><br>
                         <div class="answer-reveal" id="answer-3">
-                            This is false. Newborn squirrels are actually ~1 inch long.
+                            This is false. "Kuks" are there most common sounds! You'll see this later on.
                         </div>
                     </div>
-
+                </div>
+                <br> <br> <br>
+                <div id="moreQuestionsDiv">
+                    <button class="squirButton" id="moreQuestions">More Questions</button>
                 </div>
             </div>
         </div>
@@ -530,18 +544,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <img class="mugshot centerItems" src="images/jada.png" alt="Jada Lee">
-                        <h1 class="centerItems">Jada Lee</h1>
+                        <img class="mugshot centerItems" src="images/jadafinal.png" alt="Jada Lee">
+                        <h1 class="centerMugshot">Jada Lee</h1>
                         <p>I'm pretty sure I was a plant in a past life. Specifically an apple tree.</p>
                     </div>
                     <div class="col-md-4">
-                        <img class="mugshot centerItems" src="images/lizzy.png" alt="Elizabeth Ling">
-                        <h1 class="centerItems">Lizzy Ling</h1>
+                        <img class="mugshot centerItems" src="images/lizzyfinal.png" alt="Elizabeth Ling">
+                        <h1 class="centerMugshot">Lizzy Ling</h1>
                         <p>I'm pretty sure I was a animal in a past life. Specifically a cinnamon squirrel.</p>
                     </div>
                     <div class="col-md-4">
-                        <img class="mugshot centerItems" src="images/iris.png" alt="Iris Su">
-                        <h1 class="centerItems">Iris Su</h1>
+                        <img class="mugshot centerItems" src="images/irisfinal.png" alt="Iris Su">
+                        <h1 class="centerMugshot">Iris Su</h1>
                         <p>I'm pretty sure I was a dog in a past life. Specifically a dog that chases squirrels.</p>
                     </div>
                 </div>
@@ -551,7 +565,21 @@
         <!--    Sources    -->
         <div class="row section" id="sources">
             <div class="row">
-                <h1>Sources</h1>
+                <div class="col-md-12">
+                <h1 class="centerItems">Sources</h1>
+                    <div>
+                        <ul>
+                            <li><b>Data Set #1:</b> https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw</li>
+                            <li><b>Data Set #2:</b> https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Hectare-Data/ej9h-v6g2</li>
+                            <li><b>Data Set #3:</b> https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Stories/gfqj-f768</li>
+                            <li>https://www.thesquirrelcensus.com/</li>
+                            <li>https://www.bloomberg.com/news/articles/2019-06-24/how-many-squirrels-are-in-nyc-s-central-park</li>
+                            <li>https://www.washingtonpost.com/local/learn-to-speak-squirrel-in-four-easy-lessons/2012/04/09/gIQAV8Jr6S_story.html</li>
+                            <li>http://robertgrantstats.co.uk/drawmydata.html</li>
+                            <li>http://nymag.com/news/features/squirrels-2014-2/</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
         </div>

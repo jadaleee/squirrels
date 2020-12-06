@@ -460,7 +460,7 @@ button:focus {
 /*    background-image: url(../images/walkmap.png);*/
 /*}*/
 
-#quotesInfo{
+#quotesInfo.load-background{
     background: transparent url(../images/quotesBackground.png) no-repeat scroll 0px 0px;
     background-size: 100% 100%;
     width: 100vw;

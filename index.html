@@ -600,6 +600,9 @@
         autoScrolling: false,
         scrollingSpeed: 1000,
         scrollHorizontally: false,
+        onLeave: function(origin, destination){
+            destination.item.classList.add('load-background');
+        },
         slidesNavigation: true,
         navigation: true,
         navigationPosition: 'right',

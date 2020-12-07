@@ -197,8 +197,8 @@ class SentimentVis {
                     .html(`
                              <div>
                                  <h3> ${d.key} (${d.data.name})</h3>  
-                                 <h4> Count: ${d.data[d.key]}</h4>   
-                                 <h4> Percent of Total: 
+                                 <h4 style="font-family: 'Poppins'"> Count: ${d.data[d.key]}</h4>   
+                                 <h4 style="font-family: 'Poppins'"> Percent of Total: 
                                         ${d3.format(".0%")(d.data[d.key]/
                                             d3.sum([d.data["Positive"], 
                                                 d.data["Negative"], 

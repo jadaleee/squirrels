@@ -42,7 +42,7 @@ class StoriesVis {
 
         vis.colorScale = d3.scaleLinear()
             .domain([0, 1002])
-            .range(["#BFDBF7", "#FCCA46"])
+            .range(["#233D4D", "#FCCA46"])
 
         // Color scale legend
         // Legend and scale
@@ -58,7 +58,7 @@ class StoriesVis {
         //Set the color for the start (0%)
         linearGradient.append("stop")
             .attr("offset", "0%")
-            .attr("stop-color", "#BFDBF7"); //light blue
+            .attr("stop-color", "#233D4D"); //light blue
 
         //Set the color for the end (100%)
         linearGradient.append("stop")
@@ -123,7 +123,7 @@ class StoriesVis {
         // this.size = vis.height/vis.width, so we just replce
         let colorScale = d3.scaleLinear()
             .domain([0, d3.max(words, d=>d.size)])
-            .range(["#BFDBF7", "#FCCA46"])
+            .range(["#233D4D", "#FCCA46"])
 
         words.sort((a, b) => b.size - a.size)
         // console.log(words)

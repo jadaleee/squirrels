@@ -3,11 +3,18 @@
 body {
     font-family: 'Poppins';
     background-color: #FAF9F4;
+    overflow-x: hidden;
 }
+
+html{
+    overflow-x: hidden;
+}
+
 
 h1 {
     font-size: 42px;
     color: #3A2518;
+    margin: 0;
 }
 
 .bold-heading{
@@ -155,7 +162,7 @@ svg {
 }
 
 #mainMessage{
-    padding:25px;
+    padding:30px;
 }
 
 #storiesMap{
@@ -230,6 +237,12 @@ svg {
     padding-left: 180px;
     top: -170px;
 }
+#subhead{
+    position: relative;
+    padding-left: 60px;
+    top: -190px;
+}
+
 .homeImages {
     position: relative;
 }
@@ -275,7 +288,7 @@ svg {
     text-align: center;
     font-size: 14px;
 }
-  
+
 #sentiment_vis{
     height: 100%;
     padding-left: 50px;
@@ -304,13 +317,16 @@ svg {
 .form-control:focus{
     outline: none;
     box-shadow: none;
+    border-color: black;
+    background-color: transparent;
     /*background-color: ;*/
 }
 #sample_stories{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    text-align: left;
     width: 80%;
-    padding: 30px;
+    padding: 20px;
     justify-self: center;
     margin: 15px 0;
     background-color: #BFDBF7;
@@ -318,6 +334,33 @@ svg {
     border: 2px solid #BFDBF7;
     border-radius: 5px;
 }
+#sample_stories h3{
+    font-size: 20px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
 .sentiment-tooltip {
     position: absolute;
     text-align: center;
@@ -340,6 +383,7 @@ svg {
     font-family: "Poppins";
 }
 .sentiment-tooltip h4 {
+    font-family: "Poppins";
     font: 14px sans-serif;
 }
 
@@ -347,7 +391,8 @@ svg {
     stroke: none;
     font: 12px sans-serif;
     font-family: "Poppins";
-    color: black
+    color: black;
+    fill:black;
 }
 
 .bubble-axis path{
@@ -358,16 +403,16 @@ svg {
 
     position: absolute;
     text-align: center;
-    width: 250px;
-    /*height: 28px;*/
-    padding: 5px;
+    width: fit-content;
+    padding: 20px;
     font: 12px sans-serif;
     font-family: "Poppins";
-    background-color: white;
-    /*color: lightcoral;*/
-    border-radius: 8px;
-    border: thin solid grey;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    /*border: thin solid grey;*/
     z-index: 200;
+    display: flex;
+    flex-direction: row;
     /*  pointer-events: none;	This line needs to be removed */
 }
 
@@ -376,7 +421,22 @@ svg {
     font-family: "Poppins";
 }
 .bubble-tooltip h4 {
+    font-family: "Poppins";
     font: 16px sans-serif;
+}
+
+.bubbleDescription{
+    margin-top:40px;
+    margin-left: 30px;
+}
+
+#bar_vis{
+    margin-top: 20px;
+    width: 80%;
+}
+
+#bar_vis rect{
+    stroke: none;
 }
 
 
@@ -501,7 +561,7 @@ input:focus {
 
 #comparingSquirNum {
     color: #3A2518;
-    width: 35vw;
+    width: 50vw;
 }
 
 .squirrelCensus{
@@ -561,11 +621,26 @@ button:focus {
 }
 
 #conclusion-tree {
-    height: 1600px;
+    /*height: 1600px;*/
     position: absolute;
     left: 0px;
-    top: -1000px;
+    top: -800px;
     z-index: -1;
+}
+
+#conclusion-forest{
+    position: absolute;
+    left: 40vw;
+    top: 60vh;
+    z-index: 1;
+}
+
+#conclusion-grass{
+    position: absolute;
+    left: -50px;
+    bottom: -200px;
+    z-index: 1;
+
 }
 
 #conclusion-squirrel {
@@ -580,7 +655,7 @@ button:focus {
 }
 
 #conclusion-message {
-    padding-top: 200px;
+    padding-top: 0px;
 }
 /* Squirrel Trivia */
 
@@ -593,6 +668,25 @@ button:focus {
     padding-top: -50px;
     z-index: 200;
     position: absolute;
+}
+
+.question h3{
+    font-size: 20px;
+    font-weight: bold;
+    color: #2E553E;
+
+}
+
+.trivia-Margins{
+    margin-top:80px;
+}
+
+#triviaSquirrel{
+    position:absolute;
+    left: 55vw;
+    top: 72vh;
+    z-index:1;
+
 }
 
 
@@ -610,15 +704,20 @@ button:focus {
 
 /* Defining each section background and styles
 * --------------------------------------- */
+/*#landing.load-background{*/
+/*    background: transparent url(../images/title-skyline.png) no-repeat scroll 0px 100%;*/
+/*    background-size: 100%;*/
+/*}*/
+
 #hookVis.load-background{
     background: transparent url(../images/squirrels-path-01.png) no-repeat scroll 0px 100%;
-    background-size: 90%;
+    background-size: 90% 70%;
 }
 #hookSquirrelDiv{
-    background: transparent url(../images/squirrel-standing.png) repeat-x scroll;
-    background-size: 10vw;
-    background-position: -2vw 0px;
-    width: 30vw;
+    /*background: transparent url(../images/squirrel-standing.png) repeat-x scroll;*/
+    /*background-size: 10vw;*/
+    /*background-position: -2vw 0px;*/
+    width: 100px;
     height: 200px;
     position: absolute;
     left: 10vw;
@@ -630,16 +729,95 @@ button:focus {
     background: transparent url(../images/squirrels-path-02.png) no-repeat scroll 0px 0px;
     background-size: 90% 100%;
 }
+#quotesInfo.load-background{
+    background: transparent url(../images/quotesBackground.png) no-repeat scroll 0px 0px;
+    background-size: 100% 100%;
+    width: 100vw;
+    /*z-index: -1;*/
+}
+
+/*Placing Images*/
+#landing-bg{
+    position: absolute;
+    top: -2vh;
+    left:0;
+}
+
+#hookImage{
+    position: absolute;
+    top: 5vh;
+    left: 60vw;
+    width: 500px;
+    height: 500px;
+    display:flex;
+    align-items: center;
+}
+
+#contextTree{
+    position: absolute;
+    top: 65vh;
+    left: 35vw;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+}
+
+#contextSquirrel{
+    position: absolute;
+    top: 90vh;
+    right: 0px;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+}
+
 .grass-divider{
     /*background: transparent url(../images/grass-divider-03.png) no-repeat scroll 0px 0px;*/
     /*background-size: 100% 120%;*/
 }
-#contextToMain, #cloudToTrivia, #TriviaToBubble{
+
+#cloudTreeTall{
     position: absolute;
-    top: 60vh;
+    top: 80vh;
+    left: 45vw;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+}
+
+#cloudTreePill{
+    position: absolute;
+    top: 85vh;
+    left: 65vw;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+}
+
+#contextToMain{
+    position: absolute;
+    top: 77vh;
     width: 100vw;
     height: 200px;
 }
+#cloudToTrivia{
+    position: absolute;
+    top: -15vh;
+    width: 100vw;
+    height: 200px;
+}
+#TriviaToBubble{
+    position: absolute;
+    top: 72vh;
+    width: 100vw;
+    height: 200px;
+}
+/*#cloudToTrivia, #TriviaToBubble{*/
+/*     position: absolute;*/
+/*     top: 75vh;*/
+/*     width: 100vw;*/
+/*     height: 200px;*/
+/* }*/
 /*#squirrelTrivia{*/
 /*    background-image: url(../images/Trivia.png);*/
 /*    !*padding: 6% 0 0 0;*!*/
@@ -651,9 +829,5 @@ button:focus {
 /*    background-image: url(../images/walkmap.png);*/
 /*}*/
 
-#quotesInfo.load-background{
-    background: transparent url(../images/quotesBackground.png) no-repeat scroll 0px 0px;
-    background-size: 100% 100%;
-    width: 100vw;
-    /*z-index: -1;*/
-}
+
+

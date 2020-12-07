@@ -39,11 +39,18 @@
 
         <!--    Landing Page    -->
         <div class="row section" id="landing">
+            <div id="landing-bg">
+                <img data-src="../squirrels/images/title-skyline.png" style="width: 100vw; height: 120vh;">
+            </div>
+
             <div class="col-md-12 homeImages">
                 <!-- <h1><span class="h1-sub homeItem">Final Project:</span> Squirrels in Central Park</h1> -->
                <!-- <h2 class="addMargins homeItem">Squirrels are cute, squirrels are fun!</h2> -->
                 <h1 id="titleSquirrel">Squirrels</h1>
                 <h1 id="titleCity">in the City</h1>
+<!--                <p id="subhead" >-->
+<!--                    Get to know the furry inhabitants of Central Park through <br> the 2018 Squirrel Census.-->
+<!--                </p>-->
                 <img class="homeItem" id="bench" src="images/homepage-bench.png" alt="bench">
                 <img class="homeItem" id="tree1" src="images/homepage-tree-1.png" alt="Tree">
                 <img class="homeItem" id="tree2" src="images/homepage-tree-2.png" alt="Tree">
@@ -58,7 +65,12 @@
 
         <!-- Hook -->
         <div class="row section" id="hookVis">
-            <div class="leftAlignItems" id="userGuess">
+
+            <div id="hookImage">
+                <img data-src="../squirrels/images/hook-img.png" style="width: 350px;">
+            </div>
+
+            <div class="col-md-6 leftAlignItems" id="userGuess">
                 <h1 id="squirNumQuestion">How many squirrels live in Central Park?</h1>
                     <br>
                     <form id="squirrelForm" action="#firstPage" onsubmit="return false">
@@ -66,10 +78,12 @@
                         <input type="submit" class="squirButton" value="Submit">
                     </form>
             </div>
-            <div class="col-md-4 leftAlignItems" id="hook-comparingGuess">
+            <div class="col-md-6 leftAlignItems" id="hook-comparingGuess">
                 <h1 id="comparingSquirNum"></h1>
             </div>
-            <div id="hookSquirrelDiv" ></div>
+            <div id="hookSquirrelDiv" >
+                <img data-src="../squirrels/images/squirrel-standing.png" alt="squirrels" width="100px">
+            </div>
 <!--            class="leftAlignItems"-->
         </div>
 
@@ -128,8 +142,16 @@
                 </div>
 
             </div>
+
+            <div id="contextTree">
+                <img data-src="../squirrels/images/tree1.png" alt="tree" width="250px">
+            </div>
+
+            <div id="contextSquirrel">
+                <img data-src="../squirrels/images/squirrel-sleeping.png" alt="squirrel sleeping" width="150px">
+            </div>
             <div class="grass-divider" id="contextToMain">
-                <img data-src="../squirrels/images/grass-divider-03.png" alt="divider" width="100%">
+                <img data-src="../squirrels/images/grass-divider-03.png" alt="divider" width="100%" height="275px">
             </div>
         </div>
 
@@ -232,7 +254,7 @@
             <!--        Sentiment Vis Bar Graph        -->
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-6 vertical-flex-center">
                     <!--        Category change dropdown        -->
                             <div class="row" style="height: 7vh; display:flex; justify-content: flex-start">
                                 <div style="padding-left: 10vw;padding-right: 10px; ">
@@ -253,9 +275,9 @@
                 </div>
                 <div class="col-md-6 vertical-flex" >
                     <!--      Title and Description      -->
-                    <div class="sentimentDescription">
-                        <h2 class="squirrelMapTitle">Some of the census takers' stories were more positive than others</h2>
-                        <p class="squirrelMapCaption">Use the drop down to view the different story categories</p>
+                    <div class="sentimentDescription right-padding">
+                        <h2 class="squirrelMapTitle">Over half of the census takers' stories were positive</h2>
+                        <p class="squirrelMapCaption">Use the drop down to view the effect various categories on sentiment </p>
                     </div>
                     <div>
                     <p class="right-padding">
@@ -272,7 +294,8 @@
                             difference, with non-poem stories having 15% more of the total
                             proportion being positive than the Accidental Poems. All the
                             other classes range from 51-58% positive stories, which is a
-                            the majority.
+                            majority. Squirrel stories have 8% more positive proportions than
+                            non-squirrel stories.
                         </p>
                     </div>
                 </div>
@@ -286,11 +309,11 @@
 
                 <div class="col-md-6 vertical-flex">
                     <!--      Title and Description      -->
-                    <div class="sentimentDescription">
+                    <div class="sentimentDescription right-padding">
                         <h2 class="squirrelMapTitle">The census takers used certain words more frequently than others</h2>
 <!--                        <p class="squirrelMapCaption centerText">Unsurprisingly, "squirrel" was the most common word!</p>-->
                     </div>
-                    <p style="margin-top:20px;"><strong>Instructions: </strong> Click on the different words to read a random story.
+                    <p class="right-padding"style="margin-top:20px;"><strong>Instructions: </strong> Click on the different words to read a random story.
                         P.S. Some of them are quite amusing!</p>
                     <!--        Random Story div            -->
                     <div class="randomStoryBox" id="sample_stories"></div>
@@ -313,9 +336,12 @@
 
             </div>
 
+            <div id="cloudTreeTall">
+                <img data-src="../squirrels/images/tree2.png" alt="tree" width="100px">
+            </div>
 
-            <div class="grass-divider" id="cloudToTrivia" style="padding-left: 0px;">
-                <img data-src="../squirrels/images/grass-divider-03.png" alt="divider" width="100%">
+            <div id="cloudTreePill">
+                <img data-src="../squirrels/images/tree1.png" alt="tree" width="300px">
             </div>
 
         </div>
@@ -326,10 +352,15 @@
 
         <!-- Squirrel Trivia -->
         <div class="row section" id="squirrelTrivia">
+
+            <div class="grass-divider" id="cloudToTrivia" style="padding-left: 0px;">
+                <img data-src="../squirrels/images/grass-divider-03.png" alt="divider" width="100%" height="225px">
+            </div>
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="trivia-Margins">Trivia Time!</h1>
+                        <h1 class="trivia-Margins bold-heading">Trivia Time!</h1>
                         <p>Now that we've analyzed the census takers' stories, we'll turn to the squirrels themselves - see if you can answer these squirrel trivia questions!</p>
                         <br>
                         <br>
@@ -401,8 +432,12 @@
                 </div>
             </div>
 
+            <div id="triviaSquirrel">
+                <img data-src="../squirrels/images/squirrel-pouncing.png" alt="squirrel pouncing" width="150px" >
+            </div>
+
             <div class="grass-divider" id="TriviaToBubble">
-                <img data-src="../squirrels/images/grass-divider-03.png" alt="divider" width="100%">
+                <img data-src="../squirrels/images/grass-divider-03.png" alt="divider" width="100%" height="225px">
             </div>
 
         </div>
@@ -410,9 +445,10 @@
         <!-- Main Message: Bubble Vis -->
         <div class="section" id="bubbleVis">
             <!--      Title and Description      -->
-            <div class="sentimentDescription">
-                <h2 class="centerText squirrelMapTitle">Squirrels show personality through their behavior</h2>
-                <p class="squirrelMapCaption centerText">The census takers had carefully observed the squirrels and noted their activities</p>
+            <div class="bubbleDescription">
+                <h2 class="squirrelMapTitle">Squirrels show personality through their behavior</h2>
+                <p class="squirrelMapCaption">Squirrels who approach or ignore humans
+                have certain patterns of activities, sounds, or tail movements.</p>
             </div>
 
             <div class="row align-middle">
@@ -421,10 +457,10 @@
                         Click the dropdown to filter a sample of 90 squirrels by various attributes.
                     </div>
                     <div class="row" style="height: 7vh; ">
-                        <div class="col-md-6" style="padding-right: 0; padding-left: 0;">
+                        <div style="padding: 5px 10px 0px 50px;">
                             <p style="text-align: end; margin-top: 5px;">Filter: </p>
                         </div>
-                        <div class="col-md-6">
+                        <div >
                             <select name="story_categories" id="bubble_select" class="form-control">
                             <!--                            <option value="Story Topic (String)">Story Topic</option>-->
                             <option value="Human Interactions">Human Interactions</option>
@@ -438,17 +474,22 @@
                     </div>
                     <div id="bubble_vis"></div>
                 </div>
-                <div class="col-md-6">
-                    <div> [Insert explanation about Kuks, Quaas, and Moans, also what different tail movements mean.
-                        Is there a correlation between squirrel behaviors and interactions with humans?]
+                <div class="col-md-6 right-padding">
+                    <div>
+                        Pay special attention to the approaching squirrels! They were spotted
+                        running and climbing, and tend to Kuk.
                         <br>
-                        Eventually, we want to be able to hear a squirrel kuk, quaa, or moan when we click on
-                        bubbles in that view of the visualization.
-                        <br>
-                        Pay special attention to the approaching squirrels! They were spotted running and climbing, and tend to Kuk.
-                        <br> The bar vis below shows the frequencies on the entire dataset, not just the sample. Note that some
-                        squirrels may have been spotted doing multiple activities or no activities at all,
-                        so the total does not always equal 2373, and counts do not always correspond to distinct squirrels.
+                        “Kuks” are the most common sound as they are a generic squirrel alarm.
+                        “Quaas” warn about terrestrial threats (dogs, cats) while “moans”
+                        signal aerial threats (hawks). Tail flags affect the meaning of
+                        squirrel sounds while tail twitches are more generic.
+                        Learn more in <a href="https://www.wired.com/2014/06/squirrel-alarm-calls-are-surprisingly-complex/">this</a> Wired article.
+
+                        <br> The bar vis below shows frequencies on the entire dataset, not
+                        just the sample. Note that some squirrels may have been spotted doing
+                        multiple activities or no activities at all, so the total does not
+                        always equal 2373, and bar graph counts do not always correspond to
+                        distinct squirrels.
                     </div>
                     <div id="bar_vis"></div>
                 </div>
@@ -456,9 +497,9 @@
         </div>
 
         <!--    Call to Action: Quotes    -->
-        <div class="row section" id="quotesInfo">
+        <div class="row section align-middle" id="quotesInfo">
             <div class="centerItemsQuotes quotesBox" id="quotesTitle">
-                <h4 id="transition2Quotes" class="centerText">For the census-takers, squirrel-watching was a highly enjoyable experience.</h4>
+                <h4 id="transitionQuotes" class="centerText">For the census-takers, squirrel-watching was a highly enjoyable experience.</h4>
                 <button class="squirButton" id="quotesTransition">Click to find out more!</button>
             </div>
             <div class="container quotes">
@@ -572,9 +613,21 @@
 
         <!--    Call to Action: Conclusion    -->
         <div class="row section" id="conclusion">
+            <div id="conclusion-tree">
+                <img data-src="images/tree.png" alt="tree" height="1800px">
+            </div>
+
+<!--            <div id="conclusion-forest">-->
+<!--                <img data-src="images/forest.png" alt="forest" height="350px">-->
+<!--            </div>-->
+
+            <div id="conclusion-grass">
+                <img data-src="images/grass-mound.png" alt="grass" height="400px"
+                     width="700px">
+            </div>
             <div class="row">
                 <div class="col-md-5">
-                    <img id="conclusion-tree" src="images/tree.png" alt="Tree">
+<!--                    <img id="conclusion-tree" src="images/tree.png" alt="Tree">-->
                     <img id="conclusion-squirrel" src="images/squirrel1.png" alt="Squirrel 1">
                 </div>
                 <div class="col-md-7">

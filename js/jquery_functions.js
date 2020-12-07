@@ -19,6 +19,7 @@ $(document).ready(function(){
 
     $('#titleSquirrel').delay(800).fadeTo(1200, 1);
     $('#titleCity').delay(1600).fadeTo(1200, 1);
+    $('#subhead').delay(1600).fadeTo(1200, 1);
     $('#bench').delay(1800).fadeIn(1200);
     $('#tree5').delay(2000).fadeIn(1200);
     $('#tree4').delay(2200).fadeIn(1200);

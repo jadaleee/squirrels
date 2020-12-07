@@ -124,11 +124,6 @@ class BubbleVis {
         vis.xAxisGroup.call(vis.xAxis)
             .attr("transform", `translate( 0, 40)`)
 
-        // Initialize a forceX for each category
-        // var forceXhuman = d3.forceX(d=>vis.humanInteractionsX(d))
-        // var forceXactivity = d3.forceX(d=>vis.activitiesX(d))
-        // var forceXsound = d3.forceX(d=>vis.soundsX(d))
-
         vis.circles = vis.svg.select(".circles-group").selectAll("circle")
             .data(vis.displayData.filter(d=>d.group), d=>d.name)
         //
@@ -168,8 +163,8 @@ class BubbleVis {
                     .style("top", event.pageY + "px")
                     .html(`
                              <div>
-                                 <h4> ${vis.category}: ${d.group}</h4>  
-                                 ${vis.category=="Human Interactions"?"":"<h4> Human Interactions: "+ d["Human Interactions"] +"</h4>"}
+                                 <h4 style="font-family: 'Poppins'"> ${vis.category}: ${d.group}</h4>  
+                                 ${vis.category=="Human Interactions"?"":"<h4 style=\"font-family: 'Poppins'\"> Human Interactions: "+ d["Human Interactions"] +"</h4>"}
 
                              </div>`);
 

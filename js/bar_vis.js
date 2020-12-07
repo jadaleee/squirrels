@@ -22,7 +22,7 @@ class BarVis {
         // at that point fix the bottom margin
 
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
-        vis.height = 400 - vis.margin.top - vis.margin.bottom;
+        vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
         // SVG drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -42,7 +42,7 @@ class BarVis {
 
         // A color scale
         vis.color = d3.scaleLinear()
-            .range(["#e3fafa", "#0b8fba"])
+            .range(["#A1C181", "#5F9566"])
 
         vis.xAxis = d3.axisBottom()
             .scale(vis.x)
@@ -56,6 +56,44 @@ class BarVis {
         vis.yAxisGroup = vis.svg.append("g")
             .attr("class", "y-axis bar-axis")
 
+        //Legend
+        // Color scale legend
+        // Legend and scale
+        vis.defs = vis.svg.append("defs")
+
+        var linearGradient = vis.defs.append("linearGradient")
+            .attr("id", "bar-linear-gradient")
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "0%")
+
+        //Set the color for the start (0%)
+        linearGradient.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "#A1C181"); //light blue
+
+        //Set the color for the end (100%)
+        linearGradient.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "#5F9566"); //dark blue
+        //Draw the rectangle and fill with gradient
+        vis.svg.append("rect")
+            .attr("width", 150)
+            .attr("height", 20)
+            .attr("transform", `translate(10, -40)`)
+            .style("fill", "url(#bar-linear-gradient)")
+            .style("stroke", "none");
+
+        vis.legendX = d3.scaleLinear()
+            .range([0, 150])
+        vis.legendAxisGroup = vis.svg.append("g")
+            .attr("class", "bar-axis")
+            .attr("transform", `translate(10, -20)`)
+        vis.legendAxis = d3.axisBottom()
+            .scale(vis.legendX)
+            .ticks(3)
+            .tickFormat(d3.format("d"))//".2s"))
 
         // Tooltips append placeholder div
         vis.tooltip = d3.select("body").append("div")//`#${(vis.parentElement)}`).append('div')
@@ -97,17 +135,27 @@ class BarVis {
         vis.x.domain(vis.categories[vis.category])
         vis.color.domain(d3.extent(vis.displayData, d=>d.value))
         vis.y.domain([d3.max(vis.displayData, d=> d.value), 0])
+        vis.legendX.domain(d3.extent(vis.displayData, d=>d.value))
+
+        // update aces
         vis.xAxisGroup.call(vis.xAxis)
             .attr("transform", `translate(0, ${vis.height})`)
-        vis.yAxisGroup.call(vis.yAxis)
+        vis.yAxisGroup
+            .transition()
+            .duration(800)
+            .call(vis.yAxis)
+        vis.legendAxisGroup
+            .transition()
+            .duration(800)
+            .call(vis.legendAxis)
 
-        vis.rectangles = vis.svg.selectAll("rect").data(vis.displayData)
+        vis.rectangles = vis.svg.selectAll(".bar").data(vis.displayData)
         vis.rectangles.exit().remove()
         vis.rectangles.enter().append("rect")
             .attr("class", "bar")
             .merge(vis.rectangles)
-            .attr("x", (d, i)=> vis.x(d.key))
-            .attr("width", vis.x.bandwidth())
+            .attr("x", (d, i)=> vis.x(d.key)+ vis.x.bandwidth()/2 - d3.min([40, vis.x.bandwidth()/2]))
+            .attr("width", d3.min([80, vis.x.bandwidth()]))
             // .on("mouseover", function(event, d){
             //     console.log(event, d)
             //     d3.select(this)

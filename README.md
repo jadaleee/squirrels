@@ -22,4 +22,4 @@ We wrote all the code in the codebase EXCEPT FOR: /slick, js/leaflet, js/slick, 
 ###### Relevant Links:
 
 WEBSITE URL: https://jadaleee.github.io/squirrels/
-<br/> SCREENCAST URL: [TO BE ADDED]
+<br/> SCREENCAST URL: https://harvard.zoom.us/rec/share/0Qdo9ot21DnN5NC3hzUb4JL-CvK976nP3ZmS7cOcgdOXLsXr56IYLWdNOFp4MyRF.49U82XRohhB_cwwQ

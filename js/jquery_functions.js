@@ -27,7 +27,7 @@ $(document).ready(function(){
     $('#tree1').delay(2800).fadeIn(1200);
     $('#tree6').delay(3000).fadeIn(1200);
     $('#tree7').delay(3200).fadeIn(1200);
-    $('#homepagesquirrel').delay(4000).fadeIn(1200);
+    $('#homepagesquirrel').delay(3300).fadeIn(1200);
 
 
     /* Hook Visualization Functions */
@@ -106,8 +106,37 @@ $(document).ready(function(){
     // More questions (set 2 of questions)
     $('#moreQuestions').click(function(){
         $('.question-set-1').hide();
-        $('.question-set-2').hide();
+        $('.question-set-2').delay(900).fadeTo(800, 1).show();
     })
+
+    // Answers to question set 2
+
+    // Revealing answer to question 1
+    $('#question-1-answers-A-2').click(function(){
+        $('#answer-1-2').fadeTo(800, 1);
+    });
+
+    $('#question-1-answers-B-2').click(function(){
+        $('#answer-1-2').fadeTo(800, 1);
+    });
+
+    // Revealing answer to question 2
+    $('#question-2-answers-A-2').click(function(){
+        $('#answer-2-2').fadeTo(800, 1);
+    });
+
+    $('#question-2-answers-B-2').click(function(){
+        $('#answer-2-2').fadeTo(800, 1);
+    });
+
+    // Revealing answer to question 3
+    $('#question-3-answers-A-2').click(function(){
+        $('#answer-3-2').fadeTo(800, 1);
+    });
+
+    $('#question-3-answers-B-2').click(function(){
+        $('#answer-3-2').fadeTo(800, 1);
+    });
 
     /* Quotes Functions (same as Context Functions) */
 

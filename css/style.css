@@ -240,7 +240,7 @@ svg {
 
 #homepagesquirrel {
     position: absolute;
-    width: 10%;
+    width: 120px;
     height: 45%;
     top: 125px;
     left: 175px;
@@ -524,7 +524,7 @@ input:focus {
 /* Context */
 
 button:focus {
-    outline:none;
+    outline: none;
 }
 
 .centerItems {
@@ -542,9 +542,7 @@ button:focus {
     align-self: flex-start;
 }
 
-
-
-  /* About Us */
+/* About Us */
 
 .centerMugshot {
     margin: auto;
@@ -554,8 +552,8 @@ button:focus {
 }
 
 .mugshot {
-    width: 100%;
-    height: 75%;
+    width: 350px;
+    height: 350px;
     border-radius: 10%;
 }
 
@@ -588,9 +586,10 @@ button:focus {
 }
 
 #moreQuestionsDiv {
-    float: right;
-    padding-right: 0px;
+    padding-left: 70%;
     padding-top: -50px;
+    z-index: 200;
+    position: absolute;
 }
 
 
@@ -636,7 +635,7 @@ button:focus {
     position: absolute;
     top: 60vh;
     width: 100vw;
-    height: 400px;
+    height: 200px;
 }
 /*#squirrelTrivia{*/
 /*    background-image: url(../images/Trivia.png);*/

@@ -81,7 +81,7 @@ class BarVis {
         vis.svg.append("rect")
             .attr("width", 150)
             .attr("height", 20)
-            .attr("transform", `translate(10, -40)`)
+            .attr("transform", `translate(${vis.width-150}, -40)`)
             .style("fill", "url(#bar-linear-gradient)")
             .style("stroke", "none");
 
@@ -89,7 +89,7 @@ class BarVis {
             .range([0, 150])
         vis.legendAxisGroup = vis.svg.append("g")
             .attr("class", "bar-axis")
-            .attr("transform", `translate(10, -20)`)
+            .attr("transform", `translate(${vis.width-150}, -20)`)
         vis.legendAxis = d3.axisBottom()
             .scale(vis.legendX)
             .ticks(3)

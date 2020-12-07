@@ -107,7 +107,7 @@ $(document).ready(function(){
     // More questions (set 2 of questions)
     $('#moreQuestions').click(function(){
         $('.question-set-1').hide();
-        $('.question-set-2').delay(900).fadeTo(800, 1).show();
+        $('.question-set-2').delay(600).fadeTo(800, 1).show();
     })
 
     // Answers to question set 2
@@ -166,7 +166,7 @@ $(document).ready(function(){
     let reachedConclusion = $('#conclusion').offset().top;
 
     $(window).scroll(function() {
-        var place = window.pageYOffset;
+        var place = window.pageYOffset + 200;
         if(place > reachedConclusion) {
             $('#conclusion-message').fadeIn(1200);
             $('#conclusion-squirrel').delay(1300).slideDown(1000);

@@ -37,7 +37,7 @@ p {
 }
 
 .about-text{
-    font-size: 14px;
+    font-size: 16px;
     width: 35vw;
 }
 
@@ -339,26 +339,26 @@ svg {
 }
 
 /* width */
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     width: 10px;
     border-radius: 10px;
-}
+} */
 
 /* Track */
-::-webkit-scrollbar-track {
+/*::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
-}
+}*/
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+/*::-webkit-scrollbar-thumb {
     background: #888;
-}
+}*/
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+/*::-webkit-scrollbar-thumb:hover {
     background: #555;
-}
+}*/
 
 
 .sentiment-tooltip {
@@ -637,8 +637,8 @@ button:focus {
 
 #conclusion-grass{
     position: absolute;
-    left: -50px;
-    bottom: -200px;
+    left: -130px;
+    bottom: -75px;
     z-index: 1;
 
 }
@@ -648,10 +648,10 @@ button:focus {
     top: 60px;
     bottom: 80px;
     position: relative;
-    left: 200px;
+    left: 220px;
     top: 170px;
     z-index: -2;
-    transform: rotate(0deg);
+    transform: rotate(0deg) scaleX(-1);
 }
 
 #conclusion-message {
@@ -678,13 +678,13 @@ button:focus {
 }
 
 .trivia-Margins{
-    margin-top:80px;
+    margin-top:0px;
 }
 
 #triviaSquirrel{
     position:absolute;
     left: 55vw;
-    top: 72vh;
+    top: 77vh;
     z-index:1;
 
 }
@@ -721,7 +721,7 @@ button:focus {
     height: 200px;
     position: absolute;
     left: 10vw;
-    top: 80vh;
+    top: 70vh;
     /*margin-left: 10vw;*/
     /*margin-top: 15vh;*/
 }
@@ -745,7 +745,7 @@ button:focus {
 
 #hookImage{
     position: absolute;
-    top: 5vh;
+    top: 15vh;
     left: 60vw;
     width: 500px;
     height: 500px;
@@ -808,7 +808,7 @@ button:focus {
 }
 #TriviaToBubble{
     position: absolute;
-    top: 72vh;
+    top: 80vh;
     width: 100vw;
     height: 200px;
 }

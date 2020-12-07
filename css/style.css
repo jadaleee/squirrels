@@ -664,8 +664,8 @@ button:focus {
 }
 
 #moreQuestionsDiv {
-    padding-left: 70%;
-    padding-top: -50px;
+    padding-left: 1050px;
+    padding-top: -100px;
     z-index: 200;
     position: absolute;
 }
